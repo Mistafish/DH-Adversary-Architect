@@ -14,16 +14,16 @@
     "impulses": "Draw in the curious, echo the past",
     "diff": 11,
     "suggestedAdversaries": "Beasts (Bear, Dire Wolf, Glass Snake), Grove Guardians (Minor Treant, Sylvan Soldier, Young Dryad)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -64,16 +64,16 @@
     "impulses": "Poison the party with deadly gasses, rumble and collapse, split the party, turn them around",
     "diff": 11,
     "suggestedAdversaries": "Darkweave Spiders (Darkweave Crawler, Darkweave Spinner, Darkweave Swarmlings), Miner Ghosts (Poltergeist, Will-o'-the-Wisps)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -119,16 +119,16 @@
     "impulses": "Break down the barrier between life and death, draw down lightning from the heavens, overclock the machinery",
     "diff": 11,
     "suggestedAdversaries": "Lab Leftovers (Construct, Minor Fire Elemental, Patchwork Zombie Hulk, Swarm of Rats)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -164,16 +164,16 @@
     "impulses": "Overwhelm, scatter, surround",
     "diff": "Special (see \"Relative Strength\")",
     "suggestedAdversaries": "Any",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -204,16 +204,16 @@
     "impulses": "Escape, group up, protect the most Vulnerable",
     "diff": "Special (see \"Relative Strength\")",
     "suggestedAdversaries": "Any",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -244,16 +244,16 @@
     "impulses": "Collect magical energy, exhaust intruders, reveal the unknown, unleash bursts of magical power",
     "diff": 16,
     "suggestedAdversaries": "Alchemical Creations (Chimera, Lamia, Manticore), Archmage",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -289,16 +289,16 @@
     "impulses": "Attack their psyches, summon their subconscious fears, warp their perceptions",
     "diff": 16,
     "suggestedAdversaries": "Demon of Despair, Elemental Spark, Pain Priest, Psychic Vampires (Head Vampire, Night Children)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -339,16 +339,16 @@
     "impulses": "Conjure images of sand and surf, give them a breather, prepare them for the conflict ahead",
     "diff": 14,
     "suggestedAdversaries": "None",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -360,7 +360,7 @@
       {
         "name": "\"Our Story So Far...\"",
         "type": "Passive",
-        "text": "Once per scene when a PC recounts a memorable moment from the campaign in conversation with another PC, they both gain a Hope.What sounds, smells, or sensations does the memory conjure in your mind? How did that moment permanently change you—or your opinion of your companion?"
+        "text": "Once per scene when a PC recounts a memorable moment from the campaign in conversation with another PC, they both gain a Hope.What sounds, smells, or sensations does the memory conjure in your mind? How did that moment permanently change you\u2014or your opinion of your companion?"
       },
       {
         "name": "Local Trouble",
@@ -390,16 +390,16 @@
     "impulses": "Beat out an uncanny rhythm for all to follow, corrupt the woods",
     "diff": 16,
     "suggestedAdversaries": "Beasts (Bear, Glass Snake), Elementals (Elemental Spark), Verdant Defenders (Dryad, Oak Treant, Stag Knight)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -445,16 +445,16 @@
     "impulses": "Buy low, sell high, tempt and tantalize with wares from near and far",
     "diff": 10,
     "suggestedAdversaries": "Guards (Bladed Guard, Head Guard), Masked Thief, Merchant",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -495,16 +495,16 @@
     "impulses": "Bleed out the will to fight, breach the walls, build tension",
     "diff": 17,
     "suggestedAdversaries": "Mercenaries (Harrier, Sellsword, Spellblade, Weaponmaster), Noble Forces (Archer Squadron, Conscript, Elite Soldier, Knight of the Realm)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -546,16 +546,16 @@
     "impulses": "Annihilate certainty, consume power, defy logic",
     "diff": 20,
     "suggestedAdversaries": "Outer Realms Monstrosities (Abomination, Corruptor, Thrall)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -601,16 +601,16 @@
     "impulses": "Cast the unwary down to a rocky doom, draw people in with promise of what lies at the top",
     "diff": 12,
     "suggestedAdversaries": "Construct, Deeproot Defender, Giant Scorpion, Glass Snake",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -646,16 +646,16 @@
     "impulses": "Confront them with alien customs, dazzle them with infinite variety, tempt them with the impossible",
     "diff": 20,
     "suggestedAdversaries": "Power Players (Arch-Necromancer, Demon Lord Berzug, Fire Titan Warlord, High Seraph, Monarch, Oracle of Doom, Vampire Lord), Travelers and Residents (Any)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -701,16 +701,16 @@
     "impulses": "Corrupt, emphasize putrescence, reveal the twisted and unnatural, sicken",
     "diff": 11,
     "suggestedAdversaries": "Any Undead (Skeleton, Zombie, Spectral Guardian), Giant Rat, Green Ooze, Tangle Bramble",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -732,7 +732,7 @@
       {
         "name": "Dancing Lights",
         "type": "Action",
-        "text": "At the start of a rest, you can spend a Fear to have floating orbs enthrall the weary and lure a PC deeper into the swamp. A different PC can use a downtime move to make an action roll to search for them. On a success, both PCs return to camp and can choose downtime moves as normal. On a failure—or if no one searches for them—the lost PC returns hours later, covered in mud and worse, and can't choose downtime moves until their next rest.What does the lost PC see in the lights that draws them into the darkness? What other glimpses of surprising beauty do the PCs encounter here?"
+        "text": "At the start of a rest, you can spend a Fear to have floating orbs enthrall the weary and lure a PC deeper into the swamp. A different PC can use a downtime move to make an action roll to search for them. On a success, both PCs return to camp and can choose downtime moves as normal. On a failure\u2014or if no one searches for them\u2014the lost PC returns hours later, covered in mud and worse, and can't choose downtime moves until their next rest.What does the lost PC see in the lights that draws them into the darkness? What other glimpses of surprising beauty do the PCs encounter here?"
       }
     ],
     "isEnvironment": true
@@ -751,16 +751,16 @@
     "impulses": "Profane the land, unite the Mortal Realm with the Circles Below",
     "diff": 14,
     "suggestedAdversaries": "Cult of the Fallen (Cult Adept, Cult Fang, Cult Initiate, Secret-Keeper)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -772,7 +772,7 @@
       {
         "name": "Blasphemous Might",
         "type": "Action",
-        "text": "A portion of the ritual's power is diverted into a cult member to fight off interlopers. Choose one adversary to become Imbued with terrible magic until the scene ends or they're defeated. An Imbued adversary immediately takes the spotlight and gains one of the following benefits, or all three if you spend a Fear:They gain advantage on all attacks.They deal an extra 1d10 damage on a successful attack.They gain the following feature: Relentless (2)—Passive: This adversary can be spotlighted multiple times per GM turn. Spend Fear as usual to spotlight them.How does the enemy change in appearance? What fears do their blows bring to the surface?"
+        "text": "A portion of the ritual's power is diverted into a cult member to fight off interlopers. Choose one adversary to become Imbued with terrible magic until the scene ends or they're defeated. An Imbued adversary immediately takes the spotlight and gains one of the following benefits, or all three if you spend a Fear:They gain advantage on all attacks.They deal an extra 1d10 damage on a successful attack.They gain the following feature: Relentless (2)\u2014Passive: This adversary can be spotlighted multiple times per GM turn. Spend Fear as usual to spotlight them.How does the enemy change in appearance? What fears do their blows bring to the surface?"
       },
       {
         "name": "The Summoning",
@@ -801,16 +801,16 @@
     "impulses": "Bury them six feet deep, choke with fog, lure with promises of entombed treasure, unleash the restless dead",
     "diff": 11,
     "suggestedAdversaries": "Corrupted Spirits (Deeproot Defender, Phantom), Living Dead (Skeleton Warrior, Zombie Pack, Patchwork Zombie Hulk)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -856,16 +856,16 @@
     "impulses": "Cut them to their core, fracture their psyches, show their true reflection",
     "diff": 16,
     "suggestedAdversaries": "Adult Flickerfly, Constructs, Elemental Spark, Vault Guardians, Whisper Wraiths",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -882,7 +882,7 @@
       {
         "name": "Arcane Reflection",
         "type": "Action",
-        "text": "Spend a Fear to have any number of PCs glimpse a reflection in the crystal of who they once were or might become. Each target must make an Instinct Reaction Roll. Targets who succeed see a vision of their better self and can replace one Experience Roll. Targets who fail see a vision of their dark past—or an even darker future—and must mark a Stress. You you can spend a Fear for each target who failed.Who do the PCs see on the other side of the crystal? How does it make them feel?"
+        "text": "Spend a Fear to have any number of PCs glimpse a reflection in the crystal of who they once were or might become. Each target must make an Instinct Reaction Roll. Targets who succeed see a vision of their better self and can replace one Experience Roll. Targets who fail see a vision of their dark past\u2014or an even darker future\u2014and must mark a Stress. You you can spend a Fear for each target who failed.Who do the PCs see on the other side of the crystal? How does it make them feel?"
       },
       {
         "name": "Razor-Sharp Terrain",
@@ -911,16 +911,16 @@
     "impulses": "Devour the party's resources, spring the trap, tempt them with treasure, throw monsters at them, turn them around",
     "diff": 14,
     "suggestedAdversaries": "Dungeon Denizens (Gobstalker, Green Ooze, Ravenous Mockery, Rust Eater), Rival Adventurers (Giant Brawler, Masked Thief, War Wizard)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -961,16 +961,16 @@
     "impulses": "Collect power, overawe, silence dissent",
     "diff": 20,
     "suggestedAdversaries": "Arch-Necromancer, Fallen Shock Troops, Mortal Hunter, Oracle of Doom, Perfected Zombie",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -1021,16 +1021,16 @@
     "impulses": "Lure into the levels below, make escape impossible, tempt with treasure, wake the dragon",
     "diff": 16,
     "suggestedAdversaries": "The Dragon's Minions (Drake, Wyvern), Young Fire Dragon",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -1071,16 +1071,16 @@
     "impulses": "Focus on one PC, goad them into overcommitting, inflict an embarrassing defeat, sideline the rest of the party",
     "diff": "Special (see \"Relative Strength\")",
     "suggestedAdversaries": "Any",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -1121,16 +1121,16 @@
     "impulses": "Bring everyone together, celebrate a momentous occasion, encourage revelrous abandon",
     "diff": 11,
     "suggestedAdversaries": "Apprentice Assassin, Guard, Merchant, Petty Noble, Sellsword, Spy",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -1171,16 +1171,16 @@
     "impulses": "Connect the Mortal Realm with the Hallows Above, display the power of the divine, provide aid and succor to the faithful",
     "diff": 13,
     "suggestedAdversaries": "Guards (Archer Guard, Bladed Guard, Head Guard)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -1221,16 +1221,16 @@
     "impulses": "Misdirect and disorient, replay apocalypses both public and personal",
     "diff": 14,
     "suggestedAdversaries": "Ghosts (Spectral Archer, Spectral Captain, Spectral Guardian), ghostly versions of other adversaries (see \"Ghostly Form\")",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -1271,16 +1271,16 @@
     "impulses": "Make the party prepare, split them up, throw up obstacles, trap them inside, use up their resources",
     "diff": 14,
     "suggestedAdversaries": "Head Guard, Minotaur Wrecker, Secret-Keeper, Spectral Guardian",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -1326,16 +1326,16 @@
     "impulses": "Crash waves of enemies upon the party's shores, never let them breathe, target their charge",
     "diff": 11,
     "suggestedAdversaries": "Jagged Knives, Pirates, Skeletons, Zombies",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -1376,16 +1376,16 @@
     "impulses": "Justify and perpetuate imperial rule, seduce rivals with promises of power and comfort",
     "diff": 20,
     "suggestedAdversaries": "Bladed Guard, Courtesan, Knight of the Realm, Monarch, Spy",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -1431,16 +1431,16 @@
     "impulses": "Express local culture and history, forge new relationships, reinforce community",
     "diff": 11,
     "suggestedAdversaries": "Festival Security (Bladed Guard, Head Guard), Local Luminaries (Commoner, Merchant, Petty Noble), Sundry Ne'er-Do-Wells (Jagged Knife Bandit, Lackey)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -1481,23 +1481,23 @@
     "impulses": "Provide opportunities for adventurers, nurture community",
     "diff": 10,
     "suggestedAdversaries": "Guards (Bladed Guard, Head Guard), Mercenaries (Harrier, Sellsword, Spellblade, Weaponmaster), Merchant",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
       {
         "name": "What's the Talk of the Town?",
         "type": "Passive",
-        "text": "A PC can ask the bartender, staff, or patrons about local events, rumors, and potential work with a Presence Roll. On a success, they can pick two of the below details to learn—or three if they critically succeed. On a failure, they can pick one and mark a Stress as the local carries on about something irrelevant.A fascinating rumor with a connection to a PC's backgroundA promising job for the party involving a nearby threat or situationLocal folklore that relates to something they've seenTown gossip that hints at a community problemWho has what kind of information? What gossip do the locals start spreading about the PCs?"
+        "text": "A PC can ask the bartender, staff, or patrons about local events, rumors, and potential work with a Presence Roll. On a success, they can pick two of the below details to learn\u2014or three if they critically succeed. On a failure, they can pick one and mark a Stress as the local carries on about something irrelevant.A fascinating rumor with a connection to a PC's backgroundA promising job for the party involving a nearby threat or situationLocal folklore that relates to something they've seenTown gossip that hints at a community problemWho has what kind of information? What gossip do the locals start spreading about the PCs?"
       },
       {
         "name": "Sing for Your Supper",
@@ -1536,23 +1536,23 @@
     "impulses": "Dance the night away, eat and be merry, make secret deals, trade valuable information",
     "diff": 14,
     "suggestedAdversaries": "Operatives (Masked Thief, Master Assassin, Spy), Revelers (Courtesan, Merchant Baron, Royal Advisor)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
       {
         "name": "Costumes Required",
         "type": "Passive",
-        "text": "Everyone at the ball is expected to arrive in costume. PCs have advantage on Presence Rolls to convince others they are someone—or something—they're not.What do the PCs come dressed as? What do their costumes reveal about their true selves?"
+        "text": "Everyone at the ball is expected to arrive in costume. PCs have advantage on Presence Rolls to convince others they are someone\u2014or something\u2014they're not.What do the PCs come dressed as? What do their costumes reveal about their true selves?"
       },
       {
         "name": "\"Care to Dance?\"",
@@ -1586,16 +1586,16 @@
     "impulses": "Blow hurricane winds, choke with mudslides, crumble structures, flood, throw debris, light up the sky",
     "diff": 16,
     "suggestedAdversaries": "Greater Water Elemental, Storm Titan",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -1641,16 +1641,16 @@
     "impulses": "Blur the line between dream and reality, let consciousness ebb and flow like the tide, whisper echoes of ancient opulence",
     "diff": 20,
     "suggestedAdversaries": "Local Fauna (Cryptimoths, Yufos), Moon Queen's Spirit (Arch-Necromancer), Reawakened Relics (Constructs, Vault Guardians)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -1691,16 +1691,16 @@
     "impulses": "Exact a chilling toll in supplies and stamina, reveal magical tampering, slow down travel",
     "diff": 15,
     "suggestedAdversaries": "Beasts (Bear, Giant Eagle, Glass Snake), Chaos Skull, Minotaur Wrecker, Mortal Hunter",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -1741,16 +1741,16 @@
     "impulses": "Confound intruders, delve into secrets best left buried, manifest unlife, unleash a tide of undead",
     "diff": 19,
     "suggestedAdversaries": "Arch-Necromancer's Host (Perfected Zombie, Zombie Legion)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -1796,16 +1796,16 @@
     "impulses": "Reveal what lurks beneath the waves, send them in the wrong direction, sink the ship, use up their resources",
     "diff": 14,
     "suggestedAdversaries": "Deep Sea Denizens (Electric Eels, Kraken, Shark, Siren), Pirates (Pirate Captain, Pirate Raiders)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -1851,16 +1851,16 @@
     "impulses": "Drive the desperate to certain doom, profit off of ragged hope",
     "diff": 12,
     "suggestedAdversaries": "Jagged Knife Bandits (Hexer, Kneebreaker, Lackey, Lieutenant, Shadow, Sniper), Masked Thief, Merchant",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -1906,16 +1906,16 @@
     "impulses": "Seize people, land, and wealth, spill blood for greed and glory",
     "diff": 17,
     "suggestedAdversaries": "Mercenaries (Sellsword, Harrier, Spellblade, Weaponmaster), Noble Forces (Archer Squadron, Conscript, Elite Soldier, Knight of the Realm)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -1932,7 +1932,7 @@
       {
         "name": "War Magic",
         "type": "Action",
-        "text": "Spend a Fear as a mage from one side uses large-scale destructive magic. Pick a point on the battlefield within Very Far range of the mage. All targets within Close range of that point must make an Agility Reaction Roll. Targets who fail take 3d12+8 physical damage and must mark a Stress.What form does the attack take—fireball, raining acid, a storm of blades? What tactical objective is this attack meant to accomplish, and what comes next?"
+        "text": "Spend a Fear as a mage from one side uses large-scale destructive magic. Pick a point on the battlefield within Very Far range of the mage. All targets within Close range of that point must make an Agility Reaction Roll. Targets who fail take 3d12+8 physical damage and must mark a Stress.What form does the attack take\u2014fireball, raining acid, a storm of blades? What tactical objective is this attack meant to accomplish, and what comes next?"
       },
       {
         "name": "Reinforcements",
@@ -1956,16 +1956,16 @@
     "impulses": "Bar crossing, carry away the unready, divide the land",
     "diff": 10,
     "suggestedAdversaries": "Beasts (Bear, Glass Snake), Jagged Knife Bandits (Hexer, Kneebreaker, Lackey, Lieutenant, Shadow, Sniper)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -2001,16 +2001,16 @@
     "impulses": "Light it on fire, overwhelm with speed and numbers, take everything that isn't nailed down",
     "diff": 11,
     "suggestedAdversaries": "Ship's Crew (Pirate Captain, Pirate Raiders, Pirate Tough)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -2051,16 +2051,16 @@
     "impulses": "Drown in despair, leech life, tempt into endless slumber",
     "diff": 20,
     "suggestedAdversaries": "Any (see \"Death-Touched Denizens\")",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -2106,16 +2106,16 @@
     "impulses": "Draw them deep, drown them, reveal ancient wonders",
     "diff": 16,
     "suggestedAdversaries": "Cursed Merfolk, Deep Dweller, Plesiosaurus",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -2156,16 +2156,16 @@
     "impulses": "Find the truth, mete out justice, nullify their powers",
     "diff": 20,
     "suggestedAdversaries": "Judge (Monarch), Jury (Hallowed Choir), Executioners (Temporal Enforcers)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -2211,16 +2211,16 @@
     "impulses": "Dangle the jackpot just out of reach, dazzle them with spectacle, prey on their vices",
     "diff": 16,
     "suggestedAdversaries": "Automated Security (Vault Guardians), Gamblers (Courtesan, Merchant Baron, Petty Noble, Spy)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -2266,16 +2266,16 @@
     "impulses": "",
     "diff": 14,
     "suggestedAdversaries": "Acid Burrower, Desert Raiders (Jagged Knife Bandits), Landshark, Sandwyrm",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -2321,16 +2321,16 @@
     "impulses": "Create panic all around, cut off the exits, isolate, make them scramble for safety, split the party",
     "diff": 16,
     "suggestedAdversaries": "Elemental Spark, Lava Elemental (Greater Earth Elemental), Volcanic Dragon",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -2367,16 +2367,16 @@
     "impulses": "them out, delay them until the witch's return, lock them inside, move to a different location, tempt them with magical oddities",
     "diff": 14,
     "suggestedAdversaries": "Chicken-Foot Hut, Enchanted Defenses (Gargoyle, Ravenous Mockery, Scarecrow), Valdenhax, The Witch's Victims (Jack-o'-Lanterns, Redcap Biters)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -2393,12 +2393,12 @@
       {
         "name": "Witches' Brew",
         "type": "Passive",
-        "text": "The hut contains a workshop with every tool or component a witch could need, including a large iron cauldron set atop a smoldering fire. A PC who wants to use the workshop can make a Spellcast Roll to craft a magic potion or poison from the Consumables table.Any Failure: The experiment blows up in their face—literally. The PC takes 2d10+2 magic damage.Any Success: The PC rolls a number of d12s equal to 1 + their tier, adds the results together, and gains the consumable that matches that value on the Consumables table. If they critically succeeded, they can reroll any d12s showing a result of 1.What sorts of concoctions does the witch who owns this hut specialize in? What would the witch do if they found the PCs using their things?"
+        "text": "The hut contains a workshop with every tool or component a witch could need, including a large iron cauldron set atop a smoldering fire. A PC who wants to use the workshop can make a Spellcast Roll to craft a magic potion or poison from the Consumables table.Any Failure: The experiment blows up in their face\u2014literally. The PC takes 2d10+2 magic damage.Any Success: The PC rolls a number of d12s equal to 1 + their tier, adds the results together, and gains the consumable that matches that value on the Consumables table. If they critically succeeded, they can reroll any d12s showing a result of 1.What sorts of concoctions does the witch who owns this hut specialize in? What would the witch do if they found the PCs using their things?"
       },
       {
         "name": "Dislocated",
         "type": "Reaction",
-        "text": "Time moves diff erently inside the Witch's Hut. When the door to the hut is closed, roll a d6. On a result of 4 or higher, the hut moves to a different—often impossibly far—location that's only revealed to the PCs when they open the hut's door again.Why does the hut move so often? Where does it wish to bring the PCs? Is there any way to aim it at a specific location?"
+        "text": "Time moves diff erently inside the Witch's Hut. When the door to the hut is closed, roll a d6. On a result of 4 or higher, the hut moves to a different\u2014often impossibly far\u2014location that's only revealed to the PCs when they open the hut's door again.Why does the hut move so often? Where does it wish to bring the PCs? Is there any way to aim it at a specific location?"
       }
     ],
     "isEnvironment": true
@@ -2417,16 +2417,16 @@
     "impulses": "Emphasize the length of the journey, try to break the herd, exhaust the heroes",
     "diff": 11,
     "suggestedAdversaries": "Acid Burrower, Black Hat Cattle Rustlers, Coyote (Wolf)",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -2465,16 +2465,16 @@
     "impulses": "Haunt the heroes, produce abundance, trap the heroes",
     "diff": 11,
     "suggestedAdversaries": "Acid Burrower, Bear, Boneyard Goldtooth, Cave Ogre, Giant Rat, Giant Scorpion, Skeletons, Swarm of Rats",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -2519,16 +2519,16 @@
     "impulses": "Keep them pinned, relentlessly pummel them, make them submit",
     "diff": 16,
     "suggestedAdversaries": "Any",
-    "major": "—",
-    "severe": "—",
+    "major": "\u2014",
+    "severe": "\u2014",
     "hp": 0,
     "stress": 0,
     "attack": {
-      "name": "—",
+      "name": "\u2014",
       "bonus": 0,
-      "range": "—",
-      "damage": "—",
-      "type": "—"
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
     },
     "experiences": [],
     "features": [
@@ -2555,6 +2555,600 @@
         "type": "Passive",
         "cost": "None",
         "text": "Surrounded is a versatile environment easily used at any tier. Simply adjust the difficulty and the adversaries to match the PCs. An easy solution is to subtract or add 2 to the difficulty for each tier you're scaling to (12/14/16/18)."
+      }
+    ],
+    "isEnvironment": true
+  },
+  {
+    "id": "env-high-noon",
+    "name": "High Noon",
+    "tier": 1,
+    "type": "Environment",
+    "subtype": "Event",
+    "book": "Pistolheart",
+    "pages": [
+      "Pistolheart"
+    ],
+    "summary": "A quick-draw duel between two gunfighters.",
+    "impulses": "Put the pressure on, go all in, only one walks away",
+    "diff": 10,
+    "suggestedAdversaries": "Someone with a gun",
+    "major": "\u2014",
+    "severe": "\u2014",
+    "hp": 0,
+    "stress": 0,
+    "attack": {
+      "name": "\u2014",
+      "bonus": 0,
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
+    },
+    "experiences": [],
+    "features": [
+      {
+        "name": "Everyone's Watching",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Raise or lower the Difficulty by 1 depending on whether the town's disposition toward the PC participating in the duel is negative or positive.\n(Prompt: Who is the opponent? What's at stake for this town if they lose? What happens if they win?)"
+      },
+      {
+        "name": "Draw!",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend all remaining Fear to draw, increasing the Difficulty by 1 for each 2 Fear spent. The PC must make an attack roll, spending all remaining Hope and adding +1 to the roll for each Hope spent. Other PCs can each spend 3 Hope to bestow a +1 bonus to the duelist's roll. On a success, the duelist's opponent is defeated. On a failure with Hope, the PC marks all their HP except 1 and the duelist's opponent is defeated. On a failure with Fear, the PC marks all their HP and makes a death move."
+      },
+      {
+        "name": "One for the Road",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "Spend a Fear when a PC loses the duel. The winning duelist turns their weapon toward the rest of the party. Start a Duel Countdown (4) that ticks down every time a PC fails a roll. When the countdown triggers, the duelist makes an attack against a PC within Far range."
+      }
+    ],
+    "isEnvironment": true
+  },
+  {
+    "id": "env-friendly-campfire",
+    "name": "Friendly Campfire",
+    "tier": 1,
+    "type": "Environment",
+    "subtype": "Social",
+    "book": "Pistolheart",
+    "pages": [
+      "Pistolheart"
+    ],
+    "summary": "A relaxing night spent around a campfire with a wandering stranger.",
+    "impulses": "Put the party at ease, trade stories, reveal vulnerabilities",
+    "diff": 11,
+    "suggestedAdversaries": "A friendly wanderer, a masked bandit in disguise, a lonely monster",
+    "major": "\u2014",
+    "severe": "\u2014",
+    "hp": 0,
+    "stress": 0,
+    "attack": {
+      "name": "\u2014",
+      "bonus": 0,
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
+    },
+    "experiences": [],
+    "features": [
+      {
+        "name": "Stranger at the Fire",
+        "type": "Passive",
+        "cost": "None",
+        "text": "While resting at this campfire, PCs can spend an additional downtime move to speak with the stranger. A PC can trade a story or information with the stranger to gain a Hope and learn a piece of gossip, rumor, or local lore from the GM.\n(Prompt: What does the stranger look like? What brings them out this way?)"
+      },
+      {
+        "name": "Stranger's Stew",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The stranger offers a pot of stew. Any PC who partakes clears 1 Stress and gains +1 to their next action roll.\n(Prompt: What strange or delicious ingredients are in the stew?)"
+      },
+      {
+        "name": "Ghost Story",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear. The stranger tells a chilling tale. All PCs must make an Instinct Reaction Roll. On a failure, they mark 1 Stress."
+      },
+      {
+        "name": "Whelp... *slaps knee*",
+        "type": "Action",
+        "cost": "None",
+        "text": "The stranger stands up to leave or go to sleep. End the campfire scene."
+      },
+      {
+        "name": "Sorry, Friend",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "Spend a Fear. The stranger reveals they were leading the party into an ambush or were a wanted outlaw. Adversaries immediately gain the initiative and surprise."
+      }
+    ],
+    "isEnvironment": true
+  },
+  {
+    "id": "env-mounted-escape",
+    "name": "Mounted Escape",
+    "tier": 1,
+    "type": "Environment",
+    "subtype": "Event",
+    "book": "Pistolheart",
+    "pages": [
+      "Pistolheart"
+    ],
+    "summary": "A high-speed chase on horseback or vehicle trying to outrun pursuers.",
+    "impulses": "Maintain the speed, throw obstacles, force dangerous maneuvers",
+    "diff": 11,
+    "suggestedAdversaries": "Mounted Bandits, Posse Members, Bounty Hunters",
+    "major": "\u2014",
+    "severe": "\u2014",
+    "hp": 0,
+    "stress": 0,
+    "attack": {
+      "name": "\u2014",
+      "bonus": 0,
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
+    },
+    "experiences": [],
+    "features": [
+      {
+        "name": "They're On Our Tails!",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Start an Escape Countdown (4) and a Pursuit Countdown (4). The party must succeed on Agility or Instinct rolls to navigate terrain and tick the Escape Countdown down by 1. Failures tick the Pursuit Countdown down by 1. If Escape triggers first, the party escapes. If Pursuit triggers first, the pursuers catch up and surround them."
+      },
+      {
+        "name": "Gotta Lose 'Em",
+        "type": "Passive",
+        "cost": "None",
+        "text": "A PC can use their turn to create an obstacle or take a dangerous shortcut. On a successful roll, tick down the Escape Countdown by 1."
+      },
+      {
+        "name": "Spurs",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "Spend a Fear when a PC fails an action roll during the chase. Tick down the Pursuit Countdown by 1."
+      },
+      {
+        "name": "Fire Back",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "Spend a Fear. A pursuer fires upon a PC. The target must make an Agility Reaction Roll or take 1d8+2 physical damage."
+      }
+    ],
+    "isEnvironment": true
+  },
+  {
+    "id": "env-mounted-pursuit",
+    "name": "Mounted Pursuit",
+    "tier": 1,
+    "type": "Environment",
+    "subtype": "Event",
+    "book": "Pistolheart",
+    "pages": [
+      "Pistolheart"
+    ],
+    "summary": "A high-speed chase attempting to run down fleeing targets.",
+    "impulses": "Close the distance, cut off escapes, push mounts to the limit",
+    "diff": 11,
+    "suggestedAdversaries": "Fleeing Outlaws, Stagecoach, Train",
+    "major": "\u2014",
+    "severe": "\u2014",
+    "hp": 0,
+    "stress": 0,
+    "attack": {
+      "name": "\u2014",
+      "bonus": 0,
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
+    },
+    "experiences": [],
+    "features": [
+      {
+        "name": "Saddle Up!",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Start a Catch Countdown (4) and an Escape Countdown (4). PCs make Agility or Instinct rolls to maneuver and gain ground, ticking the Catch Countdown down by 1 on success. Failures tick the Escape Countdown down by 1."
+      },
+      {
+        "name": "They're Gettin' Away!",
+        "type": "Passive",
+        "cost": "None",
+        "text": "If the Escape Countdown triggers first, the target escapes into the wilderness or reaches a fortified hideout."
+      },
+      {
+        "name": "Blind Fire",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear. The fleeing target shoots behind them. A PC must make an Agility Reaction Roll or take 1d8 physical damage and lose momentum (tick up the Catch Countdown by 1)."
+      }
+    ],
+    "isEnvironment": true
+  },
+  {
+    "id": "env-great-plains",
+    "name": "Great Plains",
+    "tier": 2,
+    "type": "Environment",
+    "subtype": "Exploration",
+    "book": "Pistolheart",
+    "pages": [
+      "Pistolheart"
+    ],
+    "summary": "A vast expanse of rolling grasslands under an endless sky.",
+    "impulses": "Expose them to the elements, disorient, create sudden hazards",
+    "diff": 14,
+    "suggestedAdversaries": "Bison, Stampeding Herd, Grassland Predators, Prairie Raiders",
+    "major": "\u2014",
+    "severe": "\u2014",
+    "hp": 0,
+    "stress": 0,
+    "attack": {
+      "name": "\u2014",
+      "bonus": 0,
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
+    },
+    "experiences": [],
+    "features": [
+      {
+        "name": "Prime Hunting Grounds",
+        "type": "Passive",
+        "cost": "None",
+        "text": "While traveling through the Great Plains, PCs making survival or foraging rolls gain +1 Hope on a success with Hope.\n(Prompt: What unique flora or fauna catches the party's attention?)"
+      },
+      {
+        "name": "Heavy Load",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Travel across the plains is slow and exhausting. PCs must make a group Strength or Instinct roll to navigate without exhausting their mounts or supplies."
+      },
+      {
+        "name": "Prairie Fire",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to ignite a sudden fast-moving grass fire. All PCs must make an Agility or Instinct Reaction Roll to escape the blaze or take 2d8+3 magic or physical damage and mark 1 Stress."
+      },
+      {
+        "name": "Rage of the Hunted",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When a wild beast or animal in the plains takes damage, it gains +2 to its next attack roll and targets the attacker."
+      }
+    ],
+    "isEnvironment": true
+  },
+  {
+    "id": "env-murder-on-the-casino-train",
+    "name": "Murder on the Casino Train",
+    "tier": 2,
+    "type": "Environment",
+    "subtype": "Social",
+    "book": "Pistolheart",
+    "pages": [
+      "Pistolheart"
+    ],
+    "summary": "A luxurious passenger train where high-stakes gambling hides deadly intrigue.",
+    "impulses": "Spread paranoia, create suspects, derail investigations",
+    "diff": 14,
+    "suggestedAdversaries": "Gamblers, Train Conductor, Corrupt Marshal, Assassin",
+    "major": "\u2014",
+    "severe": "\u2014",
+    "hp": 0,
+    "stress": 0,
+    "attack": {
+      "name": "\u2014",
+      "bonus": 0,
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
+    },
+    "experiences": [],
+    "features": [
+      {
+        "name": "Murder Mystery",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Start an Investigation Countdown (6). PCs investigate passengers, search cabins, or interrogate staff using Presence, Instinct, or Knowledge. Successes tick down the countdown. When it triggers, the killer's identity is uncovered.\n(Prompt: Who was murdered? What high-roller or prominent figure is on board?)"
+      },
+      {
+        "name": "J'accuse!",
+        "type": "Passive",
+        "cost": "None",
+        "text": "A PC can publicly accuse a passenger. If they have sufficient clues, the suspect cracks; if wrong, the party loses credibility and the Difficulty increases by 2."
+      },
+      {
+        "name": "Silence is Golden!",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear. An accomplice or dirty guard attempts to eliminate a witness or tamper with evidence. A PC must make a reaction roll to intervene."
+      },
+      {
+        "name": "What Goes Around...",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "Spend a Fear when a PC fails an interrogation roll. The suspect turns the suspicion back on the party, alerting train security."
+      }
+    ],
+    "isEnvironment": true
+  },
+  {
+    "id": "env-stagecoach-ambush",
+    "name": "Stagecoach Ambush",
+    "tier": 2,
+    "type": "Environment",
+    "subtype": "Event",
+    "book": "Pistolheart",
+    "pages": [
+      "Pistolheart"
+    ],
+    "summary": "A perilous ambush along a narrow canyon pass or lonely trail.",
+    "impulses": "Box them in, separate the party, disable the transport",
+    "diff": 14,
+    "suggestedAdversaries": "Highwaymen, Road Agents, Snipers, Bandit Leader",
+    "major": "\u2014",
+    "severe": "\u2014",
+    "hp": 0,
+    "stress": 0,
+    "attack": {
+      "name": "\u2014",
+      "bonus": 0,
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
+    },
+    "experiences": [],
+    "features": [
+      {
+        "name": "Stagecoach Integrity",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The stagecoach has 4 Integrity tokens. Whenever the coach takes damage or crashes into an obstacle, remove an Integrity token. If all tokens are lost, the coach overturns and all passengers take 2d10 physical damage.\n(Prompt: What precious cargo or passenger is inside the coach?)"
+      },
+      {
+        "name": "Black Hat Pursuit",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Adversaries attempt to flank or board the coach from horseback."
+      },
+      {
+        "name": "Get 'Em!",
+        "type": "Action",
+        "cost": "None",
+        "text": "Adversaries open fire in a volley. Two PCs must make Agility Reaction Rolls or take 2d8+2 physical damage."
+      },
+      {
+        "name": "Road Hazards",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to drop boulders, felled trees, or spikes in the path. The driver must make an Agility Reaction Roll to swerve or lose 1 Integrity token."
+      },
+      {
+        "name": "Boarding Party",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "Spend a Fear when an adversary moves within Melee range of the coach. The adversary leaps onto the roof or through the window, engaging a PC in close combat."
+      }
+    ],
+    "isEnvironment": true
+  },
+  {
+    "id": "env-trading-post",
+    "name": "Trading Post",
+    "tier": 2,
+    "type": "Environment",
+    "subtype": "Social",
+    "book": "Pistolheart",
+    "pages": [
+      "Pistolheart"
+    ],
+    "summary": "A remote outpost bustling with frontiersmen, trappers, and shady merchants.",
+    "impulses": "Tempt with rare goods, haggle ruthlessly, spark bar brawls",
+    "diff": 15,
+    "suggestedAdversaries": "Shady Merchant, Bouncer, Outlaw Buyer, Drunken Miners",
+    "major": "\u2014",
+    "severe": "\u2014",
+    "hp": 0,
+    "stress": 0,
+    "attack": {
+      "name": "\u2014",
+      "bonus": 0,
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
+    },
+    "experiences": [],
+    "features": [
+      {
+        "name": "Supplies Needed",
+        "type": "Passive",
+        "cost": "None",
+        "text": "PCs can purchase specialty western equipment, ammo, and survival gear, or trade valuable salvage for gold.\n(Prompt: What rare or contraband item is locked in the post's display cabinet?)"
+      },
+      {
+        "name": "Watering Hole",
+        "type": "Passive",
+        "cost": "None",
+        "text": "A small saloon or counter at the back allows PCs to gather rumors or rest."
+      },
+      {
+        "name": "Junk Dealers",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear. A merchant sells counterfeit goods or overcharges drastically. Any gear purchased during this scene malfunctions on the first roll with Fear."
+      },
+      {
+        "name": "Got a Look About You",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "Spend a Fear when a PC asks too many questions. The post's toughs recognize the party and start a confrontation."
+      }
+    ],
+    "isEnvironment": true
+  },
+  {
+    "id": "env-gypsum-dunes",
+    "name": "Gypsum Dunes",
+    "tier": 3,
+    "type": "Environment",
+    "subtype": "Exploration",
+    "book": "Pistolheart",
+    "pages": [
+      "Pistolheart"
+    ],
+    "summary": "Blinding white sand dunes stretching endlessly under a scorching sun.",
+    "impulses": "Blind with glare, swallow in sinkholes, conceal ancient secrets",
+    "diff": 17,
+    "suggestedAdversaries": "Dune Burrower, Sand Golem, Desert Nomads, Heat Wraiths",
+    "major": "\u2014",
+    "severe": "\u2014",
+    "hp": 0,
+    "stress": 0,
+    "attack": {
+      "name": "\u2014",
+      "bonus": 0,
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
+    },
+    "experiences": [],
+    "features": [
+      {
+        "name": "Endless Dunes",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The shifting sands make movement exhausting. All movement requires double distance or a successful Strength roll to avoid marking Stress.\n(Prompt: What mirage or ancient ruin peeks above the crest of the white dunes?)"
+      },
+      {
+        "name": "Ultrafine",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Fine gypsum dust clogs weapons and eyes. Whenever a PC rolls with Fear on an attack roll, their weapon is jammed or their vision is impaired until they spend an action clearing it."
+      },
+      {
+        "name": "Haboob",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to trigger a colossal blinding sandstorm. All PCs have disadvantage on sight-based rolls and must succeed on an Instinct Reaction Roll or become separated."
+      },
+      {
+        "name": "Desert Lightning Storm",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "Spend a Fear during a storm. Lightning strikes a dune near a PC. The target must succeed on an Agility Reaction Roll or take 3d10 magic damage."
+      },
+      {
+        "name": "Secrets of the Dunes",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the party clears a sandstorm or discovers a landmark, they unearth a buried artifact or historical relic."
+      }
+    ],
+    "isEnvironment": true
+  },
+  {
+    "id": "env-stranded-in-the-desert",
+    "name": "Stranded in the Desert",
+    "tier": 3,
+    "type": "Environment",
+    "subtype": "Traversal",
+    "book": "Pistolheart",
+    "pages": [
+      "Pistolheart"
+    ],
+    "summary": "Lost in an unforgiving wasteland with dwindling water and blistering heat.",
+    "impulses": "Deplete supplies, test endurance, play tricks on the mind",
+    "diff": 16,
+    "suggestedAdversaries": "Vultures, Giant Scorpion, Sun Spirits, Desperate Scavengers",
+    "major": "\u2014",
+    "severe": "\u2014",
+    "hp": 0,
+    "stress": 0,
+    "attack": {
+      "name": "\u2014",
+      "bonus": 0,
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
+    },
+    "experiences": [],
+    "features": [
+      {
+        "name": "Parched and Dry",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Start a Thirst Countdown (4). Each day or major exertion without water ticks the countdown down by 1. When it triggers, all PCs mark 2 HP and 2 Stress from severe dehydration.\n(Prompt: How did the party lose their bearings or water supply?)"
+      },
+      {
+        "name": "The Long Trek",
+        "type": "Passive",
+        "cost": "None",
+        "text": "PCs must coordinate navigation and resource management using Instinct and Knowledge."
+      },
+      {
+        "name": "Oasis",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the party rolls a Critical Success while navigating, they find a hidden spring. Clear the Thirst Countdown and all PCs clear 2 Stress. The GM gains 2 Fear."
+      },
+      {
+        "name": "Mirage",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "Spend a Fear when a PC fails an Instinct roll. The PC spots what looks like an oasis, shelter, or ally, leading the party off course and ticking down the Thirst Countdown by 1."
+      }
+    ],
+    "isEnvironment": true
+  },
+  {
+    "id": "env-cosmic-crash",
+    "name": "Cosmic Crash",
+    "tier": 4,
+    "type": "Environment",
+    "subtype": "Exploration",
+    "book": "Pistolheart",
+    "pages": [
+      "Pistolheart"
+    ],
+    "summary": "The smoking crater of an otherworldly vessel fallen from the stars into the desert.",
+    "impulses": "Leak strange energies, mutate the landscape, activate alien defense protocols",
+    "diff": 20,
+    "suggestedAdversaries": "Alien Automaton, Star Spawn, Void Abomination, Mutated Scavengers",
+    "major": "\u2014",
+    "severe": "\u2014",
+    "hp": 0,
+    "stress": 0,
+    "attack": {
+      "name": "\u2014",
+      "bonus": 0,
+      "range": "\u2014",
+      "damage": "\u2014",
+      "type": "\u2014"
+    },
+    "experiences": [],
+    "features": [
+      {
+        "name": "Wrecked Vessel",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The wreckage pulses with bizarre cosmic radiation. Any PC who spends a downtime move investigating the vessel can make a Knowledge roll to understand alien technology, gaining a powerful cosmic salvage item on a success.\n(Prompt: What strange metals or glowing crystals make up the hull? What entity was piloting it?)"
+      },
+      {
+        "name": "Vent Core",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear. The vessel's shattered drive core vents superheated plasma and cosmic radiation. All creatures within Far range must make an Agility Reaction Roll, taking 4d10+4 magic damage on a failure or half damage on a success."
+      },
+      {
+        "name": "Unstable Core",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "Whenever a feature or attack deals heavy damage near the core, start or tick down a Meltdown Countdown (3). When it triggers, the core detonates, causing devastating destruction across the region."
       }
     ],
     "isEnvironment": true
