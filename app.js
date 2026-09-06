@@ -2034,9 +2034,6 @@ const App = {
                 <h5 class="adv-name m-0 text-truncate text-gold" title="${adv.name}">${adv.name}</h5>
 
                 <div class="d-flex align-items-center gap-1 flex-shrink-0">
-                  <button class="btn btn-xs btn-outline-secondary py-0 px-1 collapse-indicator" data-action="toggle-card-collapse" data-idx="${index}" title="${isCollapsed ? 'Expand Environment' : 'Collapse Environment'}">
-                    ${isCollapsed ? '▼' : '▲'}
-                  </button>
                   <button class="btn btn-xs btn-outline-secondary" data-action="duplicate-adv" data-idx="${index}" title="Duplicate Environment">
                     📋
                   </button>
@@ -2045,7 +2042,7 @@ const App = {
                   </button>
 
                   <div class="dropdown adv-options-dropdown position-relative">
-                    <button class="btn btn-xs btn-outline-secondary dropdown-toggle btn-options-toggle" type="button" data-idx="${index}" title="Environment Options">
+                    <button class="btn btn-xs btn-outline-secondary btn-options-toggle" type="button" data-idx="${index}" title="Environment Options">
                       ⚙️
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow-lg" id="dropdown-menu-${index}">
@@ -2145,9 +2142,6 @@ const App = {
                 <h5 class="adv-name m-0 text-truncate text-gold" title="${adv.name}">${adv.name}</h5>
 
                 <div class="d-flex align-items-center gap-1 flex-shrink-0">
-                  <button class="btn btn-xs btn-outline-secondary py-0 px-1 collapse-indicator" data-action="toggle-card-collapse" data-idx="${index}" title="${isCollapsed ? 'Expand Framework' : 'Collapse Framework'}">
-                    ${isCollapsed ? '▼' : '▲'}
-                  </button>
                   <button class="btn btn-xs btn-outline-danger" data-action="remove-adv" data-idx="${index}" title="Remove Framework">
                     ✕
                   </button>
@@ -2369,9 +2363,6 @@ const App = {
 
               <!-- Quick Header Action Buttons & Unclipped Options Menu -->
               <div class="d-flex align-items-center gap-1 flex-shrink-0">
-                <button class="btn btn-xs btn-outline-secondary py-0 px-1 collapse-indicator" data-action="toggle-card-collapse" data-idx="${index}" title="${isCollapsed ? 'Expand Stat Block' : 'Collapse Stat Block'}">
-                  ${isCollapsed ? '▼' : '▲'}
-                </button>
                 ${!isSegment ? `
                   <button class="btn btn-xs btn-outline-gold" data-action="add-unit" data-idx="${index}" title="Add Unit (Adds another HP & Stress tracker)">
                     + Unit
@@ -2383,7 +2374,7 @@ const App = {
 
                 <!-- Interactive Options Dropdown -->
                 <div class="dropdown adv-options-dropdown position-relative">
-                  <button class="btn btn-xs btn-outline-secondary dropdown-toggle btn-options-toggle" type="button" data-idx="${index}" title="Adversary Options">
+                  <button class="btn btn-xs btn-outline-secondary btn-options-toggle" type="button" data-idx="${index}" title="Adversary Options">
                     ⚙️
                   </button>
                   <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow-lg" id="dropdown-menu-${index}">

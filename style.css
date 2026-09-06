@@ -428,6 +428,15 @@ body.theme-light .adv-unit-card.is-unit-defeated {
   position: relative;
 }
 
+.btn-options-toggle::after {
+  display: none !important;
+}
+
+.btn-options-toggle {
+  padding: 0.2rem 0.4rem;
+  line-height: 1;
+}
+
 .adv-options-dropdown .dropdown-menu {
   position: absolute;
   top: 100%;
