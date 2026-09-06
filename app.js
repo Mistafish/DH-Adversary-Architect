@@ -2162,7 +2162,7 @@ const App = {
         <div class="trackers-box mb-2">
           <div class="d-flex justify-content-between align-items-center mb-2">
             <span class="small fw-bold text-uppercase text-danger d-flex align-items-center gap-1">
-              <span>&#9829;</span> ${isMinion ? `Minions Defeated (${trk.markedHP} / ${partySize})` : `HP (${trk.markedHP} / ${adv.hp})`}
+              <span>&#9829;</span> ${isMinion ? `Minions (${trk.markedHP} / ${partySize})` : `HP (${trk.markedHP} / ${adv.hp})`}
             </span>
             <div class="pip-row">${hpPipsHTML}</div>
           </div>
@@ -2228,7 +2228,7 @@ const App = {
 
             <div class="d-flex justify-content-between align-items-center mb-2">
               <span class="small fw-bold text-danger" style="font-size: 0.75rem;">
-                <span>&#9829;</span> ${isMinion ? `Minions Defeated (${trk.markedHP}/${partySize})` : `HP (${trk.markedHP}/${adv.hp})`}
+                <span>&#9829;</span> ${isMinion ? `Minions (${trk.markedHP}/${partySize})` : `HP (${trk.markedHP}/${adv.hp})`}
               </span>
               <div class="pip-row">${hpPipsHTML}</div>
             </div>
