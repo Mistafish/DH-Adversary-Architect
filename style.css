@@ -1,0 +1,1165 @@
+/* ==========================================================================
+   DAGGERHEART ADVERSARY & ENCOUNTER ARCHITECT - STYLESHEET
+   Format & Design Theme matching Old Gus Daggerheart SRD & System Mechanics
+   ========================================================================== */
+
+:root {
+  /* Dark Theme (Default) */
+  --bg-main: #121518;
+  --bg-surface: #1a1e24;
+  --bg-card: #20262e;
+  --bg-card-alt: #15191e;
+  --bg-well: #111418;
+  --bg-input: #0f1216;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border-subtle: #2d3748;
+  --border-gold: #c99a4e;
+  --gold-accent: #facc8e;
+  --gold-hover: #ffd79e;
+  --gold-subtle: rgba(201, 154, 78, 0.15);
+  --dh-blue: #3b82f6;
+  --dh-blue-dark: #1e293b;
+  --dh-red: #ef4444;
+  --dh-red-dark: #991b1b;
+  --dh-stress: #f59e0b;
+  --dh-stress-glow: rgba(245, 158, 11, 0.4);
+  --dh-hp-glow: rgba(239, 68, 68, 0.4);
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --die-bg: #14181d;
+  --dropdown-bg: #1e2227;
+  
+  --dice-tray-width: 360px;
+  --navbar-height: 56px;
+  --font-serif: 'Cinzel', serif;
+  --font-title: 'Fira Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Light Theme Variables */
+body.theme-light {
+  --bg-main: #eef2f6;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-alt: #f8fafc;
+  --bg-well: #f1f5f9;
+  --bg-input: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-subtle: #cbd5e1;
+  --border-gold: #b4833e;
+  --gold-accent: #8c5310;
+  --gold-hover: #713f07;
+  --gold-subtle: rgba(180, 131, 62, 0.12);
+  --dh-blue: #2563eb;
+  --dh-blue-dark: #eff6ff;
+  --dh-red: #dc2626;
+  --dh-red-dark: #fecaca;
+  --dh-stress: #d97706;
+  --dh-stress-glow: rgba(217, 119, 6, 0.35);
+  --dh-hp-glow: rgba(220, 38, 38, 0.35);
+  --shadow-color: rgba(0, 0, 0, 0.08);
+  --die-bg: #f8fafc;
+  --dropdown-bg: #ffffff;
+}
+
+body {
+  background-color: var(--bg-main) !important;
+  color: var(--text-main) !important;
+  font-family: var(--font-body);
+  transition: background-color 0.25s ease, color 0.25s ease;
+  min-height: 100vh;
+}
+
+/* Typography & Old Gus Headers */
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+  font-family: var(--font-title);
+  letter-spacing: 0.02em;
+}
+
+.dh-symbol {
+  font-size: 1.6rem;
+  color: var(--gold-accent);
+}
+
+.dh-brand-title {
+  font-family: var(--font-serif);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: var(--gold-accent);
+  font-size: 1.15rem;
+}
+
+.dh-brand-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   NAVIGATION BAR
+   ========================================================================== */
+
+.og-navbar {
+  background-color: var(--bg-surface);
+  border-color: var(--border-subtle) !important;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  min-height: var(--navbar-height);
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.nav-pills .nav-link {
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.nav-pills .nav-link:hover {
+  color: var(--gold-accent);
+  background-color: var(--gold-subtle);
+}
+
+.nav-pills .nav-link.active {
+  background-color: var(--dh-blue-dark);
+  color: var(--gold-accent);
+  border: 1px solid var(--border-gold);
+}
+
+body.theme-light .nav-pills .nav-link {
+  color: #475569;
+}
+
+body.theme-light .nav-pills .nav-link.active {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+/* Old Gus Gold Accents & Utility */
+.border-gold {
+  border-color: var(--border-gold) !important;
+}
+
+.text-gold {
+  color: var(--gold-accent) !important;
+}
+
+.bg-gold {
+  background-color: var(--border-gold) !important;
+  color: #111 !important;
+}
+
+.btn-gold {
+  background-color: var(--border-gold);
+  color: #111;
+  font-weight: 600;
+  border: 1px solid var(--gold-accent);
+  transition: all 0.2s ease;
+}
+
+.btn-gold:hover {
+  background-color: var(--gold-hover);
+  color: #000;
+  border-color: #fff;
+}
+
+.btn-outline-gold {
+  color: var(--gold-accent);
+  border-color: var(--border-gold);
+  font-weight: 600;
+}
+
+.btn-outline-gold:hover {
+  background-color: var(--border-gold);
+  color: #111;
+}
+
+body.theme-light .btn-outline-gold:hover {
+  color: #ffffff;
+}
+
+.btn-xs {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 3px;
+}
+
+/* HUD & Party Status Card */
+.og-hud-card {
+  background-color: var(--bg-surface);
+  border-radius: 6px;
+  border: 1px solid var(--border-gold);
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.bp-progress {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+body.theme-light .bp-progress {
+  background-color: #e2e8f0;
+}
+
+/* GM Fear Tracker */
+.gm-fear-tracker {
+  background-color: var(--bg-card-alt);
+  border-color: var(--border-subtle) !important;
+}
+
+.fear-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--dh-red);
+}
+
+/* ==========================================================================
+   STAT BLOCK STYLING (Matching Daggerheart SRD & Old Gus Spec)
+   ========================================================================== */
+
+.og-statblock {
+  background-color: var(--bg-surface);
+  border: 2px solid var(--border-subtle);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: visible !important;
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.og-statblock:hover {
+  border-color: var(--border-gold);
+  box-shadow: 0 6px 18px var(--shadow-color);
+}
+
+.adv-card-header {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  user-select: none;
+}
+
+.adv-card-header:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+body.theme-light .adv-card-header:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.is-card-collapsed {
+  opacity: 0.95;
+}
+
+.is-card-collapsed .adv-card-header {
+  border-bottom: none !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+#bestiary-grid {
+  align-items: flex-start;
+}
+
+.is-bestiary-expanded {
+  border-width: 2px !important;
+  border-color: var(--border-gold) !important;
+  box-shadow: 0 8px 24px var(--shadow-color) !important;
+}
+
+.bestiary-card:hover {
+  border-color: var(--border-gold) !important;
+  transform: translateY(-2px);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.collapse-indicator {
+  width: 22px;
+  height: 22px;
+  padding: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem !important;
+  line-height: 1 !important;
+  color: var(--text-muted);
+  border-color: var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.collapse-indicator:hover {
+  color: var(--gold-accent);
+  border-color: var(--gold-accent);
+}
+
+.og-statblock.is-defeated {
+  opacity: 0.75;
+  filter: grayscale(0.6);
+  border-color: var(--dh-red-dark);
+}
+
+.og-statblock.is-defeated::after {
+  content: 'DEFEATED';
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  background-color: rgba(185, 28, 28, 0.95);
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  padding: 0.2rem 1.8rem;
+  border: 3px solid #fecaca;
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Multi-Unit Trackers inside an Adversary Card */
+.adv-units-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.adv-unit-card {
+  position: relative;
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 0.6rem 0.75rem;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.adv-unit-card:hover {
+  border-color: var(--border-gold);
+}
+
+.adv-unit-card.is-unit-defeated {
+  opacity: 0.7;
+  filter: grayscale(0.65);
+  border-color: rgba(220, 38, 38, 0.6);
+  background: rgba(45, 10, 10, 0.35);
+}
+
+body.theme-light .adv-unit-card.is-unit-defeated {
+  background: #fef2f2;
+}
+
+.adv-unit-card.is-unit-defeated::after {
+  content: 'DEFEATED';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-7deg);
+  background-color: rgba(185, 28, 28, 0.95);
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  padding: 0.15rem 1.2rem;
+  border: 2px solid #fecaca;
+  border-radius: 4px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  z-index: 6;
+}
+
+.unit-header-badge {
+  font-family: var(--font-serif);
+  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.og-statblock-alt {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  box-shadow: 0 1px 4px var(--shadow-color);
+}
+
+/* Card Header Dropdown Menu Styling */
+.adv-options-dropdown {
+  position: relative;
+}
+
+.adv-options-dropdown .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: auto;
+  margin-top: 6px;
+  z-index: 1080 !important;
+  min-width: 200px;
+  background-color: var(--dropdown-bg);
+  border: 1px solid var(--border-gold);
+  border-radius: 6px;
+  box-shadow: 0 10px 30px var(--shadow-color);
+  padding: 0.4rem 0;
+  display: none;
+}
+
+.adv-options-dropdown .dropdown-menu.show {
+  display: block !important;
+}
+
+.adv-options-dropdown .dropdown-item {
+  font-size: 0.85rem;
+  padding: 0.45rem 1rem;
+  color: var(--text-main);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.adv-options-dropdown .dropdown-item:hover {
+  background-color: var(--gold-subtle);
+  color: var(--gold-accent);
+}
+
+.adv-options-dropdown .dropdown-item.text-danger:hover {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: var(--dh-red) !important;
+}
+
+/* Statblock Header & Token */
+.adv-token-container {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 2px solid var(--border-gold);
+  overflow: hidden;
+  box-shadow: 0 2px 6px var(--shadow-color);
+  flex-shrink: 0;
+  background-color: var(--bg-well);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.adv-token-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.adv-name {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--text-main);
+  letter-spacing: 0.01em;
+}
+
+.adv-motive {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.25;
+}
+
+/* Tier & Role Badges */
+.badge-tier {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  background-color: var(--dh-blue-dark);
+  color: var(--gold-accent);
+  border: 1px solid var(--border-gold);
+}
+
+.badge-role {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Stats Pill Grid */
+.stat-pill {
+  background-color: var(--bg-well);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 0.3rem 0.4rem;
+  text-align: center;
+}
+
+.stat-pill-label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.stat-pill-val {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   HP & STRESS INTERACTIVE PIPS (Clickable Markers)
+   ========================================================================== */
+
+.trackers-box {
+  background-color: var(--bg-card-alt);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 0.5rem;
+}
+
+.pip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+/* HP Pips (Circular) */
+.hp-pip {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--dh-red);
+  background-color: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  padding: 0;
+}
+
+.hp-pip:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 8px var(--dh-hp-glow);
+}
+
+.hp-pip.marked {
+  background-color: var(--dh-red);
+  border-color: #fca5a5;
+  color: #ffffff;
+}
+
+.hp-pip.marked::after {
+  content: '\2715';
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* Stress Pips (Diamond) */
+.stress-pip {
+  width: 18px;
+  height: 18px;
+  transform: rotate(45deg);
+  border: 2px solid var(--dh-stress);
+  background-color: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  margin: 2px;
+  padding: 0;
+}
+
+.stress-pip:hover {
+  transform: rotate(45deg) scale(1.15);
+  box-shadow: 0 0 8px var(--dh-stress-glow);
+}
+
+.stress-pip.marked {
+  background-color: var(--dh-stress);
+  border-color: #fde68a;
+}
+
+/* Vulnerable Pulsing Badge */
+.badge-vulnerable {
+  animation: pulse-vulnerable 1.5s infinite;
+  background-color: #dc2626;
+  color: #fff;
+  font-weight: bold;
+}
+
+@keyframes pulse-vulnerable {
+  0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+
+/* ==========================================================================
+   ATTACK & MOVES SECTION
+   ========================================================================== */
+
+.attack-banner {
+  background-color: rgba(29, 78, 216, 0.15);
+  border: 1px solid rgba(29, 78, 216, 0.3);
+  border-radius: 4px;
+  padding: 0.4rem 0.6rem;
+}
+
+.feature-item {
+  border-left: 3px solid var(--border-gold);
+  padding-left: 0.5rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
+  line-height: 1.35;
+}
+
+.feature-type-tag {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  margin-right: 0.25rem;
+}
+
+.feature-type-action { color: #60a5fa; }
+.feature-type-passive { color: #34d399; }
+.feature-type-reaction { color: #f472b6; }
+.feature-type-fear { color: #fb7185; }
+
+/* ==========================================================================
+   DOCKABLE INLINE GM CONSOLE & RESCALING MAIN LAYOUT
+   ========================================================================== */
+
+.app-body-layout {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: calc(100vh - var(--navbar-height));
+  position: relative;
+  align-items: flex-start;
+  overflow-x: clip;
+}
+
+.main-content-area {
+  flex: 1 1 100%;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  transition: max-width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              flex-basis 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dice-tray-panel {
+  position: sticky;
+  top: var(--navbar-height);
+  align-self: flex-start;
+  height: calc(100vh - var(--navbar-height));
+  width: var(--dice-tray-width);
+  min-width: var(--dice-tray-width);
+  max-width: var(--dice-tray-width);
+  background-color: var(--bg-surface);
+  border-left: 2px solid var(--border-gold);
+  z-index: 1020;
+  overflow-y: auto;
+  box-shadow: -4px 0 20px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  opacity: 1;
+  transform: translateX(0);
+  margin-top: 0 !important;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              min-width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              max-width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.2s ease,
+              border-left-width 0.3s ease;
+}
+
+.dice-tray-panel.closed {
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(100%);
+  border-left-width: 0 !important;
+  border-left: none !important;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.dice-tray-header {
+  background-color: var(--bg-card-alt);
+  border-bottom: 1px solid var(--border-subtle);
+  min-height: 38px;
+  padding-top: 0.3rem !important;
+  padding-bottom: 0.3rem !important;
+  flex-shrink: 0;
+}
+
+#toggle-dice-tray.active {
+  background-color: var(--gold-accent, #d4af37) !important;
+  color: #111 !important;
+  border-color: var(--gold-accent, #d4af37) !important;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+.die-card {
+  background-color: var(--die-bg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.3);
+}
+
+.border-gold-subtle {
+  border-color: var(--gold-subtle) !important;
+}
+
+.dice-qty-btn.active {
+  background-color: var(--gold-accent, #d4af37) !important;
+  color: #111 !important;
+  font-weight: 700;
+}
+
+.combat-log-entry {
+  padding: 0.28rem 0.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  line-height: 1.35;
+}
+
+.combat-log-entry:last-child {
+  border-bottom: none;
+}
+
+.combat-log-time {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  margin-right: 5px;
+}
+
+/* Pagination buttons in bestiary */
+.bestiary-pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* ==========================================================================
+   FORM CONTROLS & INPUTS
+   ========================================================================== */
+
+.form-control, .form-select {
+  background-color: var(--bg-input);
+  color: var(--text-main);
+  border-color: var(--border-subtle);
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  border-color: var(--border-gold);
+  box-shadow: 0 0 0 0.25rem var(--gold-subtle);
+}
+
+.form-control::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   ENVIRONMENTS STYLING
+   ========================================================================== */
+
+.badge-env-subtype {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   LIGHT MODE OVERRIDES FOR BOOTSTRAP UTILITIES & HARDCODED SURFACES
+   ========================================================================== */
+
+body.theme-light .bg-dark,
+body.theme-light .bg-dark-subtle {
+  background-color: var(--bg-card-alt) !important;
+  color: var(--text-main) !important;
+  border-color: var(--border-subtle) !important;
+}
+
+body.theme-light .bg-black {
+  background-color: var(--bg-well) !important;
+  color: var(--text-main) !important;
+  border-color: var(--border-subtle) !important;
+}
+
+body.theme-light .text-light,
+body.theme-light .text-white {
+  color: var(--text-main) !important;
+}
+
+body.theme-light .border-subtle {
+  border-color: var(--border-subtle) !important;
+}
+
+body.theme-light .border-secondary {
+  border-color: var(--border-subtle) !important;
+}
+
+body.theme-light .card {
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+}
+
+body.theme-light .card-header.bg-dark-subtle {
+  background-color: var(--bg-card-alt) !important;
+  color: var(--gold-accent) !important;
+}
+
+body.theme-light .modal-content {
+  background-color: var(--bg-surface) !important;
+  color: var(--text-main) !important;
+  border-color: var(--border-gold) !important;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15) !important;
+}
+
+body.theme-light .modal-header,
+body.theme-light .modal-footer {
+  border-color: var(--border-subtle) !important;
+}
+
+body.theme-light .btn-outline-secondary {
+  color: #475569;
+  border-color: #cbd5e1;
+}
+
+body.theme-light .btn-outline-secondary:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+  border-color: #94a3b8;
+}
+
+body.theme-light .badge.bg-dark {
+  background-color: #e2e8f0 !important;
+  color: #1e293b !important;
+  border-color: #cbd5e1 !important;
+}
+
+body.theme-light .badge.bg-dark.border-gold,
+body.theme-light .badge.border-gold {
+  background-color: #fef3c7 !important;
+  color: #92400e !important;
+  border-color: #d97706 !important;
+}
+
+body.theme-light .badge-tier {
+  background-color: #fef3c7;
+  color: #92400e;
+  border-color: #d97706;
+}
+
+body.theme-light .badge-role {
+  background-color: #f1f5f9;
+  color: #334155;
+  border-color: #cbd5e1;
+}
+
+body.theme-light .adv-token-container {
+  background-color: #f1f5f9;
+}
+
+body.theme-light .die-card {
+  background-color: #f8fafc;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+body.theme-light #combat-roll-log {
+  background-color: #f8fafc !important;
+  color: #1e293b !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+body.theme-light .combat-log-entry {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+body.theme-light .attack-banner {
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+}
+
+body.theme-light .attack-banner span.fw-bold {
+  color: #1e3a8a !important;
+}
+
+body.theme-light .feature-type-action { color: #1d4ed8; }
+body.theme-light .feature-type-passive { color: #047857; }
+body.theme-light .feature-type-reaction { color: #be185d; }
+body.theme-light .feature-type-fear { color: #b91c1c; }
+
+body.theme-light .list-group-item.bg-dark {
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+  border-color: #cbd5e1 !important;
+}
+
+body.theme-light .bestiary-pagination {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+body.theme-light .toast {
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+  border-color: var(--border-gold) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* ==========================================================================
+   COLOSSUS ENCLOSURE & SEGMENT CONNECTION SYSTEM
+   ========================================================================== */
+
+.colossus-enclosure {
+  background: linear-gradient(135deg, rgba(30, 27, 75, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
+  border: 2px solid rgba(217, 119, 6, 0.5);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.colossus-enclosure.is-colossus-defeated {
+  border-color: rgba(185, 28, 28, 0.6);
+  background: linear-gradient(135deg, rgba(69, 10, 10, 0.3) 0%, rgba(15, 23, 42, 0.7) 100%);
+}
+
+.colossus-enclosure-header {
+  background: linear-gradient(90deg, rgba(180, 83, 9, 0.25) 0%, rgba(30, 41, 59, 0.8) 100%);
+  border-bottom: 2px solid rgba(217, 119, 6, 0.35);
+}
+
+.colossus-enclosure.is-colossus-defeated .colossus-enclosure-header {
+  background: linear-gradient(90deg, rgba(185, 28, 28, 0.3) 0%, rgba(30, 41, 59, 0.8) 100%);
+  border-bottom-color: rgba(185, 28, 28, 0.4);
+}
+
+.colossus-crest-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: radial-gradient(circle, #78350f 0%, #451a03 100%);
+  border: 2px solid #f59e0b;
+  color: #fef08a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  flex-shrink: 0;
+}
+
+.colossus-enclosure-body {
+  background: transparent;
+}
+
+.border-colossus-framework {
+  border: 2px solid #f59e0b !important;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.18) !important;
+}
+
+.colossus-segment-card {
+  border-left: 4px solid var(--border-gold) !important;
+}
+
+body.theme-light .colossus-enclosure {
+  background: linear-gradient(135deg, #fef3c7 0%, #f8fafc 100%);
+  border-color: #d97706;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+body.theme-light .colossus-enclosure.is-colossus-defeated {
+  background: linear-gradient(135deg, #fee2e2 0%, #f8fafc 100%);
+  border-color: #ef4444;
+}
+
+body.theme-light .colossus-enclosure-header {
+  background: linear-gradient(90deg, #fde68a 0%, #f1f5f9 100%);
+  border-bottom-color: #f59e0b;
+}
+
+body.theme-light .colossus-crest-box {
+  background: radial-gradient(circle, #d97706 0%, #b45309 100%);
+  border-color: #92400e;
+  color: #ffffff;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .border-end-md {
+    border-right: 1px solid var(--border-subtle) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .dice-tray-panel {
+    position: fixed;
+    top: 56px;
+    right: 0;
+    width: 100vw;
+    min-width: 100vw;
+    max-width: 100vw;
+    z-index: 1060;
+  }
+}
+
+/* Adversary Creator Proportional Scaling & Origin Banner */
+#creator-origin-banner {
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.12) 0%, rgba(30, 41, 59, 0.6) 100%);
+  border-left: 4px solid var(--border-gold) !important;
+}
+
+body.theme-light #creator-origin-banner {
+  background: linear-gradient(90deg, #fef3c7 0%, #f1f5f9 100%);
+  border-color: #d97706 !important;
+}
+
+/* Feature Interactive Resource Trigger Buttons */
+.btn-feat-cost-trigger {
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1.2;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  user-select: none;
+}
+.btn-feat-cost-trigger:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.4);
+}
+.btn-feat-cost-trigger:active {
+  transform: scale(0.95);
+}
+
+/* ==========================================================================
+   Encounter Drag and Drop Card Rearrangement Styles
+   ========================================================================== */
+.roster-draggable-block,
+.colossus-draggable-segment {
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  position: relative;
+}
+
+.roster-drag-handle,
+.colossus-group-drag-handle {
+  cursor: grab;
+  user-select: none;
+  font-size: 1.2rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 24px;
+  opacity: 0.45;
+  transition: opacity 0.15s ease, transform 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.roster-drag-handle:hover,
+.colossus-group-drag-handle:hover {
+  opacity: 1;
+  transform: scale(1.25);
+  color: var(--color-gold, #f59e0b) !important;
+}
+
+.roster-drag-handle:active,
+.colossus-group-drag-handle:active {
+  cursor: grabbing;
+}
+
+.roster-draggable-block.is-dragging,
+.colossus-draggable-segment.is-dragging {
+  opacity: 0.35 !important;
+  transform: scale(0.98) !important;
+}
+
+.roster-draggable-block.is-dragging > .card,
+.colossus-draggable-segment.is-dragging > .card,
+.colossus-enclosure-wrapper.is-dragging .colossus-enclosure {
+  border: 2px dashed #f59e0b !important;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.4) !important;
+}
+
+/* Drop visual indicators */
+.drop-target-before {
+  position: relative;
+}
+.drop-target-before::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 6px;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+  border-radius: 4px;
+  box-shadow: 0 0 12px #f59e0b, 0 0 20px rgba(245, 158, 11, 0.6);
+  z-index: 99;
+  pointer-events: none;
+  animation: pulseDropLine 1s infinite alternate;
+}
+
+.drop-target-after {
+  position: relative;
+}
+.drop-target-after::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 6px;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+  border-radius: 4px;
+  box-shadow: 0 0 12px #f59e0b, 0 0 20px rgba(245, 158, 11, 0.6);
+  z-index: 99;
+  pointer-events: none;
+  animation: pulseDropLine 1s infinite alternate;
+}
+
+@keyframes pulseDropLine {
+  from { opacity: 0.7; transform: scaleY(0.97); }
+  to { opacity: 1; transform: scaleY(1); }
+}
+

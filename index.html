@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daggerheart - Adversary Creator & Encounter Manager</title>
+  <!-- Bootstrap 5 CSS (Local relative to project folder with CDN fallback) -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <!-- Google Fonts for Authentic Daggerheart & Old Gus SRD Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Fira+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Custom App Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=4.7">
+</head>
+<body class="theme-dark">
+
+  <!-- Top Navigation Bar -->
+  <nav class="navbar navbar-expand-lg og-navbar border-bottom sticky-top">
+    <div class="container-fluid px-3 px-lg-4">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <span class="dh-symbol">&#9876;</span>
+        <div class="lh-1">
+          <span class="dh-brand-title">DAGGERHEART</span>
+          <span class="dh-brand-subtitle d-block">Adversary & Encounter Architect</span>
+        </div>
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNav" aria-controls="topNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="topNav">
+        <!-- Main Navigation Tabs -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-pills gap-1 ms-lg-3">
+          <li class="nav-item">
+            <button class="nav-link active" data-tab="tab-encounter">
+              <span class="nav-icon">&#9876;</span> Active Encounter
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-tab="tab-bestiary">
+              <span class="nav-icon">&#128214;</span> Adversaries
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-tab="tab-creator">
+              <span class="nav-icon">&#9997;</span> Adversary Creator
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-tab="tab-saved">
+              <span class="nav-icon">&#128190;</span> Saved Encounters
+            </button>
+          </li>
+        </ul>
+
+        <!-- GM Quick Controls -->
+        <div class="d-flex align-items-center gap-2 mt-2 mt-lg-0">
+          <!-- GM Console Toggle Button with Fear Badge -->
+          <button class="btn btn-outline-warning btn-sm d-flex align-items-center gap-2 px-3 fw-bold" id="toggle-dice-tray" title="Toggle GM Console & Tools">
+            <span>&#128081;</span> GM Console
+            <span class="badge bg-danger rounded-pill px-2 py-1" id="navbar-fear-badge" title="Active GM Fear">2 Fear</span>
+          </button>
+
+          <!-- Theme Toggle -->
+          <button class="btn btn-outline-secondary btn-sm" id="btn-toggle-theme" title="Switch Light/Dark Theme">
+            <span id="theme-icon">&#9789;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Application Body with Docked Inline Console -->
+  <div class="app-body-layout">
+    <!-- Main Content Area -->
+    <main class="main-content-area px-3 px-lg-4 py-3">
+
+    <!-- ======================================================== -->
+    <!-- TAB 1: ACTIVE ENCOUNTER MANAGER -->
+    <!-- ======================================================== -->
+    <section id="tab-encounter" class="tab-pane-content active">
+      <!-- Party Makeup & Battle Points HUD -->
+      <div class="card og-hud-card mb-4 border-gold shadow-sm">
+        <div class="card-body py-3">
+          <div class="row g-3 align-items-center">
+            
+            <!-- Party Configuration -->
+            <div class="col-12 col-md-4 col-xl-3 border-end-md">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="text-uppercase fw-bold text-gold small">Party Configuration</span>
+                <span class="badge bg-secondary" id="hud-party-summary">4 PCs &bull; Tier 1</span>
+              </div>
+              <div class="row g-2">
+                <div class="col-6">
+                  <label class="form-label small mb-1 text-muted">Player Characters</label>
+                  <input type="number" id="input-pc-count" class="form-control form-control-sm text-center fw-bold" value="4" min="1" max="10">
+                </div>
+                <div class="col-6">
+                  <label class="form-label small mb-1 text-muted">Party Tier</label>
+                  <select id="select-party-tier" class="form-select form-select-sm fw-bold">
+                    <option value="1">Tier 1 (Level 1)</option>
+                    <option value="2">Tier 2 (Levels 2-4)</option>
+                    <option value="3">Tier 3 (Levels 5-7)</option>
+                    <option value="4">Tier 4 (Levels 8-10)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Battle Points Budget & Difficulty Meter -->
+            <div class="col-12 col-md-5 col-xl-5 border-end-md">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="text-uppercase fw-bold text-gold small">Battle Points (BP) Budget</span>
+                <div>
+                  <span class="fw-bold fs-5" id="hud-current-bp">0</span>
+                  <span class="text-muted fs-6"> / </span>
+                  <span class="fw-bold fs-5 text-warning" id="hud-target-bp">12</span>
+                  <span class="text-muted small"> BP</span>
+                </div>
+              </div>
+              <!-- Progress Bar Meter -->
+              <div class="progress bp-progress mb-1" style="height: 10px;">
+                <div id="bp-progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%;"></div>
+              </div>
+              <div class="d-flex justify-content-between small">
+                <span id="hud-difficulty-rating" class="badge bg-info text-dark">Easy Encounter</span>
+                <span class="text-muted" id="hud-bp-breakdown">Target: (3 &times; PCs) + 2 BP</span>
+              </div>
+            </div>
+
+            <!-- Encounter Actions & Quick Add -->
+            <div class="col-12 col-md-3 col-xl-4 d-flex flex-wrap gap-2 justify-content-md-end">
+              <button class="btn btn-sm btn-outline-gold" id="btn-quick-add-srd">
+                <span>+</span> Quick Add SRD
+              </button>
+              <button class="btn btn-sm btn-outline-primary" id="btn-save-encounter-dialog">
+                <span>&#128190;</span> Save Encounter
+              </button>
+              <button class="btn btn-sm btn-outline-info" id="btn-quick-load-encounter" title="View and load saved encounters">
+                <span>&#128194;</span> Load Saved
+              </button>
+              <button class="btn btn-sm btn-outline-danger" id="btn-clear-encounter">
+                <span>&#128465;</span> Reset Battle
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Encounter Combat Roster Controls -->
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="m-0 text-uppercase d-flex align-items-center gap-2 fs-5">
+          <span class="text-gold">&#9876;</span> Active Combat Roster
+          <span class="badge bg-dark border border-secondary fs-6" id="roster-count-badge">0 Adversaries</span>
+        </h4>
+        <div class="d-flex gap-2">
+          <button class="btn btn-sm btn-outline-secondary" id="btn-collapse-all">Collapse All</button>
+          <button class="btn btn-sm btn-outline-secondary" id="btn-expand-all">Expand All</button>
+        </div>
+      </div>
+
+      <!-- Empty State Notice (shown when roster is empty) -->
+      <div id="encounter-empty-state" class="text-center p-5 rounded border border-dashed my-4">
+        <div class="display-5 text-muted mb-3">&#9876;</div>
+        <h5 class="text-muted">No Adversaries In This Encounter Yet</h5>
+        <p class="text-muted small max-w-md mx-auto">
+          Add pre-built adversaries from the <strong>SRD Bestiary</strong> tab, or craft a tailored foe using the <strong>Adversary Creator</strong>.
+        </p>
+        <div class="d-flex justify-content-center gap-2 mt-3">
+          <button class="btn btn-gold btn-sm" id="btn-empty-bestiary">Browse Bestiary</button>
+          <button class="btn btn-outline-light btn-sm" id="btn-empty-create">Create Custom Foe</button>
+        </div>
+      </div>
+
+      <!-- Active Adversaries Grid -->
+      <div id="active-adversary-roster" class="row g-3">
+        <!-- Dynamically Rendered Adversary Cards -->
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- TAB 2: ADVERSARY CREATOR & BUILDER -->
+    <!-- ======================================================== -->
+    <section id="tab-creator" class="tab-pane-content d-none">
+      <div class="row g-4">
+        
+        <!-- Left Column: Creator Form & Vibe Assistant -->
+        <div class="col-12 col-xl-7">
+          <div class="card og-statblock-alt border-gold shadow-sm">
+            <div class="card-header bg-dark-subtle border-bottom border-gold d-flex justify-content-between align-items-center py-2">
+              <h5 class="m-0 text-gold text-uppercase fs-6">&#9997; Adversary Blueprint Architect</h5>
+              <div class="d-flex gap-1">
+                <button class="btn btn-xs btn-outline-secondary" id="btn-load-preset-template">Load Preset</button>
+                <button class="btn btn-xs btn-outline-warning" id="btn-reset-creator-form">Clear Form</button>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <!-- Cloned Template Origin Banner -->
+              <div id="creator-origin-banner" class="alert alert-dark border-gold d-flex align-items-center justify-content-between p-2 mb-3 d-none">
+                <div class="d-flex align-items-center gap-2 overflow-hidden">
+                  <span class="fs-5">🧬</span>
+                  <div class="overflow-hidden">
+                    <div class="small fw-bold text-gold" id="origin-banner-title">Cloned from Template</div>
+                    <div class="text-muted" style="font-size: 0.72rem;">Changing Tier will proportionally scale thresholds, dice & experiences.</div>
+                  </div>
+                </div>
+                <div class="d-flex gap-1 flex-shrink-0">
+                  <button type="button" class="btn btn-xs btn-outline-warning" id="btn-origin-restore" title="Restore original cloned stats">↺ Restore Original</button>
+                  <button type="button" class="btn btn-xs btn-outline-secondary" id="btn-origin-detach" title="Detach from template (switch to blank preset mode)">✂️ Detach</button>
+                </div>
+              </div>
+
+              <!-- Form Sections -->
+              <form id="form-adversary-builder" novalidate>
+                <!-- Basic Identity -->
+                <div class="row g-2 mb-3">
+                  <div class="col-12 col-md-6">
+                    <label class="form-label small fw-bold">Adversary Name</label>
+                    <input type="text" id="form-adv-name" class="form-control form-control-sm" placeholder="e.g. Abyssal Ravager" value="" required>
+                  </div>
+                  <div class="col-6 col-md-3">
+                    <label class="form-label small fw-bold">Tier</label>
+                    <select id="form-adv-tier" class="form-select form-select-sm">
+                      <option value="1" selected>Tier 1 (Level 1)</option>
+                      <option value="2">Tier 2 (Levels 2-4)</option>
+                      <option value="3">Tier 3 (Levels 5-7)</option>
+                      <option value="4">Tier 4 (Levels 8-10)</option>
+                    </select>
+                  </div>
+                  <div class="col-6 col-md-3">
+                    <label class="form-label small fw-bold">Type / Role</label>
+                    <select id="form-adv-type" class="form-select form-select-sm">
+                      <option value="Standard">Standard</option>
+                      <option value="Minion">Minion</option>
+                      <option value="Skulk" selected>Skulk</option>
+                      <option value="Ranged">Ranged</option>
+                      <option value="Bruiser">Bruiser</option>
+                      <option value="Horde">Horde</option>
+                      <option value="Leader">Leader</option>
+                      <option value="Support">Support</option>
+                      <option value="Solo">Solo (Boss)</option>
+                      <option value="Colossus">Colossus (Titanic Multi-Segment)</option>
+                      <option value="Social">Social</option>
+                      <option value="Environment">Environment</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Motive & Description -->
+                <div class="mb-3">
+                  <label class="form-label small fw-bold" id="label-adv-motive">Motive & Concept</label>
+                  <input type="text" id="form-adv-motive" class="form-control form-control-sm" value="Strike from shadows, isolate wounded prey, escape when bloodied" placeholder="e.g. Ambush travelers, feast on magical remnants">
+                </div>
+
+                <!-- Colossus Dimensions & Composite BP (Visible when Type = Colossus) -->
+                <div id="section-colossus-framework-params" class="row g-2 mb-3 p-2 rounded bg-dark-subtle border border-warning d-none">
+                  <div class="col-12 col-md-6">
+                    <label class="form-label small fw-bold text-gold">Colossus Dimensions / Size</label>
+                    <input type="text" id="form-colossus-size" class="form-control form-control-sm" placeholder="e.g. 95 ft. tall, 60 ft. wide" value="95 ft. tall, 60 ft. wide">
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label small fw-bold text-gold">Composite Battle Points (BP)</label>
+                    <input type="text" id="form-colossus-bp-preview" class="form-control form-control-sm bg-dark text-warning fw-bold font-monospace" value="10 BP (Framework: 2 BP + Segments: 8 BP)" readonly>
+                  </div>
+                </div>
+
+                <!-- Environment Specific Parameters (Visible when Type = Environment) -->
+                <div id="section-environment-params" class="row g-2 mb-3 p-2 rounded bg-dark-subtle border d-none">
+                  <div class="col-12 col-md-4">
+                    <label class="form-label small fw-bold">Environment Subtype</label>
+                    <select id="form-env-subtype" class="form-select form-select-sm">
+                      <option value="Exploration" selected>Exploration</option>
+                      <option value="Traversal">Traversal</option>
+                      <option value="Event">Event</option>
+                      <option value="Social">Social</option>
+                    </select>
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <label class="form-label small fw-bold">Environment Impulses (GM Prompts)</label>
+                    <input type="text" id="form-env-impulses" class="form-control form-control-sm" placeholder="e.g. Draw in the curious, echo the past, test resolve">
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label small fw-bold">Suggested / Inhabiting Adversaries</label>
+                    <input type="text" id="form-env-adversaries" class="form-control form-control-sm" placeholder="e.g. Bears, Dire Wolves, Sylvan Soldiers">
+                  </div>
+                </div>
+
+                <!-- Combat Defense Benchmarks -->
+                <div id="section-combat-defenses" class="row g-2 mb-3 p-2 rounded bg-dark-subtle border">
+                  <div class="col-6 col-md-3">
+                    <label class="form-label small fw-bold">Difficulty</label>
+                    <input type="number" id="form-adv-diff" class="form-control form-control-sm text-center fw-bold" value="12" min="1" max="30">
+                  </div>
+                  <div class="col-6 col-md-3 group-adversary-combat">
+                    <label class="form-label small fw-bold">Major Threshold</label>
+                    <input type="number" id="form-adv-thresh-major" class="form-control form-control-sm text-center fw-bold" value="8" min="0" max="100">
+                  </div>
+                  <div class="col-6 col-md-3 group-adversary-combat">
+                    <label class="form-label small fw-bold">Severe Threshold</label>
+                    <input type="number" id="form-adv-thresh-severe" class="form-control form-control-sm text-center fw-bold" value="15" min="0" max="100">
+                  </div>
+                  <div class="col-6 col-md-3 group-adversary-combat">
+                    <label class="form-label small fw-bold">Hit Points (HP)</label>
+                    <input type="number" id="form-adv-hp" class="form-control form-control-sm text-center fw-bold text-danger" value="4" min="0" max="100">
+                  </div>
+                  <div class="col-6 col-md-4 group-adversary-combat">
+                    <label class="form-label small fw-bold">Stress Capacity</label>
+                    <input type="number" id="form-adv-stress" class="form-control form-control-sm text-center fw-bold text-warning" value="3" min="0" max="15">
+                  </div>
+                  <div class="col-6 col-md-4 group-adversary-combat">
+                    <label class="form-label small fw-bold">Minion Overkill Rule</label>
+                    <input type="number" id="form-adv-minion-num" class="form-control form-control-sm text-center" value="0" min="0" placeholder="0 = None, 6 = Minion(6)">
+                  </div>
+                  <div class="col-12 col-md-4 group-adversary-combat">
+                    <label class="form-label small fw-bold">Experiences (CSV)</label>
+                    <input type="text" id="form-adv-experiences" class="form-control form-control-sm" value="Stealth +2, Tracking +2" placeholder="e.g. Ambusher +2, Tracker +2">
+                  </div>
+                </div>
+
+                <!-- Primary Attack Parameters -->
+                <div id="section-primary-attacks" class="row g-2 mb-3 p-2 rounded bg-dark-subtle border">
+                  <div class="col-12 col-md-4">
+                    <label class="form-label small fw-bold">Attack Weapon/Name</label>
+                    <input type="text" id="form-adv-atk-name" class="form-control form-control-sm" value="Shadow Dagger">
+                  </div>
+                  <div class="col-4 col-md-2">
+                    <label class="form-label small fw-bold">Atk Bonus</label>
+                    <input type="number" id="form-adv-atk-bonus" class="form-control form-control-sm text-center fw-bold" value="2">
+                  </div>
+                  <div class="col-4 col-md-3">
+                    <label class="form-label small fw-bold">Range</label>
+                    <select id="form-adv-atk-range" class="form-select form-select-sm">
+                      <option value="Melee" selected>Melee</option>
+                      <option value="Very Close">Very Close</option>
+                      <option value="Close">Close</option>
+                      <option value="Far">Far</option>
+                      <option value="Very Far">Very Far</option>
+                    </select>
+                  </div>
+                  <div class="col-4 col-md-3">
+                    <label class="form-label small fw-bold">Damage Type</label>
+                    <select id="form-adv-atk-damagetype" class="form-select form-select-sm">
+                      <option value="Physical" selected>Physical</option>
+                      <option value="Magic">Magic</option>
+                      <option value="Direct">Direct</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label small fw-bold">Damage Dice / Formula</label>
+                    <input type="text" id="form-adv-atk-damage" class="form-control form-control-sm" value="1d8+3" placeholder="e.g. 1d8+3 or 6 (for minions)">
+                  </div>
+                </div>
+
+                <!-- Token & Visual Asset Options -->
+                <div class="row g-2 mb-3 p-2 rounded bg-dark-subtle border">
+                  <div class="col-12 col-md-6">
+                    <label class="form-label small fw-bold">Token Visual Style</label>
+                    <select id="form-adv-token-style" class="form-select form-select-sm">
+                      <option value="procedural" selected>Procedural Archetype Crest</option>
+                      <option value="upload">Custom Image File Upload</option>
+                    </select>
+                  </div>
+                  <div class="col-12 col-md-6" id="container-token-upload" style="display: none;">
+                    <label class="form-label small fw-bold">Upload Token Image (Local)</label>
+                    <input type="file" id="form-adv-token-file" class="form-control form-control-sm" accept="image/*">
+                  </div>
+                </div>
+
+                <!-- Features & Moves Editor -->
+                <div class="mb-3">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <label class="form-label small fw-bold m-0" id="label-adv-features">Features & Moves (Actions, Passives, Reactions)</label>
+                    <button type="button" class="btn btn-xs btn-outline-info" id="btn-add-feature-row">+ Add Move</button>
+                  </div>
+                  <div id="features-container" class="d-flex flex-column gap-2">
+                    <!-- Feature rows dynamically injected -->
+                  </div>
+                </div>
+
+                <!-- Colossus Linked Segments Architecture (Visible when Type = Colossus) -->
+                <div id="section-colossus-segments" class="mb-3 p-3 rounded bg-dark-subtle border border-warning d-none">
+                  <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-2 pb-2 border-bottom border-warning border-opacity-50">
+                    <div>
+                      <h6 class="m-0 text-gold fw-bold d-flex align-items-center gap-1">
+                        <span>🔗</span> Linked Segments &amp; Limb Architecture
+                      </h6>
+                      <div class="text-muted" style="font-size: 0.72rem;">
+                        Add independent target segments (Heads, Cores, Limbs, Wings). Configure unit counts, difficulty, and HP.
+                      </div>
+                    </div>
+                    <div class="d-flex gap-1">
+                      <button type="button" class="btn btn-xs btn-outline-warning" id="btn-add-segment-preset-limb">+ Add Limb (×2)</button>
+                      <button type="button" class="btn btn-xs btn-gold" id="btn-add-colossus-segment">+ Add Custom Segment</button>
+                    </div>
+                  </div>
+                  <div id="colossus-segments-container" class="d-flex flex-column gap-3">
+                    <!-- Segment builder cards dynamically injected -->
+                  </div>
+                </div>
+
+                <!-- Form Action Buttons -->
+                <div class="d-flex gap-2">
+                  <button type="submit" class="btn btn-gold flex-grow-1" id="btn-creator-add-to-encounter">Add to Active Encounter</button>
+                  <button type="button" class="btn btn-outline-light" id="btn-save-as-custom-template">Save to Custom Library</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Live Stat Block Interactive Preview -->
+        <div class="col-12 col-xl-5">
+          <div class="sticky-top" style="top: 80px;">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="text-uppercase fw-bold text-gold small">Live Interactive Stat Block Preview</span>
+              <span class="badge bg-secondary">Pure Browser Render</span>
+            </div>
+            <div id="live-preview-container">
+              <!-- Dynamic live preview card injected here -->
+            </div>
+            <!-- Dynamic Balance Benchmark Comparison -->
+            <div id="creator-balance-check-container" class="mt-3">
+              <!-- Dynamic live balance analysis injected here -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- TAB: ADVERSARIES & ENVIRONMENTS COMPENDIUM -->
+    <!-- ======================================================== -->
+    <section id="tab-bestiary" class="tab-pane-content d-none">
+      <div class="card og-statblock-alt border-gold shadow-sm mb-3">
+        <div class="card-body py-3">
+          <div class="row g-2 align-items-center">
+            <!-- Search Bar -->
+            <div class="col-12 col-lg-4">
+              <input type="text" id="bestiary-search-input" class="form-control form-control-sm" placeholder="Search by name, motive, features, or hazards...">
+            </div>
+            <!-- Source Filter (All, Core, Hope & Fear, Custom) -->
+            <div class="col-6 col-md-3 col-lg-2">
+              <select id="bestiary-filter-source" class="form-select form-select-sm">
+                <option value="all">All Sources</option>
+                <option value="Core">Core Rulebook</option>
+                <option value="Hope & Fear">Hope & Fear</option>
+                <option value="Custom">Custom Library</option>
+              </select>
+            </div>
+            <!-- Tier Filter -->
+            <div class="col-6 col-md-3 col-lg-2">
+              <select id="bestiary-filter-tier" class="form-select form-select-sm">
+                <option value="all">All Tiers</option>
+                <option value="1">Tier 1</option>
+                <option value="2">Tier 2</option>
+                <option value="3">Tier 3</option>
+                <option value="4">Tier 4</option>
+              </select>
+            </div>
+            <!-- Archetype Filter (Adversary Archetypes + Environment) -->
+            <div class="col-6 col-md-3 col-lg-2">
+              <select id="bestiary-filter-type" class="form-select form-select-sm">
+                <option value="all">All Archetypes</option>
+                <option value="Environment">Environment</option>
+                <option value="Colossus">Colossus</option>
+                <option value="Minion">Minion</option>
+                <option value="Standard">Standard</option>
+                <option value="Skulk">Skulk</option>
+                <option value="Ranged">Ranged</option>
+                <option value="Bruiser">Bruiser</option>
+                <option value="Leader">Leader</option>
+                <option value="Support">Support</option>
+                <option value="Solo">Solo</option>
+                <option value="Social">Social</option>
+                <option value="Horde">Horde</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-6 col-lg-2 d-flex justify-content-between justify-content-lg-end align-items-center gap-1">
+              <span class="text-gold fw-bold small" id="bestiary-results-count">Showing entries</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bestiary & Environments Cards Grid -->
+      <div id="bestiary-grid" class="row g-3 align-items-start">
+        <!-- Injected adversary & environment cards -->
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- TAB 4: SAVED ENCOUNTERS & STORAGE -->
+    <!-- ======================================================== -->
+    <section id="tab-saved" class="tab-pane-content d-none">
+      <div class="card og-statblock-alt border-gold shadow-sm mb-4">
+        <div class="card-header bg-dark-subtle border-bottom border-gold d-flex justify-content-between align-items-center py-2">
+          <h5 class="m-0 text-gold text-uppercase fs-6">&#128190; Saved Encounters (Project File & Browser Cache)</h5>
+          <div class="d-flex gap-2">
+            <button class="btn btn-xs btn-outline-info" id="btn-export-json">Export Backup (JSON)</button>
+            <label class="btn btn-xs btn-outline-secondary m-0">
+              Import Backup <input type="file" id="input-import-json" accept=".json" style="display: none;">
+            </label>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="text-muted small mb-3">
+            All encounters and custom adversaries are automatically saved to <code>custom-library.json</code> in your project directory (syncing across devices via Google Drive) and cached in your browser's <code>localStorage</code> for instant offline access.
+          </p>
+          <div id="saved-encounters-list" class="list-group">
+            <!-- Saved items dynamically injected -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- DOCKED INLINE GM CONSOLE (FEAR, DICE & COMBAT LOG) -->
+  <!-- ======================================================== -->
+  <aside id="dice-tray-panel" class="dice-tray-panel closed shadow-lg" aria-label="GM Console">
+    <div class="dice-tray-header d-flex justify-content-between align-items-center px-3 py-1 border-bottom">
+      <span class="fw-bold text-gold d-flex align-items-center gap-2 small">
+        <span>&#128081;</span> GM Console
+      </span>
+      <button class="btn btn-xs btn-outline-secondary py-0 px-1" id="btn-close-dice-tray" title="Close GM Console">&times;</button>
+    </div>
+
+    <div class="p-2">
+      <!-- 1. GM Fear Pool Tracker (Max 12) -->
+      <div class="mb-2 p-2 px-2.5 rounded bg-dark border border-danger-subtle shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <span class="small fw-bold text-uppercase text-danger d-flex align-items-center gap-1" style="font-size: 0.75rem;">
+            <span>&#128128;</span> GM Fear Pool
+          </span>
+          <span class="badge bg-danger text-light small px-2 py-0" id="fear-status-label" style="font-size: 0.7rem;">Active (Max 12)</span>
+        </div>
+        <div class="d-flex align-items-center justify-content-between gap-2 p-1 px-2 rounded bg-black border border-danger">
+          <button class="btn btn-sm btn-outline-danger fw-bold py-0 px-2" id="btn-fear-minus" title="Spend 1 Fear">-1 Spend</button>
+          <div class="text-center d-flex align-items-baseline gap-1">
+            <span class="fs-4 fw-bold text-warning lh-1" id="fear-count">2</span>
+            <span class="small text-muted font-monospace" style="font-size: 0.75rem;">/ 12</span>
+          </div>
+          <button class="btn btn-sm btn-outline-danger fw-bold py-0 px-2" id="btn-fear-plus" title="Gain 1 Fear (+1, Max 12)">+1 Gain</button>
+        </div>
+      </div>
+
+      <!-- 2. GM Action Roll / Damage Roll Display -->
+      <div class="mb-2 p-2 rounded bg-dark border border-gold-subtle shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <span class="small fw-bold text-uppercase text-gold" id="gm-roll-panel-title" style="font-size: 0.75rem;">GM Action Roll (d20)</span>
+          <span class="badge bg-secondary" id="gm-d20-outcome-badge" style="font-size: 0.7rem;">Ready</span>
+        </div>
+
+        <!-- Die Display -->
+        <div class="die-card p-2 rounded border border-warning text-center mb-2" id="gm-die-display-card">
+          <div class="small text-muted text-uppercase mb-0" id="gm-d20-roll-type-label" style="font-size: 0.7rem;">Standard Roll</div>
+          <div class="d-flex justify-content-center align-items-baseline gap-2 my-1">
+            <span class="fs-1 fw-bold text-gold lh-1" id="die-val-d20">-</span>
+            <span class="small text-muted" id="die-val-d20-mod"></span>
+          </div>
+          <div class="small text-secondary" id="die-val-d20-subtext" style="font-size: 0.75rem;"></div>
+        </div>
+
+        <!-- Modifier & Mode Controls -->
+        <div class="mb-1">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <label class="form-label small fw-bold text-muted mb-0" style="font-size: 0.75rem;">Attack / Action Bonus</label>
+            <div class="btn-group btn-group-sm" role="group" id="gm-roll-mode-group">
+              <input type="radio" class="btn-check" name="gmRollMode" id="mode-normal" value="normal" checked autocomplete="off">
+              <label class="btn btn-xs btn-outline-secondary py-0 px-1" for="mode-normal" title="Normal 1d20">Normal</label>
+              
+              <input type="radio" class="btn-check" name="gmRollMode" id="mode-adv" value="adv" autocomplete="off">
+              <label class="btn btn-xs btn-outline-success py-0 px-1" for="mode-adv" title="Advantage (Take Higher of 2d20)">Adv</label>
+              
+              <input type="radio" class="btn-check" name="gmRollMode" id="mode-dis" value="dis" autocomplete="off">
+              <label class="btn btn-xs btn-outline-danger py-0 px-1" for="mode-dis" title="Disadvantage (Take Lower of 2d20)">Dis</label>
+            </div>
+          </div>
+          
+          <div class="input-group input-group-sm mb-1">
+            <button class="btn btn-outline-secondary py-0" type="button" id="btn-mod-minus">-</button>
+            <input type="number" class="form-control form-control-sm text-center fw-bold py-0" id="gm-d20-bonus" value="0" min="-10" max="30">
+            <button class="btn btn-outline-secondary py-0" type="button" id="btn-mod-plus">+</button>
+          </div>
+          
+          <!-- Quick Preset Modifiers -->
+          <div class="d-flex justify-content-between gap-1">
+            <button class="btn btn-xs btn-outline-secondary text-muted flex-fill py-0 gm-mod-preset" data-mod="0">+0</button>
+            <button class="btn btn-xs btn-outline-secondary text-muted flex-fill py-0 gm-mod-preset" data-mod="2">+2</button>
+            <button class="btn btn-xs btn-outline-secondary text-muted flex-fill py-0 gm-mod-preset" data-mod="3">+3</button>
+            <button class="btn btn-xs btn-outline-secondary text-muted flex-fill py-0 gm-mod-preset" data-mod="4">+4</button>
+            <button class="btn btn-xs btn-outline-secondary text-muted flex-fill py-0 gm-mod-preset" data-mod="5">+5</button>
+            <button class="btn btn-xs btn-outline-secondary text-muted flex-fill py-0 gm-mod-preset" data-mod="8">+8</button>
+          </div>
+        </div>
+
+        <button class="btn btn-warning fw-bold w-100 shadow-sm mt-1 py-1" id="btn-roll-gm-d20">
+          &#127922; Roll d20 Action
+        </button>
+      </div>
+
+      <!-- 3. Polyhedral Dice with Multiplier & Bonus Modifier -->
+      <div class="mb-2 p-2 rounded bg-dark border border-secondary shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <span class="small fw-bold text-muted text-uppercase" style="font-size: 0.75rem;">Polyhedral Dice</span>
+          <div class="d-flex align-items-center gap-1">
+            <span class="small text-muted" style="font-size: 0.7rem;">Qty:</span>
+            <div class="btn-group btn-group-sm" id="dice-qty-group">
+              <button class="btn btn-xs btn-warning dice-qty-btn active py-0 px-1" data-qty="1">1x</button>
+              <button class="btn btn-xs btn-outline-secondary dice-qty-btn py-0 px-1" data-qty="2">2x</button>
+              <button class="btn btn-xs btn-outline-secondary dice-qty-btn py-0 px-1" data-qty="3">3x</button>
+              <button class="btn btn-xs btn-outline-secondary dice-qty-btn py-0 px-1" data-qty="4">4x</button>
+              <button class="btn btn-xs btn-outline-secondary dice-qty-btn py-0 px-1" data-qty="6">6x</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Polyhedral Modifier Bonus (+x) -->
+        <div class="mb-1">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <label class="form-label small fw-bold text-muted mb-0" style="font-size: 0.75rem;">Bonus Modifier (+x)</label>
+            <span class="small text-warning font-monospace" id="poly-formula-preview" style="font-size: 0.75rem;">1d... + 0</span>
+          </div>
+          <div class="input-group input-group-sm mb-1">
+            <button class="btn btn-outline-secondary py-0" type="button" id="btn-poly-mod-minus">-</button>
+            <input type="number" class="form-control form-control-sm text-center fw-bold py-0" id="poly-dice-bonus" value="0" min="-20" max="50">
+            <button class="btn btn-outline-secondary py-0" type="button" id="btn-poly-mod-plus">+</button>
+          </div>
+          <!-- Quick preset modifier buttons -->
+          <div class="d-flex justify-content-between gap-1">
+            <button class="btn btn-xs btn-outline-secondary text-muted flex-fill py-0 poly-mod-preset" data-mod="0">+0</button>
+            <button class="btn btn-xs btn-outline-secondary text-muted flex-fill py-0 poly-mod-preset" data-mod="2">+2</button>
+            <button class="btn btn-xs btn-outline-secondary text-muted flex-fill py-0 poly-mod-preset" data-mod="3">+3</button>
+            <button class="btn btn-xs btn-outline-secondary text-muted flex-fill py-0 poly-mod-preset" data-mod="4">+4</button>
+            <button class="btn btn-xs btn-outline-secondary text-muted flex-fill py-0 poly-mod-preset" data-mod="6">+6</button>
+            <button class="btn btn-xs btn-outline-secondary text-muted flex-fill py-0 poly-mod-preset" data-mod="8">+8</button>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-1 mt-1">
+          <button class="btn btn-xs btn-outline-secondary dice-quick-btn flex-fill py-1" data-die="4">d4</button>
+          <button class="btn btn-xs btn-outline-secondary dice-quick-btn flex-fill py-1" data-die="6">d6</button>
+          <button class="btn btn-xs btn-outline-secondary dice-quick-btn flex-fill py-1" data-die="8">d8</button>
+          <button class="btn btn-xs btn-outline-secondary dice-quick-btn flex-fill py-1" data-die="10">d10</button>
+          <button class="btn btn-xs btn-outline-secondary dice-quick-btn flex-fill py-1" data-die="12">d12</button>
+          <button class="btn btn-xs btn-outline-secondary dice-quick-btn flex-fill py-1" data-die="20">d20</button>
+          <button class="btn btn-xs btn-outline-secondary dice-quick-btn flex-fill py-1" data-die="100">d100</button>
+        </div>
+      </div>
+
+      <!-- 4. Combat Roll Log -->
+      <div class="combat-roll-log-container">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <label class="small fw-bold text-muted text-uppercase m-0" style="font-size: 0.75rem;">Recent Rolls</label>
+          <button class="btn btn-link btn-xs text-muted p-0 text-decoration-none" id="btn-clear-roll-log">Clear</button>
+        </div>
+        <div id="combat-roll-log" class="p-2 rounded bg-black small font-monospace" style="height: 150px; overflow-y: auto;">
+          <div class="text-muted italic" style="font-size: 0.75rem;">Click an attack or damage button on any stat block to roll.</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  </div>
+
+  <!-- Load Preset Benchmark Generator Modal (RightKnight v1.7) -->
+  <div class="modal fade" id="modal-load-preset" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-light border border-gold shadow-lg">
+        <div class="modal-header border-bottom border-secondary py-2">
+          <h5 class="modal-title text-gold fs-6 d-flex align-items-center gap-2">
+            <span>⚔️</span> Load Adversary Preset (RightKnight v1.7)
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-3">
+          <p class="small text-muted mb-3">
+            Select an archetype, tier, and desired damage consistency curve to generate mathematically balanced Daggerheart stats, experiences, and signature features.
+          </p>
+
+          <div class="row g-2 mb-3">
+            <!-- Adversary Type / Role -->
+            <div class="col-12 col-sm-6">
+              <label class="form-label small fw-bold">Adversary Role / Type</label>
+              <select id="preset-select-type" class="form-select form-select-sm">
+                <option value="Bruiser" selected>Bruiser (Heavy Hitter)</option>
+                <option value="Standard">Standard (Core Troops)</option>
+                <option value="Skulk">Skulk (Ambusher / Disorient)</option>
+                <option value="Ranged">Ranged (Sniper / Multi-Target)</option>
+                <option value="Leader">Leader (Commander / Tactician)</option>
+                <option value="Support">Support (Buffer / Debuffer)</option>
+                <option value="Solo">Solo (Apex Boss / Phased)</option>
+                <option value="Colossus">Colossus (Titanic Multi-Segment)</option>
+                <option value="Horde">Horde (Swarm / Splitting Damage)</option>
+                <option value="Minion">Minion (Overkill Squad)</option>
+                <option value="Social">Social (Intrigue / Presence)</option>
+                <option value="Environment">Environment (Scene / Hazard)</option>
+              </select>
+            </div>
+
+            <!-- Tier -->
+            <div class="col-12 col-sm-6">
+              <label class="form-label small fw-bold">Tier</label>
+              <select id="preset-select-tier" class="form-select form-select-sm">
+                <option value="1" selected>Tier 1 (Level 1)</option>
+                <option value="2">Tier 2 (Levels 2–4)</option>
+                <option value="3">Tier 3 (Levels 5–7)</option>
+                <option value="4">Tier 4 (Levels 8–10)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Damage Consistency Curve -->
+          <div class="mb-3" id="preset-group-consistency">
+            <label class="form-label small fw-bold">Damage Consistency</label>
+            <select id="preset-select-consistency" class="form-select form-select-sm">
+              <option value="average" selected>Average Consistency (Balanced hits & static modifier)</option>
+              <option value="low">Low Consistency (Heavier swings / bigger dice)</option>
+              <option value="high">High Consistency (Smaller dice / higher static modifier)</option>
+            </select>
+            <div class="form-text small text-gold mt-1" id="preset-dice-hint">
+              Target Formula: <strong>1d10+4</strong> (Target Avg: 8–11)
+            </div>
+          </div>
+
+          <!-- Live Preset Preview Specs Box -->
+          <div class="p-2 rounded bg-black border border-subtle small" id="preset-specs-preview">
+            <!-- Dynamic summary of Difficulty, Thresholds, HP, Stress, Attack, Features -->
+          </div>
+        </div>
+        <div class="modal-footer border-top border-secondary py-2">
+          <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-sm btn-gold px-3" id="btn-confirm-generate-preset">
+            <span>⚡</span> Generate
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Save Encounter Modal -->
+  <div class="modal fade" id="modal-save-encounter" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-light border border-gold">
+        <div class="modal-header border-bottom border-secondary">
+          <h5 class="modal-title text-gold">&#128190; Save Current Encounter</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <label class="form-label small">Encounter Title</label>
+          <input type="text" id="input-save-encounter-name" class="form-control" placeholder="e.g. Ambush at Bleakwood Bridge">
+          <div class="form-text text-muted small mt-2">
+            &#128193; Automatically saves to <strong>custom-library.json</strong> in your project folder, keeping both computers in sync via Google Drive.
+          </div>
+        </div>
+        <div class="modal-footer border-top border-secondary">
+          <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-sm btn-gold" id="btn-confirm-save-encounter" data-bs-dismiss="modal">&#128190; Save to Custom Library File</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1090;">
+    <div id="app-toast" class="toast align-items-center text-bg-dark border border-gold" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body small" id="toast-message">Notification</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="scripts/bootstrap.bundle.min.js"></script>
+  <script>
+    if (!window.bootstrap) {
+      document.write('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"><\\/script>');
+    }
+  </script>
+  <script src="app.js?v=4.8"></script>
+</body>
+</html>
