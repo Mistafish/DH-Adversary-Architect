@@ -1158,16 +1158,22 @@ const App = {
     });
 
     // Party Configuration Controls
-    document.getElementById('input-pc-count')?.addEventListener('change', (e) => {
-      this.state.party.count = Math.max(1, parseInt(e.target.value, 10) || 4);
+    const updatePartyCount = (val) => {
+      this.state.party.count = Math.max(1, parseInt(val, 10) || 4);
       this.saveState();
       this.renderHUD();
-    });
+      this.renderRoster();
+    };
+
+    const pcCountInput = document.getElementById('input-pc-count');
+    pcCountInput?.addEventListener('change', (e) => updatePartyCount(e.target.value));
+    pcCountInput?.addEventListener('input', (e) => updatePartyCount(e.target.value));
 
     document.getElementById('select-party-tier')?.addEventListener('change', (e) => {
       this.state.party.tier = parseInt(e.target.value, 10) || 1;
       this.saveState();
       this.renderHUD();
+      this.renderRoster();
     });
 
     // Fear Pool (Max 12)
@@ -1732,18 +1738,23 @@ const App = {
 
     if (!container) return;
 
-    // Calculate total adversary units across all cards
-    let totalUnits = 0;
+    // Calculate total combatant figures across all cards
+    let totalFigures = 0;
+    const currentPartySize = Math.max(1, this.state.party?.count || 4);
     this.state.roster.forEach(adv => {
       if (!adv.trackers || !Array.isArray(adv.trackers) || adv.trackers.length === 0) {
         adv.trackers = [{ id: 1, markedHP: adv.markedHP || 0, markedStress: adv.markedStress || 0 }];
       }
-      totalUnits += (adv.type === 'Environment' || adv.isEnvironment || adv.isColossusFramework) ? 1 : adv.trackers.length;
+      if (adv.type === 'Minion') {
+        totalFigures += (adv.trackers.length * currentPartySize);
+      } else {
+        totalFigures += (adv.type === 'Environment' || adv.isEnvironment || adv.isColossusFramework) ? 1 : adv.trackers.length;
+      }
     });
 
     if (badge) {
       const cardCount = this.state.roster.length;
-      badge.textContent = `${totalUnits} Adversar${totalUnits === 1 ? 'y' : 'ies'}${cardCount !== totalUnits ? ` (${cardCount} Stat Block${cardCount === 1 ? '' : 's'})` : ''}`;
+      badge.textContent = `${totalFigures} Combatant${totalFigures === 1 ? '' : 's'} (${cardCount} Stat Block${cardCount === 1 ? '' : 's'})`;
     }
 
     if (this.state.roster.length === 0) {
@@ -1887,13 +1898,17 @@ const App = {
     const isEnv = adv.type === 'Environment' || adv.isEnvironment;
     const isFramework = Boolean(adv.isColossusFramework);
     const isSegment = Boolean(adv.isColossusSegment);
+    const isMinion = (adv.type === 'Minion');
     const isCollapsed = Boolean(adv.isCollapsed);
     const unitCount = adv.trackers.length;
+    const partySize = Math.max(1, this.state.party?.count || 4);
+    const hpSlots = isMinion ? partySize : (adv.hp || 1);
+    const stressSlots = isMinion ? (adv.stress ? partySize * (adv.stress || 1) : partySize) : (adv.stress || 0);
     const tokenSrc = adv.tokenImg || TokenRenderer.generate(adv.name, isFramework ? 'Colossus' : adv.type, adv.tier);
 
     // Single adversary defeated logic: whole card gets stamp
-    const isSingleDefeated = (!isEnv && !isFramework && unitCount === 1 && adv.trackers[0].markedHP >= (adv.hp || 1)) || (isFramework && isColossusGroupDefeated);
-    const isSingleVulnerable = (!isEnv && unitCount === 1 && adv.trackers[0].markedStress >= adv.stress && adv.stress > 0);
+    const isSingleDefeated = (!isEnv && !isFramework && unitCount === 1 && adv.trackers[0].markedHP >= hpSlots) || (isFramework && isColossusGroupDefeated);
+    const isSingleVulnerable = (!isEnv && unitCount === 1 && adv.trackers[0].markedStress >= stressSlots && stressSlots > 0);
 
     // Features with interactive Cost Trigger Buttons (Icon-only, inline)
     let featuresHTML = '';
@@ -2119,37 +2134,43 @@ const App = {
       `;
     }
 
-    // Standard Adversary or Colossus Segment Card
+    // Standard Adversary, Minion Squad, or Colossus Segment Card
     const isFatal = adv.features && adv.features.some(f => f.name.toLowerCase().includes('fatal'));
     let trackersHTML = '';
 
     if (unitCount === 1) {
       const trk = adv.trackers[0];
       let hpPipsHTML = '';
-      for (let i = 0; i < adv.hp; i++) {
+      for (let i = 0; i < hpSlots; i++) {
         const isMarked = i < trk.markedHP;
-        hpPipsHTML += `<button type="button" class="hp-pip ${isMarked ? 'marked' : ''}" data-action="toggle-hp" data-idx="${index}" data-unit="0" data-pip="${i}" title="Toggle HP"></button>`;
+        if (isMinion && i > 0) {
+          hpPipsHTML += `<span class="minion-pip-divider"></span>`;
+        }
+        hpPipsHTML += `<button type="button" class="hp-pip ${isMarked ? 'marked' : ''}" data-action="toggle-hp" data-idx="${index}" data-unit="0" data-pip="${i}" title="${isMinion ? `Toggle Minion #${i + 1} HP (Defeated)` : 'Toggle HP'}"></button>`;
       }
 
       let stressPipsHTML = '';
-      for (let i = 0; i < adv.stress; i++) {
+      for (let i = 0; i < stressSlots; i++) {
         const isMarked = i < trk.markedStress;
-        stressPipsHTML += `<button type="button" class="stress-pip ${isMarked ? 'marked' : ''}" data-action="toggle-stress" data-idx="${index}" data-unit="0" data-pip="${i}" title="Toggle Stress"></button>`;
+        if (isMinion && i > 0) {
+          stressPipsHTML += `<span class="minion-pip-divider"></span>`;
+        }
+        stressPipsHTML += `<button type="button" class="stress-pip ${isMarked ? 'marked' : ''}" data-action="toggle-stress" data-idx="${index}" data-unit="0" data-pip="${i}" title="${isMinion ? `Toggle Minion #${i + 1} Stress` : 'Toggle Stress'}"></button>`;
       }
 
       trackersHTML = `
         <div class="trackers-box mb-2">
           <div class="d-flex justify-content-between align-items-center mb-2">
             <span class="small fw-bold text-uppercase text-danger d-flex align-items-center gap-1">
-              <span>&#9829;</span> HP (${trk.markedHP} / ${adv.hp})
+              <span>&#9829;</span> ${isMinion ? `Minions Defeated (${trk.markedHP} / ${partySize})` : `HP (${trk.markedHP} / ${adv.hp})`}
             </span>
             <div class="pip-row">${hpPipsHTML}</div>
           </div>
 
-          ${adv.stress > 0 ? `
+          ${stressSlots > 0 ? `
             <div class="d-flex justify-content-between align-items-center">
               <span class="small fw-bold text-uppercase text-warning d-flex align-items-center gap-1">
-                <span>&#9670;</span> Stress (${trk.markedStress} / ${adv.stress})
+                <span>&#9670;</span> ${isMinion ? `Stress (${trk.markedStress} / ${stressSlots})` : `Stress (${trk.markedStress} / ${adv.stress})`}
               </span>
               <div class="pip-row">${stressPipsHTML}</div>
             </div>
@@ -2169,26 +2190,32 @@ const App = {
     } else {
       // Multi-Unit Trackers
       const unitCardsHTML = adv.trackers.map((trk, uIdx) => {
-        const isUnitDefeated = trk.markedHP >= adv.hp;
-        const isUnitVulnerable = trk.markedStress >= adv.stress && adv.stress > 0;
+        const isUnitDefeated = trk.markedHP >= hpSlots;
+        const isUnitVulnerable = trk.markedStress >= stressSlots && stressSlots > 0;
 
         let hpPipsHTML = '';
-        for (let i = 0; i < adv.hp; i++) {
+        for (let i = 0; i < hpSlots; i++) {
           const isMarked = i < trk.markedHP;
-          hpPipsHTML += `<button type="button" class="hp-pip ${isMarked ? 'marked' : ''}" data-action="toggle-hp" data-idx="${index}" data-unit="${uIdx}" data-pip="${i}" title="Toggle Unit #${uIdx + 1} HP"></button>`;
+          if (isMinion && i > 0) {
+            hpPipsHTML += `<span class="minion-pip-divider"></span>`;
+          }
+          hpPipsHTML += `<button type="button" class="hp-pip ${isMarked ? 'marked' : ''}" data-action="toggle-hp" data-idx="${index}" data-unit="${uIdx}" data-pip="${i}" title="${isMinion ? `Toggle Unit #${uIdx + 1} Minion #${i + 1} HP (Defeated)` : `Toggle Unit #${uIdx + 1} HP`}"></button>`;
         }
 
         let stressPipsHTML = '';
-        for (let i = 0; i < adv.stress; i++) {
+        for (let i = 0; i < stressSlots; i++) {
           const isMarked = i < trk.markedStress;
-          stressPipsHTML += `<button type="button" class="stress-pip ${isMarked ? 'marked' : ''}" data-action="toggle-stress" data-idx="${index}" data-unit="${uIdx}" data-pip="${i}" title="Toggle Unit #${uIdx + 1} Stress"></button>`;
+          if (isMinion && i > 0) {
+            stressPipsHTML += `<span class="minion-pip-divider"></span>`;
+          }
+          stressPipsHTML += `<button type="button" class="stress-pip ${isMarked ? 'marked' : ''}" data-action="toggle-stress" data-idx="${index}" data-unit="${uIdx}" data-pip="${i}" title="${isMinion ? `Toggle Unit #${uIdx + 1} Minion #${i + 1} Stress` : `Toggle Unit #${uIdx + 1} Stress`}"></button>`;
         }
 
         return `
           <div class="adv-unit-card ${isUnitDefeated ? 'is-unit-defeated' : ''}" id="unit-card-${index}-${uIdx}">
             <div class="d-flex justify-content-between align-items-center mb-1 pb-1 border-bottom border-subtle">
               <div class="d-flex align-items-center gap-2">
-                <span class="unit-header-badge text-gold fw-bold">${adv.name.replace(/^(Ikeri|Colossus)\s+/i, '')} #${uIdx + 1}</span>
+                <span class="unit-header-badge text-gold fw-bold">${isMinion ? `Minion Squad #${uIdx + 1} (${partySize} Minions)` : `${adv.name.replace(/^(Ikeri|Colossus)\s+/i, '')} #${uIdx + 1}`}</span>
                 ${isUnitVulnerable ? '<span class="badge badge-vulnerable py-0" style="font-size: 0.65rem;">VULNERABLE</span>' : ''}
                 ${isUnitDefeated ? '<span class="badge bg-danger py-0" style="font-size: 0.65rem;">DEFEATED</span>' : ''}
               </div>
@@ -2201,15 +2228,15 @@ const App = {
 
             <div class="d-flex justify-content-between align-items-center mb-2">
               <span class="small fw-bold text-danger" style="font-size: 0.75rem;">
-                <span>&#9829;</span> HP (${trk.markedHP}/${adv.hp})
+                <span>&#9829;</span> ${isMinion ? `Minions Defeated (${trk.markedHP}/${partySize})` : `HP (${trk.markedHP}/${adv.hp})`}
               </span>
               <div class="pip-row">${hpPipsHTML}</div>
             </div>
 
-            ${adv.stress > 0 ? `
+            ${stressSlots > 0 ? `
               <div class="d-flex justify-content-between align-items-center mb-2">
                 <span class="small fw-bold text-warning" style="font-size: 0.75rem;">
-                  <span>&#9670;</span> Stress (${trk.markedStress}/${adv.stress})
+                  <span>&#9670;</span> ${isMinion ? `Stress (${trk.markedStress}/${stressSlots})` : `Stress (${trk.markedStress}/${adv.stress})`}
                 </span>
                 <div class="pip-row">${stressPipsHTML}</div>
               </div>
@@ -2229,7 +2256,7 @@ const App = {
       trackersHTML = `
         <div class="d-flex justify-content-between align-items-center mb-2">
           <span class="small fw-bold text-gold text-uppercase" style="letter-spacing: 0.05em; font-size: 0.75rem;">
-            Units Tracked (${unitCount})
+            ${isMinion ? `Minion Squads Tracked (${unitCount} Squad${unitCount === 1 ? '' : 's'} &bull; ${unitCount * partySize} Total Minions)` : `Units Tracked (${unitCount})`}
           </span>
           ${!isSegment ? `
             <button class="btn btn-xs btn-outline-gold py-0 px-2" data-action="add-unit" data-idx="${index}" title="Add another unit to this adversary" style="font-size: 0.72rem;">
@@ -2244,7 +2271,8 @@ const App = {
       `;
     }
 
-    const totalBP = (DH_BENCHMARKS.BP_COSTS[adv.type] !== undefined ? DH_BENCHMARKS.BP_COSTS[adv.type] : 2) * unitCount;
+    const bpPerUnit = isMinion ? 1.0 : (DH_BENCHMARKS.BP_COSTS[adv.type] !== undefined ? DH_BENCHMARKS.BP_COSTS[adv.type] : 2);
+    const totalBP = bpPerUnit * unitCount;
 
     return `
       <div class="card og-statblock ${isSegment ? 'colossus-segment-card' : ''} shadow-sm ${isSingleDefeated ? 'is-defeated' : ''} ${isCollapsed ? 'is-card-collapsed' : ''}" id="roster-card-${index}">
@@ -2260,10 +2288,10 @@ const App = {
                 <h5 class="adv-name m-0 text-truncate" title="${adv.name}">${adv.name}</h5>
                 <div class="d-flex gap-1 align-items-center mt-1 flex-wrap">
                   <span class="badge-tier">Tier ${adv.tier}</span>
-                  ${isSegment ? `<span class="badge bg-secondary text-light fw-bold" style="font-size: 0.65rem;">🔗 SEGMENT</span>` : `<span class="badge-role">${adv.type}</span>`}
+                  ${isSegment ? `<span class="badge bg-secondary text-light fw-bold" style="font-size: 0.65rem;">🔗 SEGMENT</span>` : (isMinion ? `<span class="badge-role">Minion (${unitCount * partySize} Figures)</span>` : `<span class="badge-role">${adv.type}</span>`)}
                   ${isFatal ? `<span class="badge bg-danger text-light fw-bold" style="font-size: 0.65rem;">⚡ FATAL</span>` : ''}
-                  ${!isSegment ? `<span class="badge bg-dark border border-gold text-gold" style="font-size: 0.65rem;" title="Battle Points">${totalBP} BP${unitCount > 1 ? ` (${unitCount}x)` : ''}</span>` : ''}
-                  ${unitCount > 1 ? `<span class="badge bg-secondary border border-secondary" style="font-size: 0.65rem;">${unitCount} Units</span>` : ''}
+                  ${!isSegment ? `<span class="badge bg-dark border border-gold text-gold" style="font-size: 0.65rem;" title="Battle Points">${totalBP} BP</span>` : ''}
+                  ${unitCount > 1 ? `<span class="badge bg-secondary border border-secondary" style="font-size: 0.65rem;">${unitCount} Units${isMinion ? ` (${partySize}/unit)` : ''}</span>` : (isMinion ? `<span class="badge bg-secondary border border-secondary" style="font-size: 0.65rem;">1 Unit (${partySize} Minions)</span>` : '')}
                   ${adv.book ? `<span class="badge ${adv.book === 'Hope & Fear' ? 'bg-warning text-dark' : 'bg-secondary'}" style="font-size: 0.65rem;">${adv.book}</span>` : ''}
                   ${isSingleVulnerable ? '<span class="badge badge-vulnerable">VULNERABLE</span>' : ''}
                 </div>
@@ -2297,7 +2325,7 @@ const App = {
                     ${!isSegment ? `
                       <li>
                         <a class="dropdown-item" href="#" data-action="add-unit" data-idx="${index}">
-                          <span>👥</span> + Add Unit (HP/Stress Block)
+                          <span>👥</span> + Add Unit (${isMinion ? `${partySize} Minions` : 'HP/Stress Block'})
                         </a>
                       </li>
                       <li>
@@ -2367,20 +2395,20 @@ const App = {
               </div>
               <div class="col-3">
                 <div class="stat-pill">
-                  <span class="stat-pill-label">Major Thresh</span>
-                  <span class="stat-pill-val">${adv.major}</span>
+                  <span class="stat-pill-label">${isMinion ? 'Party Size' : 'Major Thresh'}</span>
+                  <span class="stat-pill-val">${isMinion ? `${partySize} PCs` : adv.major}</span>
                 </div>
               </div>
               <div class="col-3">
                 <div class="stat-pill">
-                  <span class="stat-pill-label">Severe Thresh</span>
-                  <span class="stat-pill-val">${adv.severe}</span>
+                  <span class="stat-pill-label">${isMinion ? 'Squad Size' : 'Severe Thresh'}</span>
+                  <span class="stat-pill-val">${isMinion ? `${partySize} / Unit` : adv.severe}</span>
                 </div>
               </div>
               <div class="col-3">
                 <div class="stat-pill">
-                  <span class="stat-pill-label">${adv.type === 'Minion' ? 'Overkill' : 'BP Cost'}</span>
-                  <span class="stat-pill-val">${adv.type === 'Minion' ? (adv.minionRule || 6) : (DH_BENCHMARKS.BP_COSTS[adv.type] || 1)}</span>
+                  <span class="stat-pill-label">${isMinion ? 'Overkill' : 'BP Cost'}</span>
+                  <span class="stat-pill-val">${isMinion ? (adv.minionRule || 6) : (DH_BENCHMARKS.BP_COSTS[adv.type] || 1)}</span>
                 </div>
               </div>
             </div>
@@ -2919,21 +2947,33 @@ const App = {
     const unitLabel = (adv.trackers.length > 1) ? ` (Unit #${unitIdx + 1})` : '';
 
     if (adv.type === 'Minion') {
-      tracker.markedHP = 1;
+      const partySize = Math.max(1, this.state.party?.count || 4);
       const overkill = adv.minionRule || 6;
-      const extraKilled = Math.floor(dmg / overkill);
+      const totalDefeatedByAttack = 1 + Math.floor(dmg / overkill);
+      let remainingToDefeat = totalDefeatedByAttack;
 
-      // Overkill defeats adjacent minions in the same stat block
-      let extraDefeated = 0;
-      if (extraKilled > 0 && adv.trackers.length > 1) {
+      // Defeat minions in targeted unit first
+      const neededInCurrent = partySize - tracker.markedHP;
+      const defeatedInCurrent = Math.max(0, Math.min(neededInCurrent, remainingToDefeat));
+      tracker.markedHP += defeatedInCurrent;
+      remainingToDefeat -= defeatedInCurrent;
+
+      // Cascade overkill to other units in the same Minion statblock if any remain
+      let extraCascaded = 0;
+      if (remainingToDefeat > 0 && adv.trackers.length > 1) {
         for (let u = 0; u < adv.trackers.length; u++) {
-          if (u !== unitIdx && adv.trackers[u].markedHP < adv.hp && extraDefeated < extraKilled) {
-            adv.trackers[u].markedHP = adv.hp;
-            extraDefeated++;
+          if (u !== unitIdx && adv.trackers[u].markedHP < partySize && remainingToDefeat > 0) {
+            const canDefeat = partySize - adv.trackers[u].markedHP;
+            const defeatNow = Math.min(canDefeat, remainingToDefeat);
+            adv.trackers[u].markedHP += defeatNow;
+            remainingToDefeat -= defeatNow;
+            extraCascaded += defeatNow;
           }
         }
       }
-      this.logCombatMessage(`${adv.name}${unitLabel} was hit for ${dmg} dmg & DEFEATED!${extraKilled > 0 ? ` (Overkill defeats ${extraKilled} additional minions)` : ''}`);
+
+      const totalActualDefeated = totalDefeatedByAttack - remainingToDefeat;
+      this.logCombatMessage(`${adv.name}${unitLabel} was hit for ${dmg} dmg! ${totalActualDefeated} Minion${totalActualDefeated === 1 ? '' : 's'} Defeated.${totalDefeatedByAttack > 1 ? ` (Overkill ${overkill} cascaded to ${totalDefeatedByAttack - 1} additional minions)` : ''}`);
     } else {
       let hpToMark = 1;
       let tierSeverity = 'Minor Damage (1 HP)';
