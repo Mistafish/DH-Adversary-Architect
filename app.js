@@ -2015,16 +2015,8 @@ const App = {
               <img src="${tokenSrc}" alt="${adv.name}" class="adv-token-img">
             </div>
             <div class="flex-grow-1 position-relative" style="min-width: 0;">
-              <div class="d-flex justify-content-between align-items-start gap-2">
-                <div class="overflow-hidden" style="min-width: 0;">
-                  <h5 class="adv-name m-0 text-truncate text-gold" title="${adv.name}">${adv.name}</h5>
-                  <div class="d-flex gap-1 align-items-center mt-1 flex-wrap">
-                    <span class="badge-tier">Tier ${adv.tier}</span>
-                    <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-50">Environment (${adv.subtype || 'Exploration'})</span>
-                    <span class="badge bg-dark border border-gold text-gold" style="font-size: 0.65rem;">0 BP (Scene)</span>
-                    ${adv.book ? `<span class="badge ${adv.book === 'Hope & Fear' ? 'bg-warning text-dark' : 'bg-secondary'}" style="font-size: 0.65rem;">${adv.book}</span>` : ''}
-                  </div>
-                </div>
+              <div class="d-flex justify-content-between align-items-center gap-2">
+                <h5 class="adv-name m-0 text-truncate text-gold" title="${adv.name}">${adv.name}</h5>
 
                 <div class="d-flex align-items-center gap-1 flex-shrink-0">
                   <button class="btn btn-xs btn-outline-secondary py-0 px-1 collapse-indicator" data-action="toggle-card-collapse" data-idx="${index}" title="${isCollapsed ? 'Expand Environment' : 'Collapse Environment'}">
@@ -2062,6 +2054,14 @@ const App = {
                   </div>
                 </div>
               </div>
+
+              <div class="d-flex gap-1 align-items-center mt-1 flex-wrap">
+                <span class="badge-tier">Tier ${adv.tier}</span>
+                <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-50">Environment (${adv.subtype || 'Exploration'})</span>
+                <span class="badge bg-dark border border-gold text-gold" style="font-size: 0.65rem;">0 BP (Scene)</span>
+                ${adv.book ? `<span class="badge ${adv.book === 'Hope & Fear' ? 'bg-warning text-dark' : 'bg-secondary'}" style="font-size: 0.65rem;">${adv.book}</span>` : ''}
+              </div>
+
               ${adv.summary || adv.motive ? `<div class="adv-motive mt-1 text-truncate" style="font-size: 0.75rem;">${adv.summary || adv.motive}</div>` : ''}
             </div>
           </div>
@@ -2126,17 +2126,8 @@ const App = {
               <img src="${tokenSrc}" alt="${adv.name}" class="adv-token-img">
             </div>
             <div class="flex-grow-1 position-relative" style="min-width: 0;">
-              <div class="d-flex justify-content-between align-items-start gap-2">
-                <div class="overflow-hidden" style="min-width: 0;">
-                  <h5 class="adv-name m-0 text-truncate text-gold" title="${adv.name}">${adv.name}</h5>
-                  <div class="d-flex gap-1 align-items-center mt-1 flex-wrap">
-                    <span class="badge-tier">Tier ${adv.tier}</span>
-                    <span class="badge bg-warning text-dark fw-bold">👑 FRAMEWORK</span>
-                    ${adv.size ? `<span class="badge bg-dark border border-warning text-warning" style="font-size: 0.65rem;">Size: ${adv.size}</span>` : ''}
-                    <span class="badge bg-dark border border-gold text-gold fw-bold" style="font-size: 0.65rem;">${compositeBP} BP (Composite)</span>
-                    ${adv.book ? `<span class="badge bg-secondary" style="font-size: 0.65rem;">${adv.book}</span>` : ''}
-                  </div>
-                </div>
+              <div class="d-flex justify-content-between align-items-center gap-2">
+                <h5 class="adv-name m-0 text-truncate text-gold" title="${adv.name}">${adv.name}</h5>
 
                 <div class="d-flex align-items-center gap-1 flex-shrink-0">
                   <button class="btn btn-xs btn-outline-secondary py-0 px-1 collapse-indicator" data-action="toggle-card-collapse" data-idx="${index}" title="${isCollapsed ? 'Expand Framework' : 'Collapse Framework'}">
@@ -2147,6 +2138,15 @@ const App = {
                   </button>
                 </div>
               </div>
+
+              <div class="d-flex gap-1 align-items-center mt-1 flex-wrap">
+                <span class="badge-tier">Tier ${adv.tier}</span>
+                <span class="badge bg-warning text-dark fw-bold">👑 FRAMEWORK</span>
+                ${adv.size ? `<span class="badge bg-dark border border-warning text-warning" style="font-size: 0.65rem;">Size: ${adv.size}</span>` : ''}
+                <span class="badge bg-dark border border-gold text-gold fw-bold" style="font-size: 0.65rem;">${compositeBP} BP (Composite)</span>
+                ${adv.book ? `<span class="badge bg-secondary" style="font-size: 0.65rem;">${adv.book}</span>` : ''}
+              </div>
+
               ${adv.motive ? `<div class="adv-motive mt-1 text-truncate" style="font-size: 0.75rem;">${adv.motive}</div>` : ''}
             </div>
           </div>
@@ -2349,19 +2349,8 @@ const App = {
             <img src="${tokenSrc}" alt="${adv.name}" class="adv-token-img">
           </div>
           <div class="flex-grow-1 position-relative" style="min-width: 0;">
-            <div class="d-flex justify-content-between align-items-start gap-2">
-              <div class="overflow-hidden" style="min-width: 0;">
-                <h5 class="adv-name m-0 text-truncate" title="${adv.name}">${adv.name}</h5>
-                <div class="d-flex gap-1 align-items-center mt-1 flex-wrap">
-                  <span class="badge-tier">Tier ${adv.tier}</span>
-                  ${isSegment ? `<span class="badge bg-secondary text-light fw-bold" style="font-size: 0.65rem;">🔗 SEGMENT</span>` : (isMinion ? `<span class="badge-role">Minion (${unitCount * partySize} Figures)</span>` : `<span class="badge-role">${adv.type}</span>`)}
-                  ${isFatal ? `<span class="badge bg-danger text-light fw-bold" style="font-size: 0.65rem;">⚡ FATAL</span>` : ''}
-                  ${!isSegment ? `<span class="badge bg-dark border border-gold text-gold" style="font-size: 0.65rem;" title="Battle Points">${totalBP} BP</span>` : ''}
-                  ${unitCount > 1 ? `<span class="badge bg-secondary border border-secondary" style="font-size: 0.65rem;">${unitCount} Units${isMinion ? ` (${partySize}/unit)` : ''}</span>` : (isMinion ? `<span class="badge bg-secondary border border-secondary" style="font-size: 0.65rem;">1 Unit (${partySize} Minions)</span>` : '')}
-                  ${adv.book ? `<span class="badge ${adv.book === 'Hope & Fear' ? 'bg-warning text-dark' : 'bg-secondary'}" style="font-size: 0.65rem;">${adv.book}</span>` : ''}
-                  ${isSingleVulnerable ? '<span class="badge badge-vulnerable">VULNERABLE</span>' : ''}
-                </div>
-              </div>
+            <div class="d-flex justify-content-between align-items-center gap-2">
+              <h5 class="adv-name m-0 text-truncate" title="${adv.name}">${adv.name}</h5>
 
               <!-- Quick Header Action Buttons & Unclipped Options Menu -->
               <div class="d-flex align-items-center gap-1 flex-shrink-0">
@@ -2414,8 +2403,18 @@ const App = {
                   </ul>
                 </div>
               </div>
-
             </div>
+
+            <div class="d-flex gap-1 align-items-center mt-1 flex-wrap">
+              <span class="badge-tier">Tier ${adv.tier}</span>
+              ${isSegment ? `<span class="badge bg-secondary text-light fw-bold" style="font-size: 0.65rem;">🔗 SEGMENT</span>` : (isMinion ? `<span class="badge-role">Minion (${unitCount * partySize} Figures)</span>` : `<span class="badge-role">${adv.type}</span>`)}
+              ${isFatal ? `<span class="badge bg-danger text-light fw-bold" style="font-size: 0.65rem;">⚡ FATAL</span>` : ''}
+              ${!isSegment ? `<span class="badge bg-dark border border-gold text-gold" style="font-size: 0.65rem;" title="Battle Points">${totalBP} BP</span>` : ''}
+              ${unitCount > 1 ? `<span class="badge bg-secondary border border-secondary" style="font-size: 0.65rem;">${unitCount} Units${isMinion ? ` (${partySize}/unit)` : ''}</span>` : (isMinion ? `<span class="badge bg-secondary border border-secondary" style="font-size: 0.65rem;">1 Unit (${partySize} Minions)</span>` : '')}
+              ${adv.book ? `<span class="badge ${adv.book === 'Hope & Fear' ? 'bg-warning text-dark' : 'bg-secondary'}" style="font-size: 0.65rem;">${adv.book}</span>` : ''}
+              ${isSingleVulnerable ? '<span class="badge badge-vulnerable">VULNERABLE</span>' : ''}
+            </div>
+
             ${adv.motive ? `<div class="adv-motive mt-1 text-truncate" style="font-size: 0.75rem;">${adv.motive}</div>` : ''}
             ${adv.adjacentSegments && adv.adjacentSegments.length ? `
               <div class="mt-1 d-flex align-items-center gap-1 flex-wrap" style="font-size: 0.72rem;">
