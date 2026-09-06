@@ -1730,16 +1730,16 @@ const App = {
     const statusLabel = document.getElementById('fear-status-label');
     if (statusLabel) {
       if (fear === 0) {
-        statusLabel.className = 'badge bg-secondary text-light small px-2 py-0';
+        statusLabel.className = 'badge bg-secondary text-light';
         statusLabel.textContent = 'No Fear Pool';
       } else if (fear >= 1 && fear <= 4) {
-        statusLabel.className = 'badge bg-success text-light small px-2 py-0';
+        statusLabel.className = 'badge bg-success text-light';
         statusLabel.textContent = 'Standard Fear';
       } else if (fear >= 5 && fear <= 8) {
-        statusLabel.className = 'badge bg-warning text-dark small px-2 py-0';
+        statusLabel.className = 'badge bg-warning text-dark';
         statusLabel.textContent = 'Dangerous Fear';
       } else {
-        statusLabel.className = 'badge bg-danger text-light small px-2 py-0';
+        statusLabel.className = 'badge bg-danger text-light';
         statusLabel.textContent = 'Deadly Fear';
       }
     }
