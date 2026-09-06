@@ -749,19 +749,55 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content bg-dark text-light border border-gold">
         <div class="modal-header border-bottom border-secondary">
-          <h5 class="modal-title text-gold">&#128190; Save Current Encounter</h5>
+          <h5 class="modal-title text-gold" id="modal-save-encounter-title">&#128190; Save Encounter</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <label class="form-label small">Encounter Title</label>
+          <div id="save-encounter-loaded-banner" class="alert alert-dark border border-secondary small py-2 mb-3 d-none">
+            <span class="text-muted">Currently loaded encounter:</span> <strong class="text-gold" id="save-encounter-loaded-name"></strong>
+          </div>
+          <label class="form-label small fw-bold">Encounter Title</label>
           <input type="text" id="input-save-encounter-name" class="form-control" placeholder="e.g. Ambush at Bleakwood Bridge">
           <div class="form-text text-muted small mt-2">
             &#128193; Automatically saves to <strong>custom-library.json</strong> in your project folder, keeping both computers in sync via Google Drive.
           </div>
         </div>
-        <div class="modal-footer border-top border-secondary">
+        <div class="modal-footer border-top border-secondary d-flex justify-content-between align-items-center">
           <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-sm btn-gold" id="btn-confirm-save-encounter" data-bs-dismiss="modal">&#128190; Save to Custom Library File</button>
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-sm btn-outline-info" id="btn-save-encounter-new">Save as New</button>
+            <button type="button" class="btn btn-sm btn-gold" id="btn-save-encounter-overwrite">Overwrite Current Encounter</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Save Custom Adversary Modal -->
+  <div class="modal fade" id="modal-save-custom-adversary" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-light border border-gold">
+        <div class="modal-header border-bottom border-secondary">
+          <h5 class="modal-title text-gold">&#128190; Save to Custom Library</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div id="save-custom-info-msg" class="alert alert-dark border border-secondary small mb-3">
+            <!-- Dynamic prompt text -->
+          </div>
+          <p class="small text-light mb-0">
+            Would you like to <strong>overwrite</strong> the existing entry in your Custom Library, or <strong>save as a new</strong> separate statblock?
+          </p>
+          <div class="form-text text-muted small mt-2">
+            &#128193; Automatically saves to <strong>custom-library.json</strong> in your project folder.
+          </div>
+        </div>
+        <div class="modal-footer border-top border-secondary d-flex justify-content-between align-items-center">
+          <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-sm btn-outline-info" id="btn-save-custom-as-new">Save as New</button>
+            <button type="button" class="btn btn-sm btn-gold" id="btn-save-custom-overwrite">Overwrite Existing</button>
+          </div>
         </div>
       </div>
     </div>

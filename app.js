@@ -914,6 +914,14 @@ const App = {
     theme: 'dark'
   },
 
+  // Custom Adversary & Encounter edit tracking
+  editingCustomIdx: null,
+  editingCustomId: null,
+  pendingCustomAdvSave: null,
+  pendingCustomAdvTargetIdx: -1,
+  loadedEncounterId: null,
+  loadedEncounterTitle: null,
+
   // Pagination & accordion state for compendium
   bestiaryPage: 1,
   environmentsPage: 1,
@@ -1323,6 +1331,8 @@ const App = {
       if (this.state.roster.length === 0) return;
       if (confirm('Are you sure you want to reset the current combat roster?')) {
         this.state.roster = [];
+        this.loadedEncounterId = null;
+        this.loadedEncounterTitle = null;
         this.saveState();
         this.renderRoster();
         this.renderHUD();
@@ -1491,21 +1501,48 @@ const App = {
       this.openSaveEncounterModal();
     });
 
-    const handleConfirmSave = async () => {
+    document.getElementById('btn-save-encounter-overwrite')?.addEventListener('click', async () => {
       const input = document.getElementById('input-save-encounter-name');
       const name = input ? input.value.trim() : '';
       const modalEl = document.getElementById('modal-save-encounter');
       this.closeModal(modalEl);
-      await this.saveCurrentEncounter(name);
-      if (input) input.value = '';
-    };
+      await this.saveCurrentEncounter(name, true);
+    });
 
-    document.getElementById('btn-confirm-save-encounter')?.addEventListener('click', handleConfirmSave);
+    document.getElementById('btn-save-encounter-new')?.addEventListener('click', async () => {
+      const input = document.getElementById('input-save-encounter-name');
+      const name = input ? input.value.trim() : '';
+      const modalEl = document.getElementById('modal-save-encounter');
+      this.closeModal(modalEl);
+      await this.saveCurrentEncounter(name, false);
+    });
 
-    document.getElementById('input-save-encounter-name')?.addEventListener('keydown', (e) => {
+    document.getElementById('input-save-encounter-name')?.addEventListener('keydown', async (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
-        handleConfirmSave();
+        const input = document.getElementById('input-save-encounter-name');
+        const name = input ? input.value.trim() : '';
+        const modalEl = document.getElementById('modal-save-encounter');
+        this.closeModal(modalEl);
+        const isLoaded = Boolean(this.loadedEncounterId && this.state.savedEncounters.some(se => se.id === this.loadedEncounterId));
+        await this.saveCurrentEncounter(name, isLoaded);
+      }
+    });
+
+    // Save Custom Adversary Modal Controls
+    document.getElementById('btn-save-custom-overwrite')?.addEventListener('click', async () => {
+      const modalEl = document.getElementById('modal-save-custom-adversary');
+      this.closeModal(modalEl);
+      if (this.pendingCustomAdvSave) {
+        await this.executeSaveCustomAdversary(this.pendingCustomAdvSave, true, this.pendingCustomAdvTargetIdx);
+      }
+    });
+
+    document.getElementById('btn-save-custom-as-new')?.addEventListener('click', async () => {
+      const modalEl = document.getElementById('modal-save-custom-adversary');
+      this.closeModal(modalEl);
+      if (this.pendingCustomAdvSave) {
+        await this.executeSaveCustomAdversary(this.pendingCustomAdvSave, false);
       }
     });
 
@@ -1547,18 +1584,47 @@ const App = {
 
   openSaveEncounterModal() {
     const input = document.getElementById('input-save-encounter-name');
-    if (input) {
+    const banner = document.getElementById('save-encounter-loaded-banner');
+    const loadedNameEl = document.getElementById('save-encounter-loaded-name');
+    const btnOverwrite = document.getElementById('btn-save-encounter-overwrite');
+    const btnNew = document.getElementById('btn-save-encounter-new');
+
+    const isLoaded = Boolean(this.loadedEncounterId && this.state.savedEncounters.some(se => se.id === this.loadedEncounterId));
+
+    if (isLoaded) {
+      const loadedEnc = this.state.savedEncounters.find(se => se.id === this.loadedEncounterId);
+      const title = loadedEnc ? loadedEnc.title : (this.loadedEncounterTitle || 'Loaded Encounter');
+      if (banner) banner.classList.remove('d-none');
+      if (loadedNameEl) loadedNameEl.textContent = title;
+      if (input) input.value = title;
+      if (btnOverwrite) {
+        btnOverwrite.classList.remove('d-none');
+        btnOverwrite.textContent = 'Overwrite Current Encounter';
+      }
+      if (btnNew) {
+        btnNew.textContent = 'Save as New';
+      }
+    } else {
+      if (banner) banner.classList.add('d-none');
       const rosterCount = (this.state.roster || []).length;
       const dateStr = new Date().toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
       const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-      if (rosterCount > 0) {
-        const firstName = this.state.roster[0]?.name || 'Adversaries';
-        input.value = rosterCount === 1
-          ? `Encounter: ${firstName} (${dateStr})`
-          : `Battle with ${rosterCount} Foes (${dateStr})`;
-      } else {
-        input.value = `Encounter (${dateStr}, ${timeStr})`;
+      if (input) {
+        if (rosterCount > 0) {
+          const firstName = this.state.roster[0]?.name || 'Adversaries';
+          input.value = rosterCount === 1
+            ? `Encounter: ${firstName} (${dateStr})`
+            : `Battle with ${rosterCount} Foes (${dateStr})`;
+        } else {
+          input.value = `Encounter (${dateStr}, ${timeStr})`;
+        }
+      }
+      if (btnOverwrite) {
+        btnOverwrite.classList.add('d-none');
+      }
+      if (btnNew) {
+        btnNew.textContent = 'Save as New';
       }
     }
 
@@ -4438,6 +4504,10 @@ const App = {
 
     this.creatorOriginItem = null;
     this.creatorMode = 'blank';
+    this.editingCustomIdx = null;
+    this.editingCustomId = null;
+    this.pendingCustomAdvSave = null;
+    this.pendingCustomAdvTargetIdx = -1;
     this.updateCreatorOriginBanner();
     this.updateCreatorPreview();
     this.showToast('Cleared all fields to a blank slate.');
@@ -4840,72 +4910,135 @@ const App = {
   async handleCreatorSubmit(saveToCompendiumOnly = false) {
     const adv = this.getCreatorFormData();
 
-    if (adv.isColossus) {
-      if (saveToCompendiumOnly) {
-        this.state.customAdversaries.push(adv);
-        this.saveState();
-        this.renderCustomLibrary();
-        this.renderBestiary();
-        await this.saveCustomLibraryToFile(true);
-        this.showToast(`Saved Colossus "${adv.name}" to Custom Library.`);
+    if (saveToCompendiumOnly) {
+      // Check if editing existing custom adversary or name match in custom library
+      let targetIdx = -1;
+      if (this.editingCustomIdx !== null && this.editingCustomIdx !== undefined && this.state.customAdversaries[this.editingCustomIdx]) {
+        targetIdx = this.editingCustomIdx;
+      } else if (this.editingCustomId) {
+        targetIdx = this.state.customAdversaries.findIndex(ca => ca && ca.id === this.editingCustomId);
       } else {
-        const groupId = 'colossus-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
-        
-        // 1. Add Framework Card
-        const framework = JSON.parse(JSON.stringify(adv));
-        delete framework.attack;
-        framework.colossusGroupId = groupId;
-        framework.isColossusFramework = true;
-        framework.markedHP = 0;
-        framework.markedStress = 0;
-        framework.trackers = [{ id: 1, markedHP: 0, markedStress: 0 }];
-        this.state.roster.push(framework);
-
-        // 2. Add each Segment Card
-        if (adv.segments && Array.isArray(adv.segments)) {
-          adv.segments.forEach(seg => {
-            const segInstance = JSON.parse(JSON.stringify(seg));
-            segInstance.colossusGroupId = groupId;
-            segInstance.colossusParentName = adv.name;
-            segInstance.isColossusSegment = true;
-            segInstance.tier = adv.tier;
-            segInstance.markedHP = 0;
-            segInstance.markedStress = 0;
-            const qty = segInstance.quantity || 1;
-            segInstance.trackers = Array.from({ length: qty }, (_, q) => ({
-              id: q + 1,
-              markedHP: 0,
-              markedStress: 0
-            }));
-            this.state.roster.push(segInstance);
-          });
-        }
-
-        this.saveState();
-        this.renderRoster();
-        this.renderHUD();
-        this.switchTab('tab-encounter');
-        this.showToast(`Added Titanic Colossus "${adv.name}" and ${adv.segments?.length || 0} segments to Encounter!`);
+        targetIdx = this.state.customAdversaries.findIndex(ca => ca && ca.name && ca.name.toLowerCase() === adv.name.toLowerCase());
       }
+
+      if (targetIdx >= 0) {
+        const existingItem = this.state.customAdversaries[targetIdx];
+        this.openSaveCustomAdversaryModal(adv, targetIdx, existingItem);
+        return;
+      }
+
+      await this.executeSaveCustomAdversary(adv, false);
       return;
     }
 
-    if (saveToCompendiumOnly) {
-      this.state.customAdversaries.push(adv);
+    if (adv.isColossus) {
+      const groupId = 'colossus-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+      
+      // 1. Add Framework Card
+      const framework = JSON.parse(JSON.stringify(adv));
+      delete framework.attack;
+      framework.colossusGroupId = groupId;
+      framework.isColossusFramework = true;
+      framework.markedHP = 0;
+      framework.markedStress = 0;
+      framework.trackers = [{ id: 1, markedHP: 0, markedStress: 0 }];
+      this.state.roster.push(framework);
+
+      // 2. Add each Segment Card
+      if (adv.segments && Array.isArray(adv.segments)) {
+        adv.segments.forEach(seg => {
+          const segInstance = JSON.parse(JSON.stringify(seg));
+          segInstance.colossusGroupId = groupId;
+          segInstance.colossusParentName = adv.name;
+          segInstance.isColossusSegment = true;
+          segInstance.tier = adv.tier;
+          segInstance.markedHP = 0;
+          segInstance.markedStress = 0;
+          const qty = segInstance.quantity || 1;
+          segInstance.trackers = Array.from({ length: qty }, (_, q) => ({
+            id: q + 1,
+            markedHP: 0,
+            markedStress: 0
+          }));
+          this.state.roster.push(segInstance);
+        });
+      }
+
+      this.saveState();
+      this.renderRoster();
+      this.renderHUD();
+      this.switchTab('tab-encounter');
+      this.showToast(`Added Titanic Colossus "${adv.name}" and ${adv.segments?.length || 0} segments to Encounter!`);
+      return;
+    }
+
+    this.state.roster.push(adv);
+    this.saveState();
+    this.renderRoster();
+    this.renderHUD();
+    this.switchTab('tab-encounter');
+    this.showToast(`Added "${adv.name}" to Active Encounter!`);
+  },
+
+  openSaveCustomAdversaryModal(adv, targetIdx, existingItem) {
+    this.pendingCustomAdvSave = adv;
+    this.pendingCustomAdvTargetIdx = targetIdx;
+
+    const infoMsgEl = document.getElementById('save-custom-info-msg');
+    if (infoMsgEl) {
+      infoMsgEl.innerHTML = `You are currently editing <strong class="text-gold">${existingItem.name || 'Custom Adversary'}</strong>.`;
+    }
+
+    const modalEl = document.getElementById('modal-save-custom-adversary');
+    if (modalEl) {
+      if (window.bootstrap && window.bootstrap.Modal) {
+        try {
+          const inst = window.bootstrap.Modal.getOrCreateInstance(modalEl);
+          inst.show();
+        } catch (e) {
+          console.warn('Bootstrap modal show fallback:', e);
+          modalEl.classList.add('show');
+          modalEl.style.display = 'block';
+        }
+      } else {
+        modalEl.classList.add('show');
+        modalEl.style.display = 'block';
+      }
+    }
+  },
+
+  async executeSaveCustomAdversary(adv, overwrite = false, targetIdx = -1) {
+    if (!Array.isArray(this.state.customAdversaries)) {
+      this.state.customAdversaries = [];
+    }
+
+    if (overwrite && targetIdx >= 0 && this.state.customAdversaries[targetIdx]) {
+      const existingId = this.state.customAdversaries[targetIdx].id;
+      adv.id = existingId || adv.id || `custom-${Date.now()}`;
+      this.state.customAdversaries[targetIdx] = adv;
+      this.editingCustomIdx = targetIdx;
+      this.editingCustomId = adv.id;
       this.saveState();
       this.renderCustomLibrary();
       this.renderBestiary();
       this.renderEnvironments();
       await this.saveCustomLibraryToFile(true);
-      this.showToast(`Saved "${adv.name}" to Custom Library.`);
+      this.showToast(`Overwrote and updated "${adv.name}" in Custom Library.`);
     } else {
-      this.state.roster.push(adv);
+      adv.id = `custom-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+      this.state.customAdversaries.push(adv);
+      this.editingCustomIdx = this.state.customAdversaries.length - 1;
+      this.editingCustomId = adv.id;
       this.saveState();
-      this.renderRoster();
-      this.renderHUD();
-      this.switchTab('tab-encounter');
-      this.showToast(`Added "${adv.name}" to Active Encounter!`);
+      this.renderCustomLibrary();
+      this.renderBestiary();
+      this.renderEnvironments();
+      await this.saveCustomLibraryToFile(true);
+      this.showToast(`Saved "${adv.name}" as new entry in Custom Library.`);
     }
+
+    this.pendingCustomAdvSave = null;
+    this.pendingCustomAdvTargetIdx = -1;
   },
 
   // ===========================================================================
@@ -5585,6 +5718,8 @@ const App = {
         const all = this.getAllCompendiumEntities();
         const found = all.find(a => a.id === id);
         if (found) {
+          this.editingCustomIdx = null;
+          this.editingCustomId = null;
           this.loadItemIntoCreator(found);
           this.switchTab('tab-creator');
           this.showToast(`Loaded copy of "${found.name}" into Creator.`);
@@ -5893,15 +6028,23 @@ const App = {
   editCustomInCreator(index) {
     const item = this.state.customAdversaries[index];
     if (!item) return;
+    this.editingCustomIdx = index;
+    this.editingCustomId = item.id;
     this.loadItemIntoCreator(item);
     this.switchTab('tab-creator');
-    this.showToast(`Loaded "${item.name}" into Adversary Creator.`);
+    this.showToast(`Loaded "${item.name}" into Adversary Creator for editing.`);
   },
 
   async deleteCustomAdversary(index) {
     const item = this.state.customAdversaries[index];
     if (!item) return;
     if (confirm(`Are you sure you want to delete "${item.name}" from your Custom Library?`)) {
+      if (this.editingCustomIdx === index) {
+        this.editingCustomIdx = null;
+        this.editingCustomId = null;
+      } else if (this.editingCustomIdx !== null && this.editingCustomIdx > index) {
+        this.editingCustomIdx--;
+      }
       this.state.customAdversaries.splice(index, 1);
       this.saveState();
       this.renderCustomLibrary();
@@ -5985,7 +6128,7 @@ const App = {
   // ===========================================================================
   // 11. ENCOUNTER RETENTION & BACKUP ENGINE
   // ===========================================================================
-  async saveCurrentEncounter(title) {
+  async saveCurrentEncounter(title, overwrite = false) {
     try {
       const rosterCount = (this.state.roster || []).length;
       let finalTitle = (title || '').trim();
@@ -6031,8 +6174,52 @@ const App = {
         });
       }
 
+      if (!Array.isArray(this.state.savedEncounters)) {
+        this.state.savedEncounters = [];
+      }
+
+      let targetIdx = -1;
+      if (overwrite) {
+        if (this.loadedEncounterId) {
+          targetIdx = this.state.savedEncounters.findIndex(se => se && se.id === this.loadedEncounterId);
+        }
+        if (targetIdx === -1 && this.loadedEncounterTitle) {
+          targetIdx = this.state.savedEncounters.findIndex(se => se && se.title === this.loadedEncounterTitle);
+        }
+        if (targetIdx === -1) {
+          targetIdx = this.state.savedEncounters.findIndex(se => se && se.title === finalTitle);
+        }
+      }
+
+      if (overwrite && targetIdx >= 0) {
+        const existingId = this.state.savedEncounters[targetIdx].id || this.loadedEncounterId || `enc-${Date.now()}`;
+        const record = {
+          id: existingId,
+          title: finalTitle,
+          timestamp: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          party: { ...(this.state.party || { count: 4, tier: 1 }) },
+          fear: this.state.gmFear !== undefined ? this.state.gmFear : 2,
+          roster: JSON.parse(JSON.stringify(this.state.roster || []))
+        };
+        this.state.savedEncounters[targetIdx] = record;
+        this.loadedEncounterId = existingId;
+        this.loadedEncounterTitle = finalTitle;
+        this.saveState();
+        this.renderSavedEncounters();
+        this.renderCustomLibrary();
+        const savedToFile = await this.saveCustomLibraryToFile();
+        if (!savedToFile) {
+          this.showToast(`Overwrote and updated "${finalTitle}" in browser cache.`);
+        } else {
+          this.showToast(`Overwrote and updated encounter "${finalTitle}".`);
+        }
+        return true;
+      }
+
+      // Save as New
+      const newId = `enc-${Date.now()}`;
       const record = {
-        id: `enc-${Date.now()}`,
+        id: newId,
         title: finalTitle,
         timestamp: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         party: { ...(this.state.party || { count: 4, tier: 1 }) },
@@ -6040,11 +6227,9 @@ const App = {
         roster: JSON.parse(JSON.stringify(this.state.roster || []))
       };
 
-      if (!Array.isArray(this.state.savedEncounters)) {
-        this.state.savedEncounters = [];
-      }
-
       this.state.savedEncounters.unshift(record);
+      this.loadedEncounterId = newId;
+      this.loadedEncounterTitle = finalTitle;
       this.saveState();
       this.renderSavedEncounters();
       this.renderCustomLibrary();
@@ -6052,7 +6237,9 @@ const App = {
       // Auto-save directly to custom-library.json in the project folder
       const savedToFile = await this.saveCustomLibraryToFile();
       if (!savedToFile) {
-        this.showToast(`Saved "${finalTitle}" to browser cache.`);
+        this.showToast(`Saved "${finalTitle}" as new encounter in browser cache.`);
+      } else {
+        this.showToast(`Saved "${finalTitle}" as new encounter.`);
       }
       return true;
     } catch (err) {
@@ -6093,6 +6280,11 @@ const App = {
     const enc = this.state.savedEncounters[idx];
     if (!enc) return;
     if (confirm(`Load encounter "${enc.title}"? (This will overwrite your current active battle roster)`)) {
+      if (!enc.id) {
+        enc.id = `enc-${Date.now()}`;
+      }
+      this.loadedEncounterId = enc.id;
+      this.loadedEncounterTitle = enc.title;
       this.state.party = { ...enc.party };
       this.state.gmFear = enc.fear || 2;
       this.state.roster = JSON.parse(JSON.stringify(enc.roster));
@@ -6104,7 +6296,12 @@ const App = {
   },
 
   async deleteSavedEncounter(idx) {
+    const enc = this.state.savedEncounters[idx];
     if (confirm('Delete this saved encounter?')) {
+      if (enc && this.loadedEncounterId === enc.id) {
+        this.loadedEncounterId = null;
+        this.loadedEncounterTitle = null;
+      }
       this.state.savedEncounters.splice(idx, 1);
       this.saveState();
       this.renderSavedEncounters();
