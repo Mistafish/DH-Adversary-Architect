@@ -18,6 +18,7 @@ const DH_BENCHMARKS = {
     Skulk: 2.0,
     Ranged: 2.0,
     Horde: 2.0,
+    Enigma: 2.0,
     Leader: 3.0,
     Bruiser: 4.0,
     Solo: 5.0,
@@ -2003,6 +2004,8 @@ const App = {
           costBtnHTML = `<button type="button" class="btn btn-xs btn-outline-warning py-0 px-1 btn-feat-cost-trigger me-1 align-baseline" data-action="spend-fear-cost" data-idx="${index}" data-feat-name="${(f.name || 'Move').replace(/"/g, '&quot;')}" title="Spend 1 GM Fear for ${f.name}">💀</button>`;
         } else if (cost === 'Stress') {
           costBtnHTML = `<button type="button" class="btn btn-xs btn-outline-danger py-0 px-1 btn-feat-cost-trigger me-1 align-baseline" data-action="mark-stress-cost" data-idx="${index}" data-unit="0" data-feat-name="${(f.name || 'Move').replace(/"/g, '&quot;')}" title="Mark 1 Stress for ${f.name}">⚡</button>`;
+        } else if (cost === 'Hope') {
+          costBtnHTML = `<span class="badge bg-info text-dark border border-info me-1 align-baseline" style="font-size: 0.65rem;" title="Costs Hope">✨ Hope</span>`;
         }
 
         return `
@@ -2071,7 +2074,7 @@ const App = {
                 <span class="badge-tier">Tier ${adv.tier}</span>
                 <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-50">Environment (${adv.subtype || 'Exploration'})</span>
                 <span class="badge bg-dark border border-gold text-gold" style="font-size: 0.65rem;">0 BP (Scene)</span>
-                ${adv.book ? `<span class="badge ${adv.book === 'Hope & Fear' ? 'bg-warning text-dark' : 'bg-secondary'}" style="font-size: 0.65rem;">${adv.book}</span>` : ''}
+                ${adv.book ? `<span class="badge ${adv.book === 'Hope & Fear' ? 'bg-warning text-dark' : (adv.book === 'Pistolheart' ? 'badge-source-pistolheart' : 'bg-secondary')}" style="font-size: 0.65rem;">${adv.book}</span>` : ''}
               </div>
 
               ${adv.summary || adv.motive ? `<div class="adv-motive mt-1 text-truncate" style="font-size: 0.75rem;">${adv.summary || adv.motive}</div>` : ''}
@@ -2417,7 +2420,7 @@ const App = {
               ${isFatal ? `<span class="badge bg-danger text-light fw-bold" style="font-size: 0.65rem;">⚡ FATAL</span>` : ''}
               ${!isSegment ? `<span class="badge bg-dark border border-gold text-gold" style="font-size: 0.65rem;" title="Battle Points">${totalBP} BP</span>` : ''}
               ${unitCount > 1 ? `<span class="badge bg-secondary border border-secondary" style="font-size: 0.65rem;">${unitCount} Units${isMinion ? ` (${partySize}/unit)` : ''}</span>` : (isMinion ? `<span class="badge bg-secondary border border-secondary" style="font-size: 0.65rem;">1 Unit (${partySize} Minions)</span>` : '')}
-              ${adv.book ? `<span class="badge ${adv.book === 'Hope & Fear' ? 'bg-warning text-dark' : 'bg-secondary'}" style="font-size: 0.65rem;">${adv.book}</span>` : ''}
+              ${adv.book ? `<span class="badge ${adv.book === 'Hope & Fear' ? 'bg-warning text-dark' : (adv.book === 'Pistolheart' ? 'badge-source-pistolheart' : 'bg-secondary')}" style="font-size: 0.65rem;">${adv.book}</span>` : ''}
               ${isSingleVulnerable ? '<span class="badge badge-vulnerable">VULNERABLE</span>' : ''}
             </div>
 
@@ -3565,6 +3568,7 @@ const App = {
                 <option value="None" ${f.cost === 'None' || !f.cost ? 'selected' : ''}>Cost: None</option>
                 <option value="Fear" ${f.cost === 'Fear' ? 'selected' : ''}>💀 Fear</option>
                 <option value="Stress" ${f.cost === 'Stress' ? 'selected' : ''}>⚡ Stress</option>
+                <option value="Hope" ${f.cost === 'Hope' ? 'selected' : ''}>✨ Hope</option>
               </select>
             </div>
             <textarea class="form-control form-control-sm seg-feat-text" rows="2" placeholder="Feature rules, triggers, or mechanics...">${(f.text || '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</textarea>
@@ -4660,6 +4664,8 @@ const App = {
           costBadge = '<span class="badge bg-warning text-dark border border-warning ms-1 py-0" style="font-size: 0.62rem;">💀 Fear</span>';
         } else if (cost === 'Stress') {
           costBadge = '<span class="badge bg-danger text-light border border-danger ms-1 py-0" style="font-size: 0.62rem;">⚡ Stress</span>';
+        } else if (cost === 'Hope') {
+          costBadge = '<span class="badge bg-info text-dark border border-info ms-1 py-0" style="font-size: 0.62rem;">✨ Hope</span>';
         }
         return `
           <div class="feature-item mb-1">
@@ -5117,6 +5123,8 @@ const App = {
             costBadge = '<span class="badge bg-warning text-dark border border-warning ms-1 py-0" style="font-size: 0.62rem;">💀 Fear</span>';
           } else if (cost === 'Stress') {
             costBadge = '<span class="badge bg-danger text-light border border-danger ms-1 py-0" style="font-size: 0.62rem;">⚡ Stress</span>';
+          } else if (cost === 'Hope') {
+            costBadge = '<span class="badge bg-info text-dark border border-info ms-1 py-0" style="font-size: 0.62rem;">✨ Hope</span>';
           }
           return `
             <div class="feature-item mb-1">
@@ -5154,7 +5162,7 @@ const App = {
                           <span class="badge-tier">Tier ${adv.tier}</span>
                           <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-50">Environment (${adv.subtype || 'Exploration'})</span>
                           <span class="badge bg-dark border border-gold text-gold" style="font-size: 0.65rem;">0 BP (Scene)</span>
-                          <span class="badge ${adv.isCustom ? 'bg-info text-dark' : (isHF ? 'bg-warning text-dark' : 'bg-secondary')}" style="font-size: 0.65rem;">${adv.isCustom ? 'Custom' : (adv.book || 'Core')}</span>
+                          <span class="badge ${adv.isCustom ? 'bg-info text-dark' : (isHF ? 'bg-warning text-dark' : (adv.book === 'Pistolheart' ? 'badge-source-pistolheart' : 'bg-secondary'))}" style="font-size: 0.65rem;">${adv.isCustom ? 'Custom' : (adv.book || 'Core')}</span>
                         </div>
                       </div>
 
@@ -5218,7 +5226,7 @@ const App = {
                       <div class="d-flex gap-1 mt-1 flex-wrap">
                         <span class="badge-tier">Tier ${adv.tier}</span>
                         <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-50" style="font-size: 0.65rem;">Environment</span>
-                        <span class="badge ${adv.isCustom ? 'bg-info text-dark' : (isHF ? 'bg-warning text-dark' : 'bg-secondary')}" style="font-size: 0.65rem;">${adv.isCustom ? 'Custom' : (adv.book || 'Core')}</span>
+                        <span class="badge ${adv.isCustom ? 'bg-info text-dark' : (isHF ? 'bg-warning text-dark' : (adv.book === 'Pistolheart' ? 'badge-source-pistolheart' : 'bg-secondary'))}" style="font-size: 0.65rem;">${adv.isCustom ? 'Custom' : (adv.book || 'Core')}</span>
                       </div>
                     </div>
                   </div>
@@ -5436,7 +5444,7 @@ const App = {
                         <span class="badge-tier">Tier ${adv.tier}</span>
                         <span class="badge-role">${adv.type}</span>
                         <span class="badge bg-dark border border-gold text-gold" style="font-size: 0.65rem;" title="Battle Points">${bpCost} BP</span>
-                        <span class="badge ${adv.isCustom ? 'bg-info text-dark' : (isHF ? 'bg-warning text-dark' : 'bg-secondary')}" style="font-size: 0.65rem;">${adv.isCustom ? 'Custom' : (adv.book || 'Core')}</span>
+                        <span class="badge ${adv.isCustom ? 'bg-info text-dark' : (isHF ? 'bg-warning text-dark' : (adv.book === 'Pistolheart' ? 'badge-source-pistolheart' : 'bg-secondary'))}" style="font-size: 0.65rem;">${adv.isCustom ? 'Custom' : (adv.book || 'Core')}</span>
                         ${adv.pages && adv.pages.length ? `<span class="badge bg-dark border border-secondary text-muted" style="font-size: 0.65rem;">${adv.pages[0]}</span>` : ''}
                       </div>
                     </div>
@@ -5615,7 +5623,7 @@ const App = {
                       <span class="badge-tier">Tier ${adv.tier}</span>
                       <span class="badge-role">${adv.type}</span>
                       <span class="badge bg-dark border border-gold text-gold" style="font-size: 0.65rem;" title="Battle Points">${bpCost} BP</span>
-                      <span class="badge ${adv.isCustom ? 'bg-info text-dark' : (isHF ? 'bg-warning text-dark' : 'bg-secondary')}" style="font-size: 0.65rem;">${adv.isCustom ? 'Custom' : (adv.book || 'Core')}</span>
+                      <span class="badge ${adv.isCustom ? 'bg-info text-dark' : (isHF ? 'bg-warning text-dark' : (adv.book === 'Pistolheart' ? 'badge-source-pistolheart' : 'bg-secondary'))}" style="font-size: 0.65rem;">${adv.isCustom ? 'Custom' : (adv.book || 'Core')}</span>
                     </div>
                   </div>
                 </div>

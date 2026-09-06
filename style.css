@@ -537,6 +537,12 @@ body.theme-light .adv-unit-card.is-unit-defeated {
   border: 1px solid var(--border-subtle);
 }
 
+.badge-source-pistolheart {
+  background-color: #9a3412 !important;
+  color: #fff !important;
+  border: 1px solid #ea580c !important;
+}
+
 /* Stats Pill Grid */
 .stat-pill {
   background-color: var(--bg-well);

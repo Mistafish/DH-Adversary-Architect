@@ -70,7 +70,7 @@
             "name": "Follow-Up",
             "type": "Reaction",
             "cost": "None",
-            "text": "When the Head succeeds on an attack against a target, it can immediately make an attack against another target it hasn\u2019t attacked during this GM turn."
+            "text": "When the Head succeeds on an attack against a target, it can immediately make an attack against another target it hasn’t attacked during this GM turn."
           }
         ]
       },
@@ -137,7 +137,7 @@
             "name": "Crush",
             "type": "Action",
             "cost": "Fear",
-            "text": "Spend a Fear to make an attack against a target on another segment of Ikeri. On a success, Ikeri grabs and crushes the target, dealing 1d20+4 physical damage and Restraining them until this Arm takes Major or greater damage. When this Arm takes the spotlight while the target is still in Ikeri\u2019s hand, the target takes 1d20 physical damage."
+            "text": "Spend a Fear to make an attack against a target on another segment of Ikeri. On a success, Ikeri grabs and crushes the target, dealing 1d20+4 physical damage and Restraining them until this Arm takes Major or greater damage. When this Arm takes the spotlight while the target is still in Ikeri’s hand, the target takes 1d20 physical damage."
           }
         ]
       },
@@ -207,7 +207,7 @@
         "name": "Steam-Powered",
         "type": "Action",
         "cost": "None",
-        "text": "Scalding fountains of steam erupt from Daktadae\u2019s form. Spotlight any segment to make an attack with a +1 attack modifier against a target on that segment. On a success, deal 2d6+3 physical damage."
+        "text": "Scalding fountains of steam erupt from Daktadae’s form. Spotlight any segment to make an attack with a +1 attack modifier against a target on that segment. On a success, deal 2d6+3 physical damage."
       },
       {
         "name": "Roll",
@@ -255,7 +255,7 @@
             "name": "Invulnerable",
             "type": "Passive",
             "cost": "None",
-            "text": "The Head can only take damage while it\u2019s Broken."
+            "text": "The Head can only take damage while it’s Broken."
           },
           {
             "name": "Godcleaver",
@@ -304,13 +304,13 @@
             "name": "Climbing (+3)",
             "type": "Passive",
             "cost": "None",
-            "text": "The Torso\u2019s Difficulty gains a +3 bonus against action rolls made to climb it unless the Head is Broken."
+            "text": "The Torso’s Difficulty gains a +3 bonus against action rolls made to climb it unless the Head is Broken."
           },
           {
             "name": "Protected",
             "type": "Passive",
             "cost": "None",
-            "text": "The Torso is covered with external rib plates of unbreakable minerals. This segment can\u2019t be damaged unless the Head is currently Broken or Destroyed."
+            "text": "The Torso is covered with external rib plates of unbreakable minerals. This segment can’t be damaged unless the Head is currently Broken or Destroyed."
           },
           {
             "name": "Weak Point",
@@ -347,13 +347,13 @@
             "name": "Massive Hoof",
             "type": "Passive",
             "cost": "None",
-            "text": "This segment\u2019s standard attack is made with advantage and can target a group."
+            "text": "This segment’s standard attack is made with advantage and can target a group."
           },
           {
             "name": "Shake The Earth",
             "type": "Action",
             "cost": "None",
-            "text": "Daktadae rears up on their hind legs and slams down, creating a shockwave that knocks back all PCs within Very Close range that aren\u2019t on Daktadae back to Close range and Rattles them until their next roll with Hope. While Rattled, the PC has disadvantage on reaction rolls."
+            "text": "Daktadae rears up on their hind legs and slams down, creating a shockwave that knocks back all PCs within Very Close range that aren’t on Daktadae back to Close range and Rattles them until their next roll with Hope. While Rattled, the PC has disadvantage on reaction rolls."
           },
           {
             "name": "Collapse",
@@ -390,7 +390,7 @@
             "name": "Massive Hoof",
             "type": "Passive",
             "cost": "None",
-            "text": "This segment\u2019s standard attack is made with advantage and can target a group."
+            "text": "This segment’s standard attack is made with advantage and can target a group."
           },
           {
             "name": "Backward Kick",
@@ -436,7 +436,7 @@
         "name": "Flying",
         "type": "Passive",
         "cost": "None",
-        "text": "Poy can fly unless one of their Wings is Destroyed. While Poy is flying, each segment\u2019s Difficulty gains a +2 bonus against action rolls made by PCs who aren\u2019t on Poy."
+        "text": "Poy can fly unless one of their Wings is Destroyed. While Poy is flying, each segment’s Difficulty gains a +2 bonus against action rolls made by PCs who aren’t on Poy."
       },
       {
         "name": "Strong Winds",
@@ -484,7 +484,7 @@
             "name": "Bill Trap",
             "type": "Action",
             "cost": "Fear",
-            "text": "Spend a Fear to make an attack against a target on Poy. On a success, the target takes 3d6+6 physical damage and is Trapped inside Poy\u2019s bill until the Head takes Major or greater damage. Poy\u2019s damage thresholds are doubled against damage dealt by Trapped targets."
+            "text": "Spend a Fear to make an attack against a target on Poy. On a success, the target takes 3d6+6 physical damage and is Trapped inside Poy’s bill until the Head takes Major or greater damage. Poy’s damage thresholds are doubled against damage dealt by Trapped targets."
           },
           {
             "name": "Cascade",
@@ -520,7 +520,7 @@
             "name": "Protected",
             "type": "Passive",
             "cost": "None",
-            "text": "Poy\u2019s Neck is protected by swirling magic. The Neck only marks HP from the \u201cCascade\u201d feature."
+            "text": "Poy’s Neck is protected by swirling magic. The Neck only marks HP from the “Cascade” feature."
           }
         ]
       },
@@ -552,7 +552,7 @@
             "name": "Dive-Bomb",
             "type": "Reaction",
             "cost": "Stress",
-            "text": "When this segment is successfully attacked, Poy dive-bombs the attacker and all targets within Very Close range of them. The targets must make an Instinct Reaction Roll. Targets who fail take 2d6+9 physical damage. Targets who succeed can mark a Stress to climb onto one of Poy\u2019s Talons."
+            "text": "When this segment is successfully attacked, Poy dive-bombs the attacker and all targets within Very Close range of them. The targets must make an Instinct Reaction Roll. Targets who fail take 2d6+9 physical damage. Targets who succeed can mark a Stress to climb onto one of Poy’s Talons."
           }
         ]
       },
@@ -619,7 +619,7 @@
             "name": "Pick Up",
             "type": "Action",
             "cost": "Fear",
-            "text": "Spend a Fear to make an attack against a target within Melee range. If there\u2019s an additional target within Very Close range of them, you can spotlight both Talons at once and make an attack against both targets instead. On a success, Poy picks up their targets, flies straight upwards, and drops them. If a target hits the ground, they take 5d20+4 physical damage."
+            "text": "Spend a Fear to make an attack against a target within Melee range. If there’s an additional target within Very Close range of them, you can spotlight both Talons at once and make an attack against both targets instead. On a success, Poy picks up their targets, flies straight upwards, and drops them. If a target hits the ground, they take 5d20+4 physical damage."
           },
           {
             "name": "Cascade",
@@ -656,7 +656,7 @@
             "name": "Sweep",
             "type": "Action",
             "cost": "Fear",
-            "text": "Poy\u2019s tail curls up and sweeps across another segment. Spend a Fear to choose another segment and make an attack against all targets on that segment. Targets Poy succeeds against take 3d8+5 physical damage and are knocked back to an adjacent segment of your choice."
+            "text": "Poy’s tail curls up and sweeps across another segment. Spend a Fear to choose another segment and make an attack against all targets on that segment. Targets Poy succeeds against take 3d8+5 physical damage and are knocked back to an adjacent segment of your choice."
           },
           {
             "name": "Cascade",
@@ -696,7 +696,7 @@
         "name": "Brood Attack",
         "type": "Action",
         "cost": "None",
-        "text": "Spotlight any segment to make an attack with a +6 attack modifier against a PC on that segment as Kelir\u2019s hundred, hundred children swarm the target with their pincers. On a success, deal 4d8 physical damage."
+        "text": "Spotlight any segment to make an attack with a +6 attack modifier against a PC on that segment as Kelir’s hundred, hundred children swarm the target with their pincers. On a success, deal 4d8 physical damage."
       },
       {
         "name": "Swatting Pests",
@@ -737,19 +737,19 @@
             "name": "Hateful Heart",
             "type": "Passive",
             "cost": "None",
-            "text": "Kelir\u2019s heart is suspended within the body cavity, connected by thick veins and arteries. The Body Cavity is immune to damage unless her heart is the target of a successful attack. The heart can only be attacked from Far or greater range, or a PC must succeed on an Agility Roll while inside the Body Cavity to reach the heart to make an attack against it within Melee range."
+            "text": "Kelir’s heart is suspended within the body cavity, connected by thick veins and arteries. The Body Cavity is immune to damage unless her heart is the target of a successful attack. The heart can only be attacked from Far or greater range, or a PC must succeed on an Agility Roll while inside the Body Cavity to reach the heart to make an attack against it within Melee range."
           },
           {
             "name": "Grab and Rend",
             "type": "Action",
             "cost": "Fear",
-            "text": "Make an attack using Kelir\u2019s \u201cBrood Attack\u201d action against a target in the Body Cavity. On a success, spend a Fear to deal double damage and Restrain the target until they\u2019re freed with a successful Strength Roll."
+            "text": "Make an attack using Kelir’s “Brood Attack” action against a target in the Body Cavity. On a success, spend a Fear to deal double damage and Restrain the target until they’re freed with a successful Strength Roll."
           },
           {
             "name": "Protective Swarm",
             "type": "Reaction",
             "cost": "Stress",
-            "text": "Kelir\u2019s Body Cavity is filled with her children, who protect her heart. A PC who makes an action roll in the Body Cavity must mark a Stress as they fight off Kelir\u2019s children and their shearing pincers."
+            "text": "Kelir’s Body Cavity is filled with her children, who protect her heart. A PC who makes an action roll in the Body Cavity must mark a Stress as they fight off Kelir’s children and their shearing pincers."
           }
         ]
       },
@@ -785,7 +785,7 @@
             "name": "Hateful Gaze",
             "type": "Action",
             "cost": "None",
-            "text": "All targets within Far range that Kelir can see must succeed on a Presence Reaction Roll or mark 1d6 Stress as Kelir\u2019s hate tries to consume their mind."
+            "text": "All targets within Far range that Kelir can see must succeed on a Presence Reaction Roll or mark 1d6 Stress as Kelir’s hate tries to consume their mind."
           }
         ]
       },
@@ -817,7 +817,7 @@
             "name": "Contagious Fury",
             "type": "Action",
             "cost": "None",
-            "text": "All PCs in front of the Head within Far range replace their Hope Die with a d8 the next time they make an action roll as they struggle to keep Kelir\u2019s hatred from consuming them."
+            "text": "All PCs in front of the Head within Far range replace their Hope Die with a d8 the next time they make an action roll as they struggle to keep Kelir’s hatred from consuming them."
           }
         ]
       },
@@ -886,7 +886,7 @@
         },
         "features": [
           {
-            "name": "Climbing (\u22122)",
+            "name": "Climbing (−2)",
             "type": "Passive",
             "cost": "None",
             "text": "An action roll made to climb on the leg gains a -2 penalty to its Difficulty."
@@ -895,7 +895,7 @@
             "name": "Destructive Scuttle",
             "type": "Action",
             "cost": "Stress",
-            "text": "Mark a Stress to move up to Far range in any direction. All creatures in that path must make an Agility Reaction Roll. Targets who fail take 4d10+6 physical damage and must mark a Stress. Targets who succeed mark a Stress. Kelir can\u2019t use this action if she is Collapsed."
+            "text": "Mark a Stress to move up to Far range in any direction. All creatures in that path must make an Agility Reaction Roll. Targets who fail take 4d10+6 physical damage and must mark a Stress. Targets who succeed mark a Stress. Kelir can’t use this action if she is Collapsed."
           },
           {
             "name": "Full Collapse",
@@ -1994,7 +1994,7 @@
         "name": "Eye of the Sage",
         "type": "Action",
         "cost": "Stress",
-        "text": "Mark a Stress to make a standard attack. The Warden has advantage on the attack roll and critically succeeds on a roll of 19 \u2013 20."
+        "text": "Mark a Stress to make a standard attack. The Warden has advantage on the attack roll and critically succeeds on a roll of 19 – 20."
       },
       {
         "name": "Trample",
@@ -2819,7 +2819,7 @@
         "text": "The Lepus can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight it."
       },
       {
-        "name": "\"Awww\u2026\"",
+        "name": "\"Awww…\"",
         "type": "Passive",
         "cost": "None",
         "text": "When the Lepus first appears, it is Too Cute. To attack a Too Cute creature, a PC must succeed on an Instinct Reaction Roll (20). Clear the Too Cute condition if a PC deals damage to the Lepus or if the Lepus attacks a PC."
@@ -3431,7 +3431,7 @@
         "name": "Gaze into the Abyss",
         "type": "Action",
         "cost": "Fear",
-        "text": "Spend a Fear to have Berzug lock eyes with a PC within Far range. The target must succeed on a Presence Reaction Roll or gain one of the following conditions (roll a d6 and use the corresponding result):1 \u2013 2: Mesmerized. The target immediately moves into Melee range of Berzug and is Vulnerable and Restrained until they clear the condition with a successful Instinct Roll.3 \u2013 4: Confused. The target must mark a Stress each time they make an action roll until they clear the condition with a successful Knowledge Roll.5 \u2013 6: Enthralled. Until the PC makes a successful Presence Roll to clear the condition, you can spotlight them during a GM turn as if they were an adversary. When you do so, choose a target within Close range of the Enthralled PC. The Enthralled PC moves into Melee range of the target and makes a weapon attack against them using a d20 instead of Duality Dice."
+        "text": "Spend a Fear to have Berzug lock eyes with a PC within Far range. The target must succeed on a Presence Reaction Roll or gain one of the following conditions (roll a d6 and use the corresponding result):1 – 2: Mesmerized. The target immediately moves into Melee range of Berzug and is Vulnerable and Restrained until they clear the condition with a successful Instinct Roll.3 – 4: Confused. The target must mark a Stress each time they make an action roll until they clear the condition with a successful Knowledge Roll.5 – 6: Enthralled. Until the PC makes a successful Presence Roll to clear the condition, you can spotlight them during a GM turn as if they were an adversary. When you do so, choose a target within Close range of the Enthralled PC. The Enthralled PC moves into Melee range of the target and makes a weapon attack against them using a d20 instead of Duality Dice."
       },
       {
         "name": "Crushing Strike",
@@ -7093,13 +7093,13 @@
         "name": "Locust Swarm",
         "type": "Action",
         "cost": "Fear",
-        "text": "Spend 2 Fear to have the Harbinger conjure a swarm of locusts at a point within Very Far range. Each PC within Close range of that point must either mark an Armor Slot or take 4d10 direct physical damage and roll a d6. On a result of 1 \u2013 2, the PC becomes Contagious."
+        "text": "Spend 2 Fear to have the Harbinger conjure a swarm of locusts at a point within Very Far range. Each PC within Close range of that point must either mark an Armor Slot or take 4d10 direct physical damage and roll a d6. On a result of 1 – 2, the PC becomes Contagious."
       },
       {
         "name": "Frog Spawn",
         "type": "Action",
         "cost": "Fear",
-        "text": "Spend a Fear to have the Harbinger conjure a clutch of diseased frogs inside the mouths of up to three PCs within Close range. Each PC must succeed on a Presence Reaction Roll or take 4d12 magic damage and roll a d6. On a result of 1 \u2013 3, the PC becomes Contagious."
+        "text": "Spend a Fear to have the Harbinger conjure a clutch of diseased frogs inside the mouths of up to three PCs within Close range. Each PC must succeed on a Presence Reaction Roll or take 4d12 magic damage and roll a d6. On a result of 1 – 3, the PC becomes Contagious."
       },
       {
         "name": "Plague Bringer",
@@ -8247,7 +8247,7 @@
         "name": "Life Leech",
         "type": "Action",
         "cost": "Stress",
-        "text": "Mark a Stress to force a Vulnerable or Restrained target within Melee range to mark 1d4\u22121 HP. The Lamia then clears an equal number of HP."
+        "text": "Mark a Stress to force a Vulnerable or Restrained target within Melee range to mark 1d4−1 HP. The Lamia then clears an equal number of HP."
       },
       {
         "name": "Sleep Toxin",
@@ -11546,7 +11546,7 @@
         "name": "Broken Magic",
         "type": "Action",
         "cost": "Stress",
-        "text": "Mark a Stress to roll a d6. The Mage uses the corresponding move:1 \u2013 2: Dimension Rift. Choose a target within Far range. The target teleports to a point you choose within Close range of their original position and takes 2d6 direct magic damage as their body and mind reassemble.3 \u2013 4: Time Dilation. Choose a group of PCs within Far range. Each target is Slowed until they roll with Hope. While Slowed, a target is Vulnerable and must mark a Stress when they move.5 \u2013 6: Discordant Visions. Make an attack against up to three targets within Close range. Targets the Mage succeeds against take 2d8 direct magic damage."
+        "text": "Mark a Stress to roll a d6. The Mage uses the corresponding move:1 – 2: Dimension Rift. Choose a target within Far range. The target teleports to a point you choose within Close range of their original position and takes 2d6 direct magic damage as their body and mind reassemble.3 – 4: Time Dilation. Choose a group of PCs within Far range. Each target is Slowed until they roll with Hope. While Slowed, a target is Vulnerable and must mark a Stress when they move.5 – 6: Discordant Visions. Make an attack against up to three targets within Close range. Targets the Mage succeeds against take 2d8 direct magic damage."
       },
       {
         "name": "Feel My Pain",
@@ -12695,7 +12695,7 @@
         "name": "Baleful Gaze",
         "type": "Reaction",
         "cost": "Fear",
-        "text": "When the Urco takes damage from an attack, you can spend a Fear to cause the attacker's damage thresholds to gain a \u22121 penalty until the end of the scene. This effect can stack."
+        "text": "When the Urco takes damage from an attack, you can spend a Fear to cause the attacker's damage thresholds to gain a −1 penalty until the end of the scene. This effect can stack."
       }
     ],
     "pages": [
@@ -13659,10 +13659,10 @@
     ],
     "features": [
       {
-        "name": "Horde (1d4\u22121)",
+        "name": "Horde (1d4−1)",
         "type": "Passive",
         "cost": "None",
-        "text": "When the Will-o'-the-Wisps have marked half or more of their HP, their standard attack deals 1d4\u22121 magic damage instead."
+        "text": "When the Will-o'-the-Wisps have marked half or more of their HP, their standard attack deals 1d4−1 magic damage instead."
       },
       {
         "name": "Kaleidoscopic",
@@ -14128,7 +14128,7 @@
         "name": "Temporal Corrosion",
         "type": "Reaction",
         "cost": "Stress",
-        "text": "When the Yufo succeeds on a standard attack, you can mark a Stress to have the Yufo excrete an entropic acid through its skin, giving the target a \u22122 penalty to their damage thresholds until they use a downtime move to repair their armor."
+        "text": "When the Yufo succeeds on a standard attack, you can mark a Stress to have the Yufo excrete an entropic acid through its skin, giving the target a −2 penalty to their damage thresholds until they use a downtime move to repair their armor."
       }
     ],
     "pages": [
@@ -14230,5 +14230,1190 @@
     ],
     "hphorde": 2,
     "book": "Core"
+  },
+  {
+    "id": "bartender",
+    "name": "Bartender",
+    "tier": 1,
+    "type": "Social",
+    "summary": "The saloon's nexus of gossip and purveyor of \"fine\" spirits.",
+    "motive": "Trade gossip, spread rumors, make the patrons drink",
+    "diff": 12,
+    "major": 5,
+    "severe": 8,
+    "hp": 3,
+    "stress": 4,
+    "minionRule": 0,
+    "attack": {
+      "name": "Shotgun",
+      "bonus": -2,
+      "range": "Very Close",
+      "damage": "1d8",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Eavesdroppin' +2",
+      "Therapist +2"
+    ],
+    "features": [
+      {
+        "name": "Rumor Mill",
+        "type": "Passive",
+        "cost": "None",
+        "text": "A PC can spend a number of handfuls of gold equal to 1 + the number of tokens on this stat block to add a rumor to an active investigation card. Then, add a token to this stat block. Clear this stat block at the end of the session."
+      },
+      {
+        "name": "You Drinkin' or What?",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to force a PC to make a Presence Reaction Roll. On a failure, the PC must spend a handful of gold to buy a round for the house. If they can't, they must mark a Stress instead."
+      },
+      {
+        "name": "Get the Sheriff!",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "If violence breaks out in the saloon, you can spend a Fear to summon a Corrupt Sheriff and a Crooked Deputy, who immediately take the spotlight."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "black-hat-cattle-rustler",
+    "name": "Black Hat Cattle Rustler",
+    "tier": 1,
+    "type": "Skulk",
+    "summary": "A mounted outlaw known for stealing livestock.",
+    "motive": "Lie in wait, strike when victims are at ease, get out if it's too hot",
+    "diff": 10,
+    "major": 6,
+    "severe": 10,
+    "hp": 4,
+    "stress": 3,
+    "minionRule": 0,
+    "attack": {
+      "name": "Pistol",
+      "bonus": 2,
+      "range": "Far",
+      "damage": "1d6+2",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Ambushin' +2",
+      "Getaway Ridin' +2"
+    ],
+    "features": [
+      {
+        "name": "Stick 'em Up!",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to force all targets within Close range to make an Instinct Reaction Roll. Each target who fails marks a Stress and becomes temporarily Vulnerable."
+      },
+      {
+        "name": "Retreat!",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "When the Rustler marks one or more HP, they can mark a Stress to move up to Far range and make a standard attack with disadvantage."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "flim-flam-mogul",
+    "name": "Flim-Flam Mogul",
+    "tier": 1,
+    "type": "Enigma",
+    "summary": "A greedy, exploitative business mogul from a far-off land who ruins the local economy for personal gain.",
+    "motive": "Exploit everything, strip it all for parts, move on",
+    "diff": 11,
+    "major": 6,
+    "severe": 10,
+    "hp": 3,
+    "stress": 5,
+    "minionRule": 0,
+    "attack": {
+      "name": "Pocket Pistol",
+      "bonus": 2,
+      "range": "Very Close",
+      "damage": "1d8+2",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Capitalist +2",
+      "Opportunist +3"
+    ],
+    "features": [
+      {
+        "name": "Price of Privilege",
+        "type": "Passive",
+        "cost": "None",
+        "text": "A PC holding less than a bag of gold has disadvantage on all Presence Rolls against the Mogul."
+      },
+      {
+        "name": "Black Hat Bribe",
+        "type": "Action",
+        "cost": "Stress",
+        "text": "Mark a Stress to introduce a number of Black Hat Cattle Rustlers equal to the number of PCs to the scene."
+      },
+      {
+        "name": "\"Respectable\" Business",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "Investigation (2). When the Mogul first appears and there isn't an unsolved investigation related to their unsavory business practices, create one with 2 related rumors."
+      },
+      {
+        "name": "Damning Exposé",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "If the PCs have successfully completed the Respectable Business Investigation when the Mogul appears, the Mogul cannot use Nepotism, Baby and becomes permanently Vulnerable."
+      },
+      {
+        "name": "Nepotism, Baby",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "If the Mogul is defeated before the party successfully completes the Respectable Business Investigation, start a Mogul Countdown (4) that ticks down every time the party long rests. When it triggers, a new Mogul replaces them."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "black-hat-desperado",
+    "name": "Black Hat Desperado",
+    "tier": 2,
+    "type": "Leader",
+    "summary": "A vicious gang lieutenant who manipulates the downtrodden with promises of riches and redemption.",
+    "motive": "Corral the crew, draw in foes, live to fight another day",
+    "diff": 16,
+    "major": 12,
+    "severe": 23,
+    "hp": 5,
+    "stress": 4,
+    "minionRule": 0,
+    "attack": {
+      "name": "Pistol",
+      "bonus": 5,
+      "range": "Far",
+      "damage": "2d10+3",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Commandin' +2",
+      "On the Run +2"
+    ],
+    "features": [
+      {
+        "name": "Organized Chaos",
+        "type": "Passive",
+        "cost": "None",
+        "text": "All Black Hats within Very Close range of a Desperado gain a +2 bonus to damage rolls."
+      },
+      {
+        "name": "Right Where We Want 'em!",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend 2 Fear to summon 1d6+1 Black Hat Road Agents, who hop out from behind cover anywhere within Far range."
+      },
+      {
+        "name": "Momentum",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Desperado makes a successful attack against a PC, you gain a Fear."
+      },
+      {
+        "name": "Open Fire!",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "When the Desperado takes Severe damage, you can mark a Stress to spotlight all Black Hat Road Agents within Very Close range of the attacker and have them make a shared attack roll against them. On a success, deal 2 damage for each Road Agent you spotlighted. Combine this damage."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "black-hat-road-agent",
+    "name": "Black Hat Road Agent",
+    "tier": 2,
+    "type": "Minion",
+    "summary": "A desperate farmer turned to banditry.",
+    "motive": "Overwhelm and outnumber, blast 'em, stab 'em",
+    "diff": 12,
+    "major": 0,
+    "severe": 0,
+    "hp": 1,
+    "stress": 1,
+    "minionRule": 7,
+    "attack": {
+      "name": "Six Shooter",
+      "bonus": 1,
+      "range": "Close",
+      "damage": "3",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Gang Warfare +2",
+      "Stabbin' +2"
+    ],
+    "features": [
+      {
+        "name": "Minion (7)",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Road Agent is defeated when they take any damage. For every 7 damage a PC deals to the Road Agent, defeat an additional Minion within range the attack would succeed against."
+      },
+      {
+        "name": "Group Attack",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to choose a target and spotlight all Road Agents within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 3 physical damage each. Combine this damage."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "black-hat-sapper",
+    "name": "Black Hat Sapper",
+    "tier": 2,
+    "type": "Bruiser",
+    "summary": "A down-on-their-luck miner forced into banditry by union-busting mine moguls.",
+    "motive": "Draw attention, corral foes, crush clustered enemies",
+    "diff": 15,
+    "major": 14,
+    "severe": 26,
+    "hp": 6,
+    "stress": 5,
+    "minionRule": 0,
+    "attack": {
+      "name": "Double Barrel",
+      "bonus": 3,
+      "range": "Very Close",
+      "damage": "2d8+6",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Minin' +3",
+      "'Splosions +3"
+    ],
+    "features": [
+      {
+        "name": "Buckshot",
+        "type": "Passive",
+        "cost": "None",
+        "text": "When the Sapper's attack deals damage to a target, it also deals half damage to each creature within Melee range of the target."
+      },
+      {
+        "name": "Quarter Stick of Dynamite",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to choose a point within Close range. All creatures within Very Close range of that point take 2d8+4 physical damage."
+      },
+      {
+        "name": "Taking You With Me",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Sapper would mark their last HP, they make a standard attack against the closest enemy within range, then mark their last HP."
+      },
+      {
+        "name": "Walk It Off",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "Once per scene, when the Sapper would mark a HP, they can mark 2 Stress instead."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "black-hat-sniper",
+    "name": "Black Hat Sniper",
+    "tier": 2,
+    "type": "Ranged",
+    "summary": "A former infantry sniper who can only find work plying their deadly trade to the highest bidder.",
+    "motive": "Lie in wait, seek out vulnerabilities, pick off the weak",
+    "diff": 14,
+    "major": 7,
+    "severe": 13,
+    "hp": 4,
+    "stress": 4,
+    "minionRule": 0,
+    "attack": {
+      "name": "Pistol",
+      "bonus": 5,
+      "range": "Very Far",
+      "damage": "2d8+6",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Infantry Trainin' +2",
+      "Silent +2"
+    ],
+    "features": [
+      {
+        "name": "Camouflage Expert",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Sniper is Hidden while no PCs are within Close range."
+      },
+      {
+        "name": "Cull the Weak",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to make a standard attack against a target at Close range or farther. On a success, the attack gains a bonus to damage equal to the number of HP the target has marked."
+      },
+      {
+        "name": "Piercing Round",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "Mark a Stress to make a standard attack that deals direct damage on a success."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "corrupt-sheriff",
+    "name": "Corrupt Sheriff",
+    "tier": 2,
+    "type": "Leader",
+    "summary": "A cruel and controlling sheriff with little to no scruples.",
+    "motive": "Keep the toadies in line, let someone else handle it, call in the cavalry",
+    "diff": 15,
+    "major": 14,
+    "severe": 25,
+    "hp": 7,
+    "stress": 4,
+    "minionRule": 0,
+    "attack": {
+      "name": "Peacekeeper",
+      "bonus": 3,
+      "range": "Close",
+      "damage": "2d8+3",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Commandin' +3",
+      "Corruption +2"
+    ],
+    "features": [
+      {
+        "name": "There's An Arrangement",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Sheriff appears with a number of tokens on this stat block equal to the number of PCs in the scene."
+      },
+      {
+        "name": "Black Hat's Bargain",
+        "type": "Action",
+        "cost": "None",
+        "text": "Spend any number of tokens to summon an equal number of Black Hat Road Agents within Very Far range as unassuming townsfolk don their bandit masks."
+      },
+      {
+        "name": "Lawbringer's Lasso",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to temporarily Restrain a target within Very Close range. Additionally, the target must succeed on a Strength Reaction Roll or be pulled into Melee range."
+      },
+      {
+        "name": "Most Wanted",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend 2 Fear to make a PC Most Wanted. A Most Wanted PC has disadvantage on Presence Rolls in civilized locations. A Most Wanted PC can clear the condition by spending a chest of gold to pay the bounty or by finding another way to clear their name."
+      },
+      {
+        "name": "Fearsome Reputation",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When a PC rolls with Fear, place a token on this stat block."
+      },
+      {
+        "name": "It's Your Badge Now (Phase Change)",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "If a Crooked Deputy is within Very Close range when the Sheriff marks their last HP, spend a Fear to make the Crooked Deputy become a Corrupt Sheriff, retaining the same number of marked HP and Stress."
+      },
+      {
+        "name": "Momentum",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Corrupt Sheriff makes a successful attack against a PC, you gain a Fear."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "crooked-deputy",
+    "name": "Crooked Deputy",
+    "tier": 2,
+    "type": "Standard",
+    "summary": "A goon hastily deputized by the sheriff. Dense—both physically and mentally.",
+    "motive": "Keep the sheriff safe, beat up criminals, get rich",
+    "diff": 14,
+    "major": 12,
+    "severe": 23,
+    "hp": 5,
+    "stress": 4,
+    "minionRule": 0,
+    "attack": {
+      "name": "Brass Knuckles",
+      "bonus": 2,
+      "range": "Melee",
+      "damage": "2d8+2",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Apprehendin' +2",
+      "Strength in Numbers +2"
+    ],
+    "features": [
+      {
+        "name": "Brutal Injustice",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Restrained targets that take damage from the Deputy mark an additional HP."
+      },
+      {
+        "name": "Goon Squad",
+        "type": "Passive",
+        "cost": "None",
+        "text": "A Corrupt Sheriff gains a +1 bonus to their damage thresholds and attack rolls for every Deputy in the scene."
+      },
+      {
+        "name": "Rusty Revolver",
+        "type": "Action",
+        "cost": "None",
+        "text": "Make an attack roll against a target within Far range. On a success, deal 2d6+6 damage. On a failure, mark a Stress."
+      },
+      {
+        "name": "I Ain't Seen Nothing",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "Once per scene, when the Deputy witnesses a PC break the law, you can spend a Fear to force the PC pay the Deputy a handful of gold. If they can't, the Deputy summons a Corrupt Sheriff within Very Far range. Immediately spotlight the Sheriff."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "emperor-of-dirt",
+    "name": "Emperor of Dirt",
+    "tier": 2,
+    "type": "Enigma",
+    "summary": "A fearsome, charismatic, and Machiavellian outlaw who operates as a saloon owner ruling over a small frontier fiefdom.",
+    "motive": "Maintain the status quo, keep operations nimble, deal with disruptions swiftly and forcefully",
+    "diff": 16,
+    "major": 14,
+    "severe": 24,
+    "hp": 6,
+    "stress": 6,
+    "minionRule": 0,
+    "attack": {
+      "name": "Hidden Knife",
+      "bonus": 3,
+      "range": "Melee",
+      "damage": "3d8+3",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Gossip +4",
+      "Cruel Inspiration +4",
+      "Schemes +4"
+    ],
+    "features": [
+      {
+        "name": "You'd Best Not Miss",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Until the PCs successfully complete all \"Vile Tasks\" investigations, the Emperor is Untouchable."
+      },
+      {
+        "name": "Shell Game",
+        "type": "Action",
+        "cost": "Stress",
+        "text": "Once per active investigation you can mark a Stress to place a token on this stat block. Spend a token to give disadvantage to a PC investigating a rumor related to the Emperor."
+      },
+      {
+        "name": "Ain't Got Time For This",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When a PC tries to harm the Emperor while he's Untouchable, he taunts the party, summons 4 Black Hat Road Agents, a Sniper, a Sapper, and a Desperado, and immediately escapes the scene. Alternatively, you can spend 12 Fear to force each PC to mark a scar and have them describe why their plan failed and how they ended up buried up to their necks in a sunbaked desert."
+      },
+      {
+        "name": "Vile Tasks",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "Investigations (3). When the Emperor is introduced, create an investigation with 2 rumors related to different illicit activities."
+      },
+      {
+        "name": "Can't Fight Change (Phase Change)",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Emperor marks his last HP, replace him with the Emperor of Nothing with all HP and Stress cleared."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "emperor-of-nothing",
+    "name": "Emperor of Nothing",
+    "tier": 2,
+    "type": "Enigma",
+    "summary": "Disgraced, exposed, and on the lam. This fallen outlaw is hard to catch and even harder to kill.",
+    "motive": "Don't let them catch me, throw wave after wave of my own men at them, turn tail and run",
+    "diff": 16,
+    "major": 14,
+    "severe": 24,
+    "hp": 6,
+    "stress": 5,
+    "minionRule": 0,
+    "attack": {
+      "name": "Foal .44",
+      "bonus": 3,
+      "range": "Far",
+      "damage": "2d10+3",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Cruel Inspiration +4",
+      "Gossip +4",
+      "Schemes +4"
+    ],
+    "features": [
+      {
+        "name": "Loyal to the Last",
+        "type": "Passive",
+        "cost": "None",
+        "text": "When the Emperor first appears, he's accompanied by 1 Black Hat Desperado, 7 Road Agents, 1 Sniper, and 1 Sapper. Despite the Emperor's fall, his Black Hat crew still believes in him."
+      },
+      {
+        "name": "Hail of Gunfire",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to make an attack roll against a target within Far range. On a success, roll 2d8 and a number of d6s equal to the number of Black Hats within Far range. The target takes physical damage equal to the total result."
+      },
+      {
+        "name": "Bloodlust of the Deposed",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When a Black Hat within Close range deals Severe damage to a target, the Emperor immediately gains the spotlight."
+      },
+      {
+        "name": "No More Thrones",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "When the Emperor takes the spotlight with half or more of his HP marked, you can spend a Fear to have him make a dramatic exit. Start an Investigation (1) with 1 rumor to track him down. When investigation is completed, the Emperor loses the benefits of Loyal to the Last and becomes permanently Vulnerable."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "reclusive-gunsmith",
+    "name": "Reclusive Gunsmith",
+    "tier": 2,
+    "type": "Enigma",
+    "summary": "A broken down legendary gunsmith who gave up their trade out of regret for the violence their creations caused.",
+    "motive": "Keep my talents hidden, stay on the run, refuse the unworthy",
+    "diff": 14,
+    "major": 14,
+    "severe": 24,
+    "hp": 6,
+    "stress": 5,
+    "minionRule": 0,
+    "attack": {
+      "name": "Pepperbox",
+      "bonus": 4,
+      "range": "Close",
+      "damage": "2d10+2",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Gunsmithing +5",
+      "Hard Living +3",
+      "Hiding +3"
+    ],
+    "features": [
+      {
+        "name": "Wary of Strangers",
+        "type": "Passive",
+        "cost": "None",
+        "text": "A PC has disadvantage on Presence Rolls targeting the Gunsmith unless the Gunsmith has witnessed them succeed with Hope."
+      },
+      {
+        "name": "Gave Up the Trade",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Anything but a critical success on a Presence roll to convince the Gunsmith to make a gun is considered a failure."
+      },
+      {
+        "name": "On the Move",
+        "type": "Action",
+        "cost": "Stress",
+        "text": "Mark a Stress to remove a rumor from an active investigation related to the Gunsmith."
+      },
+      {
+        "name": "One Last Gun",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "Gunsmith Countdown (3). If the PCs critically succeed on a roll to convince the gunsmith and ask them to make a gun they will begrudgingly agree. Start a countdown that ticks down every time the PCs complete a long rest. When the countdown triggers, the gun is ready and the PCs may return. When the PCs return for the gun they find the gunsmith holding it, having passed away in their sleep. The GM gains Fear equal to the number of PCs and the PCs may choose a primary firearm from the Pistolheart equipment tables and choose which trait it will use when making an attack. The gun has the following feature in addition to any it already has:\n• Hex Bullets: This weapon ignores resistances."
+      },
+      {
+        "name": "Legend or Ghost?",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "Investigation (3). When the PCs first hear of the Gunsmith, create an investigation with 1 rumor about a legendary gunsmith who once crafted a gun that killed death itself."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "boneyard-bad-dog",
+    "name": "Boneyard Bad Dog",
+    "tier": 3,
+    "type": "Support",
+    "summary": "A very, very bad dog. Often caught burying its own bones.",
+    "motive": "Terrify, encase enemies, let the bombers come",
+    "diff": 17,
+    "major": 20,
+    "severe": 32,
+    "hp": 4,
+    "stress": 6,
+    "minionRule": 0,
+    "attack": {
+      "name": "Gnash",
+      "bonus": 3,
+      "range": "Melee",
+      "damage": "3d6+3",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Buryin' +3",
+      "Pack Tactics +2"
+    ],
+    "features": [
+      {
+        "name": "Frightening Speed",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Bad Dog can move up to Far range as part of an action."
+      },
+      {
+        "name": "Haunting Howl",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to have the Bad Dog howl. Each PC within Far range who hears it must succeed on a Presence Reaction Roll or become Haunted until they roll with Hope. A Haunted PC can't clear Stress."
+      },
+      {
+        "name": "Bone Buries You",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "When the Bad Dog succeeds on a standard attack, you can mark a Stress to make the target Restrained and Vulnerable until the Bad Dog takes Major or greater damage."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "boneyard-bomber",
+    "name": "Boneyard Bomber",
+    "tier": 3,
+    "type": "Minion",
+    "summary": "Skittering, multi-limbed bone amalgamations, each with a payload of dynamite inside its ribcage.",
+    "motive": "Creep, surround, create chain reactions",
+    "diff": 14,
+    "major": 0,
+    "severe": 0,
+    "hp": 1,
+    "stress": 1,
+    "minionRule": 10,
+    "attack": {
+      "name": "Bone Limbs",
+      "bonus": 2,
+      "range": "Melee",
+      "damage": "9",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Sappin' +2",
+      "Sneakin' +2"
+    ],
+    "features": [
+      {
+        "name": "Minion (10)",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Bomber is defeated when it takes any damage. For every 10 damage a PC deals to the bomber, defeat an additional Minion within range the attack would succeed against."
+      },
+      {
+        "name": "Group Attack",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to choose a target and spotlight all Bombers within Very Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 9 physical damage each. Combine this damage."
+      },
+      {
+        "name": "Here Comes the Boom",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to start a Boom Countdown (3) that ticks down when a PC makes an action roll. When the countdown triggers, every Bomber in the scene is immediately defeated."
+      },
+      {
+        "name": "Volatile",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Bomber is defeated, it explodes and deals 7 damage to every creature within Very Close range. A PC can mark a Stress to ignore this damage."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "boneyard-goldtooth",
+    "name": "Boneyard Goldtooth",
+    "tier": 3,
+    "type": "Standard",
+    "summary": "A prospector whose greed followed them into undeath.",
+    "motive": "Hit the rich one, steal gold, eat gold",
+    "diff": 16,
+    "major": 19,
+    "severe": 30,
+    "hp": 5,
+    "stress": 4,
+    "minionRule": 0,
+    "attack": {
+      "name": "Pickaxe",
+      "bonus": 3,
+      "range": "Melee",
+      "damage": "3d10+2",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Gravediggin' +2",
+      "Prospectin' +2"
+    ],
+    "features": [
+      {
+        "name": "Gold Eater",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to make a standard attack. On a success the target loses a handful of gold and the Goldtooth clears a HP or Stress."
+      },
+      {
+        "name": "Rusty Rifle",
+        "type": "Action",
+        "cost": "None",
+        "text": "Make an attack roll against a creature within Far range. On a success, deal 3d6+6 damage. On a failure, mark a Stress."
+      },
+      {
+        "name": "Gold In Them Thar Bones!",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Goldtooth marks their last HP, roll a d6. A number of handfuls of gold equal to the result erupts from the Goldtooth's bones."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "boneyard-skullripper",
+    "name": "Boneyard Skullripper",
+    "tier": 3,
+    "type": "Bruiser",
+    "summary": "A large skeleton, reinforced with bones that don't belong to it and holding a huge scattergun.",
+    "motive": "Shrug off damage, keep foes in front, sacrifice the weak",
+    "diff": 15,
+    "major": 22,
+    "severe": 37,
+    "hp": 4,
+    "stress": 4,
+    "minionRule": 0,
+    "attack": {
+      "name": "Scattergun",
+      "bonus": 3,
+      "range": "Close",
+      "damage": "3d8+8",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Bone Breakin' +4",
+      "Scattershootin' +3"
+    ],
+    "features": [
+      {
+        "name": "Skull Collector",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Skullripper appears with 1d4 tokens on this stat block."
+      },
+      {
+        "name": "Bone Grinder",
+        "type": "Action",
+        "cost": "None",
+        "text": "Spend a token from this stat block to make a standard attack with advantage against all PCs within Very Close range."
+      },
+      {
+        "name": "Reinforced Skeleton",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "When the Skullripper would take Minor damage, it marks a Stress instead."
+      },
+      {
+        "name": "Gimme Them Bones!",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "Spend a Fear to sacrifice a Goldtooth or Bad Dog within Melee range and clear either 2 HP or 2 Stress, then add a token to this stat block."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "catacomb-kid",
+    "name": "Catacomb Kid",
+    "tier": 3,
+    "type": "Solo",
+    "summary": "A notorious skeletal outlaw with a golden heart. Their avarice and commitment to chaos has earned them notoriety throughout the region.",
+    "motive": "Keep it moving, hit 'em hard, make new friends",
+    "diff": 17,
+    "major": 19,
+    "severe": 35,
+    "hp": 10,
+    "stress": 8,
+    "minionRule": 0,
+    "attack": {
+      "name": "Grave & Digger",
+      "bonus": 6,
+      "range": "Close",
+      "damage": "3d10+8",
+      "type": "Magic"
+    },
+    "experiences": [
+      "Local History +3",
+      "Robbin' +4",
+      "Safe Crackin' +3"
+    ],
+    "features": [
+      {
+        "name": "Buck the Law",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Kid can't be Restrained."
+      },
+      {
+        "name": "Relentless (2)",
+        "type": "Passive",
+        "cost": "Fear",
+        "text": "The Kid can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them."
+      },
+      {
+        "name": "One for Each of You",
+        "type": "Action",
+        "cost": "Stress",
+        "text": "Once per scene, you can mark a Stress to have the Kid reveal a second set of arms and pistols, giving them Relentless (4) until they take Severe damage."
+      },
+      {
+        "name": "Bone Beauty",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to summon a skeletal steed that erupts from the ground beneath the Kid. The Kid immediately mounts the steed and moves up to Far range in a line, making an attack roll against each creature they pass through and dealing 3d10+8 magic damage to each target they succeed against."
+      },
+      {
+        "name": "Frightening Precision",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Kid misses an attack against a target, the target marks a Stress or gives the GM a Fear."
+      },
+      {
+        "name": "Heart of Gold",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Kid would mark their last HP, they instead immediately clear all HP and attempt to befriend the PCs, impressed with their gunplay. If the PCs part on good terms with the Kid, the Kid gives one of them a Candy Skull. The next time the PC carrying the Candy Skull would make a death move they can break the Candy Skull instead. When they do so, they give the GM 3 Fear and work with them to narrate how the Kid swoops in at the last moment and saves the PC."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "frontier-marshal-paragon",
+    "name": "Frontier Marshal Paragon",
+    "tier": 3,
+    "type": "Solo",
+    "summary": "A paragon of law and order in pursuit of justice. Or vengeance. Or both.",
+    "motive": "Pursue relentlessly, bring criminals to justice, don't be deterred by failure",
+    "diff": 18,
+    "major": 19,
+    "severe": 36,
+    "hp": 11,
+    "stress": 6,
+    "minionRule": 0,
+    "attack": {
+      "name": "Big Iron",
+      "bonus": 7,
+      "range": "Far",
+      "damage": "3d20",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Lawbringer +4",
+      "Field Medicine +3",
+      "Gunfightin' +3"
+    ],
+    "features": [
+      {
+        "name": "Bulletproof",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Marshal is immune to physical damage from attacks made from beyond Very Close range."
+      },
+      {
+        "name": "Relentless (2)",
+        "type": "Passive",
+        "cost": "Fear",
+        "text": "The Marshal can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them."
+      },
+      {
+        "name": "Pistol Whip",
+        "type": "Action",
+        "cost": "None",
+        "text": "Make an attack roll against a target within Melee range. On a success, deal 3d10+8 physical damage."
+      },
+      {
+        "name": "Paragon's Lasso",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to temporarily Restrain a target within Very Close range. The target must succeed on a Strength Reaction Roll or the Marshal pulls them into Melee range, then makes a Pistol Whip attack against them with advantage."
+      },
+      {
+        "name": "Justice... or Vengeance?",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Marshal is defeated, they can choose to surrender. The PCs must choose whether they let the Marshal live or die. If the PCs let the Marshal live, start a long-term Justice Countdown (5) that ticks down when the party takes a long rest. When the Justice Countdown triggers, the Marshal reappears with a Marshal Posse to try and capture the PCs. If the PCs choose to kill the Marshal, start a long-term Vengeance Countdown (10) that ticks down when a PC kills a creature. When the Vengeance Countdown triggers, The Inexorable appears out of a howling desert storm and is immediately spotlighted."
+      },
+      {
+        "name": "Momentum",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Frontier Marshal makes a successful attack against a PC, you gain a Fear."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "frontier-marshal-posse",
+    "name": "Frontier Marshal Posse",
+    "tier": 3,
+    "type": "Horde",
+    "summary": "A group of mounted marshals hunting down a bounty.",
+    "motive": "Encircle enemies, keep enemies pinned down, riddle enemies with bullets",
+    "diff": 15,
+    "major": 22,
+    "severe": 32,
+    "hp": 10,
+    "stress": 5,
+    "minionRule": 0,
+    "attack": {
+      "name": "Gunfire",
+      "bonus": 3,
+      "range": "Far",
+      "damage": "3d8+4",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Pursuit +4",
+      "Trackin' +3"
+    ],
+    "features": [
+      {
+        "name": "Horde (3d4+2)",
+        "type": "Action",
+        "cost": "None",
+        "text": "When the Posse has marked half or more of its HP, its standard attack deals 2d4+2 physical damage instead."
+      },
+      {
+        "name": "Round 'Em Up!",
+        "type": "Action",
+        "cost": "Stress",
+        "text": "Mark a Stress to introduce the Surrounded environment to the scene. This environment persists until the Posse has marked half or more of its HP."
+      },
+      {
+        "name": "Ring of Fire",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to force all PCs to make an Agility Reaction Roll. Each PC who fails takes 3d6+6 physical damage. If the Posse has marked half or more of their HP, reduce this damage to 3d4+2 instead."
+      },
+      {
+        "name": "Lone Survivor",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "When the Posse is defeated, the GM can spend 3 Fear to begin a long-term Lone Survivor Countdown (6). When the party rests, tick down the Survivor Countdown and narrate how a figure haunts the party from the horizon. When the countdown triggers, a Frontier Marshal Paragon confronts the party."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "hphorde": 2,
+    "book": "Pistolheart"
+  },
+  {
+    "id": "dust-devil",
+    "name": "Dust Devil",
+    "tier": 4,
+    "type": "Horde",
+    "summary": "A thousand wailing spirits formed into a huge, fearsome twister filled with swirling shards of fulgurite and arcing necrolightning.",
+    "motive": "Grow and enfold, ravage with lightning, protect the heart",
+    "diff": 18,
+    "major": 25,
+    "severe": 40,
+    "hp": 10,
+    "stress": 5,
+    "minionRule": 0,
+    "attack": {
+      "name": "Necrolightning",
+      "bonus": 6,
+      "range": "Far",
+      "damage": "4d6+10",
+      "type": "Magic"
+    },
+    "experiences": [
+      "Destructive +4",
+      "Terrifyin' +4"
+    ],
+    "features": [
+      {
+        "name": "Nightmare Storm",
+        "type": "Passive",
+        "cost": "None",
+        "text": "When encountered, the Dust Devil introduces the Surrounded environment (Difficulty 18) around the PCs. The ring created by Surrounded follows the Dust Devil's movement. The Dust Devil is immune to attacks made from outside of the ring. A PC that wants to move into or out of the ring must succeed on a Strength Roll; a PC who fails this roll takes 4d8+8 magic damage."
+      },
+      {
+        "name": "Horde (2d6+5)",
+        "type": "Passive",
+        "cost": "None",
+        "text": "When the Dust Devil has marked half or more of its HP, its standard attack deals 2d6+5 magic damage instead and it loses the benefits of Nightmare Storm."
+      },
+      {
+        "name": "Devil's Chains",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to make a standard attack against all creatures within Close range of the Dust Devil."
+      },
+      {
+        "name": "Fulgrite Dust",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "When the Dust Devil takes damage, you can mark a Stress to make all PCs within Close range Vulnerable against the Dust Devil's next attack."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "the-inexorable",
+    "name": "The Inexorable",
+    "tier": 4,
+    "type": "Enigma",
+    "summary": "A lone gunslinger—who by all rights should be dead—reanimated by a relentless spirit of vengeance.",
+    "motive": "Pursue endlessly, don't let them rest, enact vengeance",
+    "diff": 21,
+    "major": 37,
+    "severe": 70,
+    "hp": 14,
+    "stress": 10,
+    "minionRule": 0,
+    "attack": {
+      "name": "Death's Irons",
+      "bonus": 8,
+      "range": "Far",
+      "damage": "4d10+10",
+      "type": "Magic"
+    },
+    "experiences": [
+      "Bloodhound +5",
+      "Tenacious +5"
+    ],
+    "features": [
+      {
+        "name": "Tenacious Revenant",
+        "type": "Passive",
+        "cost": "None",
+        "text": "A PC who encounters the Inexorable becomes Pursued until the Inexorable is defeated. A Pursued PC can't take a long rest."
+      },
+      {
+        "name": "Relentless (3)",
+        "type": "Passive",
+        "cost": "Fear",
+        "text": "The Inexorable can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them."
+      },
+      {
+        "name": "Reap the Whirlwind",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to make an attack roll against all targets within Close range and deal 4d8+12 magic damage to each target the attack succeeds against."
+      },
+      {
+        "name": "Death's Chill Wind",
+        "type": "Action",
+        "cost": "None",
+        "text": "All PCs within Far range must succeed on a Strength Reaction Roll or become Restrained until they mark 2 Stress to clear the condition."
+      },
+      {
+        "name": "Cast in Death's Forge",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Inexorable fails an attack roll, their target must either mark a HP or give you a Fear."
+      },
+      {
+        "name": "Is There No End?",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "Execution Countdown (10). When the Inexorable is defeated, start a long-term Execution Countdown (10) that ticks down when a PC kills a creature. When the countdown triggers, the Inexorable reappears with all their HP and Stress cleared."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
   }
 ]

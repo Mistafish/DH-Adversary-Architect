@@ -2402,5 +2402,161 @@
       }
     ],
     "isEnvironment": true
+  },
+  {
+    "id": "env-cattle-drive",
+    "name": "Cattle Drive",
+    "tier": 1,
+    "type": "Environment",
+    "subtype": "Traversal",
+    "book": "Pistolheart",
+    "pages": [
+      "Pistolheart"
+    ],
+    "summary": "A cattle drive across the great plains.",
+    "impulses": "Emphasize the length of the journey, try to break the herd, exhaust the heroes",
+    "diff": 11,
+    "suggestedAdversaries": "Acid Burrower, Black Hat Cattle Rustlers, Coyote (Wolf)",
+    "major": "—",
+    "severe": "—",
+    "hp": 0,
+    "stress": 0,
+    "attack": {
+      "name": "—",
+      "bonus": 0,
+      "range": "—",
+      "damage": "—",
+      "type": "—"
+    },
+    "experiences": [],
+    "features": [
+      {
+        "name": "A Thousand Head or So",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Start a Cattle Countdown (20), representing the size of the herd. If the countdown is 10 or lower during a rest, one PC can use both of their downtime moves to search for lost cattle. A PC searching for cattle on a short rest rolls a d4 and ticks up the Cattle Countdown by the value rolled; if a PC searches for cattle on a long rest, they roll a d8 instead. If the Cattle Countdown triggers before the Drive Countdown, the PCs lose the entire herd and fail the drive.\n(Prompt: How large is the herd? What happens if the PCs aren't able to deliver the herd to its destination?)"
+      },
+      {
+        "name": "Hard Drivin' Wranglers",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Start a Drive Countdown (3) that ticks down every time the PCs complete a day's work. To complete a day's work, each PC must describe what obstacles they face and how they work to overcome it, then make a relevant action roll. For each failure, tick the Cattle Countdown down by 1. When the Drive Countdown triggers, the PCs complete the drive.\n(Prompt: If not cattle, what kind of livestock is the herd? Are there any distinct animals that stand out from the rest?)"
+      },
+      {
+        "name": "Driving Hazards",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Roll a d6 and introduce the obstacle matching the result on the list below, then ask the PCs what they do in response. You can spend a Fear to choose an option instead of rolling.\n1. Cattle Rustlers: Each PC makes a reaction roll using their equipped weapon's trait. If half or more of the PCs fail, tick down the Cattle Countdown by 2. Otherwise, tick down the Cattle Countdown by 1.\n2. Prairie Fire: Tick down the Cattle Countdown by 2. Each PC marks 2 Stress.\n3. Water Woes: A deep river blocks the PCs' path and they must decide as a group to either ford the river or find a long way around. If the party chooses to ford the river, tick down the Cattle Countdown by 1. If the party chooses the long way around, tick up the Drive Countdown by 1.\n4. Stampede!: Roll a d4 and tick down the Cattle Countdown down by a number equal to the result. Each PC must succeed on an Instinct Reaction Roll or take 1d12+2 physical damage.\n5. Hard Rains: All PCs mark 1 Stress and have disadvantage on their next action roll.\n6. Clear skies and trails: Far as the eye can see.\n(Prompt: What is the weather like during the journey, and what are the trail conditions? What sorts of areas do the PCs make camp?)"
+      }
+    ],
+    "isEnvironment": true
+  },
+  {
+    "id": "env-haunted-gold-mine",
+    "name": "Haunted Gold Mine",
+    "tier": 1,
+    "type": "Environment",
+    "subtype": "Exploration",
+    "book": "Pistolheart",
+    "pages": [
+      "Pistolheart"
+    ],
+    "summary": "A spooky abandoned gold mine hidden deep in the rocky hills.",
+    "impulses": "Haunt the heroes, produce abundance, trap the heroes",
+    "diff": 11,
+    "suggestedAdversaries": "Acid Burrower, Bear, Boneyard Goldtooth, Cave Ogre, Giant Rat, Giant Scorpion, Skeletons, Swarm of Rats",
+    "major": "—",
+    "severe": "—",
+    "hp": 0,
+    "stress": 0,
+    "attack": {
+      "name": "—",
+      "bonus": 0,
+      "range": "—",
+      "damage": "—",
+      "type": "—"
+    },
+    "experiences": [],
+    "features": [
+      {
+        "name": "Vexing Cave",
+        "type": "Passive",
+        "cost": "None",
+        "text": "An unsettling scene of gore and violence greets the PCs at the entrance and they must mark a Stress to enter the mine. Inside the mine, disturbing whispers echo off the walls, preventing the PCs from clearing Stress while inside it.\n(Prompt: What were the dead miners fleeing from? Which loved one's voice do the PCs hear echoing amongst the whispers?)"
+      },
+      {
+        "name": "Gold Rush",
+        "type": "Passive",
+        "cost": "Hope",
+        "text": "A PC can mark a Stress and make a Strength Roll to try and mine a gold vein. On a success, they gain a handful of gold, and you place 1d4 tokens on this stat block. The Difficulty to mine this vein increases by 1 for each token on this stat block. Alternatively, a PC can spend a Hope to make an Instinct Roll or Knowledge Roll to locate a new vein of gold. On a success, remove 1d4 tokens.\n(Prompt: What happened to the miners?)"
+      },
+      {
+        "name": "Dead Prospector",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend 2 Fear to introduce a crumbling Boneyard Goldtooth, rotten with age and permanently Vulnerable, to the scene that attempts to chase the PCs out of the mine.\n(Prompt: What fears do the PCs hold that can be stoked in these claustrophobic tunnels? What did the previous occupants leave behind?)"
+      },
+      {
+        "name": "Code Violations",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "When a PC mines for gold, you can spend a Fear to have the roof cave in. Each PC must succeed on an Agility Reaction Roll or take 1d12+6 physical damage and become Restrained until another PC succeeds on a Strength roll to free them from the rubble or they succeed on a Strength roll with disadvantage to free themselves.\n(Prompt: Is there seismic activity nearby that affects the mine? What level of disrepair is the mine in?)"
+      }
+    ],
+    "isEnvironment": true
+  },
+  {
+    "id": "env-surrounded",
+    "name": "Surrounded",
+    "tier": 3,
+    "type": "Environment",
+    "subtype": "Event",
+    "book": "Pistolheart",
+    "pages": [
+      "Pistolheart"
+    ],
+    "summary": "The heroes are surrounded by foes, unable to escape!",
+    "impulses": "Keep them pinned, relentlessly pummel them, make them submit",
+    "diff": 16,
+    "suggestedAdversaries": "Any",
+    "major": "—",
+    "severe": "—",
+    "hp": 0,
+    "stress": 0,
+    "attack": {
+      "name": "—",
+      "bonus": 0,
+      "range": "—",
+      "damage": "—",
+      "type": "—"
+    },
+    "experiences": [],
+    "features": [
+      {
+        "name": "Impenetrable Circle",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The PCs' foes have surrounded them, preventing their escape. Create a Far range circle around the PCs that blocks all foot travel.\n(Prompt: How are the PCs' foes cutting off any means of escape? What do these adversaries want from the heroes?)"
+      },
+      {
+        "name": "Closin' In",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to reduce the size of the circle to Close range.\n(Prompt: What are the PCs accused of doing that landed them in this predicament? Does the accusation have any merit, or are the PCs innocent of their supposed crimes?)"
+      },
+      {
+        "name": "Clip Their Wings",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "When a PC attempts to fly out of the circle, spend a Fear to make them make an Agility Reaction Roll. On a failure, they are knocked out of the air and become temporarily Vulnerable.\n(Prompt: What sorts of firearms or ranged weaponry are the adversaries utilizing? Is someone in the crowd calling the shots?)"
+      },
+      {
+        "name": "Scaling Surrounded",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Surrounded is a versatile environment easily used at any tier. Simply adjust the difficulty and the adversaries to match the PCs. An easy solution is to subtract or add 2 to the difficulty for each tier you're scaling to (12/14/16/18)."
+      }
+    ],
+    "isEnvironment": true
   }
 ]
