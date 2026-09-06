@@ -208,6 +208,26 @@ body.theme-light .bp-progress {
   background-color: #e2e8f0;
 }
 
+#hud-difficulty-rating {
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  display: inline-block;
+  padding: 0.3em 0.6em;
+}
+
+#hud-party-summary {
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+#hud-bp-breakdown {
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+
 /* GM Fear Tracker */
 .gm-fear-tracker {
   background-color: var(--bg-card-alt);

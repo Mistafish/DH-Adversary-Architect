@@ -89,17 +89,17 @@
             
             <!-- Party Configuration -->
             <div class="col-12 col-md-4 col-xl-3 border-end-md">
-              <div class="d-flex align-items-center justify-content-between mb-2">
-                <span class="text-uppercase fw-bold text-gold small">Party Configuration</span>
+              <div class="mb-2">
+                <span class="text-uppercase fw-bold text-gold small d-block mb-1">Party Configuration</span>
                 <span class="badge bg-secondary" id="hud-party-summary">4 PCs &bull; Tier 1</span>
               </div>
               <div class="row g-2">
                 <div class="col-6">
-                  <label class="form-label small mb-1 text-muted">Player Characters</label>
+                  <label class="form-label small mb-1 text-muted" style="font-size: 0.75rem;">Player Characters</label>
                   <input type="number" id="input-pc-count" class="form-control form-control-sm text-center fw-bold" value="4" min="1" max="10">
                 </div>
                 <div class="col-6">
-                  <label class="form-label small mb-1 text-muted">Party Tier</label>
+                  <label class="form-label small mb-1 text-muted" style="font-size: 0.75rem;">Party Tier</label>
                   <select id="select-party-tier" class="form-select form-select-sm fw-bold">
                     <option value="1">Tier 1 (Level 1)</option>
                     <option value="2">Tier 2 (Levels 2-4)</option>
@@ -111,10 +111,10 @@
             </div>
 
             <!-- Battle Points Budget & Difficulty Meter -->
-            <div class="col-12 col-md-5 col-xl-5 border-end-md">
+            <div class="col-12 col-md-4 col-xl-5 border-end-md">
               <div class="d-flex justify-content-between align-items-center mb-1">
                 <span class="text-uppercase fw-bold text-gold small">Battle Points (BP) Budget</span>
-                <div>
+                <div class="text-nowrap">
                   <span class="fw-bold fs-5" id="hud-current-bp">0</span>
                   <span class="text-muted fs-6"> / </span>
                   <span class="fw-bold fs-5 text-warning" id="hud-target-bp">12</span>
@@ -122,27 +122,30 @@
                 </div>
               </div>
               <!-- Progress Bar Meter -->
-              <div class="progress bp-progress mb-1" style="height: 10px;">
+              <div class="progress bp-progress mb-2" style="height: 10px;">
                 <div id="bp-progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%;"></div>
               </div>
-              <div class="d-flex justify-content-between small">
-                <span id="hud-difficulty-rating" class="badge bg-info text-dark">Easy Encounter</span>
-                <span class="text-muted" id="hud-bp-breakdown">Target: (3 &times; PCs) + 2 BP</span>
+              <!-- Difficulty Badge & Target Breakdown Stack -->
+              <div class="d-flex flex-column gap-1">
+                <div class="d-flex align-items-center">
+                  <span id="hud-difficulty-rating" class="badge bg-info text-dark">Easy Encounter</span>
+                </div>
+                <div class="text-muted small" id="hud-bp-breakdown">Target: (3 &times; PCs) + 2 BP</div>
               </div>
             </div>
 
             <!-- Encounter Actions & Quick Add -->
-            <div class="col-12 col-md-3 col-xl-4 d-flex flex-wrap gap-2 justify-content-md-end">
-              <button class="btn btn-sm btn-outline-gold" id="btn-quick-add-srd">
+            <div class="col-12 col-md-4 col-xl-4 d-flex flex-wrap gap-2 justify-content-start justify-content-md-end align-items-center">
+              <button class="btn btn-sm btn-outline-gold flex-grow-1 flex-md-grow-0" id="btn-quick-add-srd">
                 <span>+</span> Quick Add SRD
               </button>
-              <button class="btn btn-sm btn-outline-primary" id="btn-save-encounter-dialog">
+              <button class="btn btn-sm btn-outline-primary flex-grow-1 flex-md-grow-0" id="btn-save-encounter-dialog">
                 <span>&#128190;</span> Save Encounter
               </button>
-              <button class="btn btn-sm btn-outline-info" id="btn-quick-load-encounter" title="View and load saved encounters">
+              <button class="btn btn-sm btn-outline-info flex-grow-1 flex-md-grow-0" id="btn-quick-load-encounter" title="View and load saved encounters">
                 <span>&#128194;</span> Load Saved
               </button>
-              <button class="btn btn-sm btn-outline-danger" id="btn-clear-encounter">
+              <button class="btn btn-sm btn-outline-danger flex-grow-1 flex-md-grow-0" id="btn-clear-encounter">
                 <span>&#128465;</span> Reset Battle
               </button>
             </div>
