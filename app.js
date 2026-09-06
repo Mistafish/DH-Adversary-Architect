@@ -1709,23 +1709,38 @@ const App = {
   },
 
   renderFear() {
+    const fear = this.state.gmFear !== undefined ? this.state.gmFear : 0;
     const el = document.getElementById('fear-count');
-    if (el) el.textContent = this.state.gmFear;
+    if (el) el.textContent = fear;
 
     const navBadge = document.getElementById('navbar-fear-badge');
-    if (navBadge) navBadge.textContent = `${this.state.gmFear} Fear`;
+    if (navBadge) {
+      navBadge.textContent = `${fear} Fear`;
+      if (fear === 0) {
+        navBadge.className = 'badge bg-secondary text-light rounded-pill px-2 py-1';
+      } else if (fear >= 1 && fear <= 4) {
+        navBadge.className = 'badge bg-success text-light rounded-pill px-2 py-1';
+      } else if (fear >= 5 && fear <= 8) {
+        navBadge.className = 'badge bg-warning text-dark rounded-pill px-2 py-1';
+      } else {
+        navBadge.className = 'badge bg-danger text-light rounded-pill px-2 py-1';
+      }
+    }
 
     const statusLabel = document.getElementById('fear-status-label');
     if (statusLabel) {
-      if (this.state.gmFear >= 6) {
-        statusLabel.className = 'badge bg-danger text-light small px-2 py-1';
-        statusLabel.textContent = 'Deadly Fear Pool';
-      } else if (this.state.gmFear >= 3) {
-        statusLabel.className = 'badge bg-warning text-dark small px-2 py-1';
+      if (fear === 0) {
+        statusLabel.className = 'badge bg-secondary text-light small px-2 py-0';
+        statusLabel.textContent = 'No Fear Pool';
+      } else if (fear >= 1 && fear <= 4) {
+        statusLabel.className = 'badge bg-success text-light small px-2 py-0';
+        statusLabel.textContent = 'Standard Fear';
+      } else if (fear >= 5 && fear <= 8) {
+        statusLabel.className = 'badge bg-warning text-dark small px-2 py-0';
         statusLabel.textContent = 'Dangerous Fear';
       } else {
-        statusLabel.className = 'badge bg-secondary text-light small px-2 py-1';
-        statusLabel.textContent = 'Active Fear Pool';
+        statusLabel.className = 'badge bg-danger text-light small px-2 py-0';
+        statusLabel.textContent = 'Deadly Fear';
       }
     }
   },
