@@ -3006,6 +3006,8 @@ const App = {
     adv.markedStress = adv.trackers[0].markedStress;
 
     this.saveState();
+    this.renderRoster();
+    this.renderHUD();
   },
 
   rollAdversaryAttack(adv) {
