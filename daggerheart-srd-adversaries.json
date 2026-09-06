@@ -15415,5 +15415,1558 @@
       "Pistolheart"
     ],
     "book": "Pistolheart"
+  },
+  {
+    "id": "black-hat-rail-driver",
+    "name": "Black Hat Rail Driver",
+    "tier": 1,
+    "type": "Bruiser",
+    "summary": "A disenfranchised rail worker who uses their immense strength to bully those weaker than them.",
+    "motive": "Be the front line, hit 'em hard, take a beating",
+    "diff": 12,
+    "major": 9,
+    "severe": 15,
+    "hp": 6,
+    "stress": 3,
+    "minionRule": 0,
+    "attack": {
+      "name": "Rail Sledge",
+      "bonus": 2,
+      "range": "Melee",
+      "damage": "1d10+1",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Hard Labor +2",
+      "Smashin' +2"
+    ],
+    "features": [
+      {
+        "name": "Rail Spiker",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to deal 1d10 physical damage to three targets within Very Close range."
+      },
+      {
+        "name": "Rippling Muscles",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "On a successful standard attack, the Rail Driver can mark a Stress to deal Major damage instead of rolling."
+      },
+      {
+        "name": "Shrug It Off",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "Once per scene, when the Rail Driver takes damage, they can mark a Stress instead."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "black-hat-trapper",
+    "name": "Black Hat Trapper",
+    "tier": 1,
+    "type": "Support",
+    "summary": "An impoverished hunter that's turned their skills towards hunting people.",
+    "motive": "Keep to cover, poison them, stop them in their tracks",
+    "diff": 12,
+    "major": 5,
+    "severe": 8,
+    "hp": 3,
+    "stress": 4,
+    "minionRule": 0,
+    "attack": {
+      "name": "Huntin' Bow",
+      "bonus": 2,
+      "range": "Far",
+      "damage": "1d4+4",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Hidin' +2",
+      "Trappin' +2"
+    ],
+    "features": [
+      {
+        "name": "Camouflage Expert",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The trapper is Hidden while no PCs are within Close range."
+      },
+      {
+        "name": "Poison Arrow",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to make a target within Far range Vulnerable until their next rest or they take Severe damage."
+      },
+      {
+        "name": "Snap Chain",
+        "type": "Action",
+        "cost": "None",
+        "text": "Make an attack roll against a creature in Very Close range. On a success, they are Restrained until they succeed on a Strength Roll to free themselves. Creatures that fail on a roll to free themselves mark a HP."
+      },
+      {
+        "name": "Traps Everywhere",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "When a PC moves to Close range or more, mark a Stress to Restrain them in a trap halfway to their destination. They are Restrained until a Strength Roll made to free them succeeds. On a failure, they mark a HP. The Restrained PC can give the GM 2 Fear to forgo the roll and free themselves."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "desperate-gambler",
+    "name": "Desperate Gambler",
+    "tier": 1,
+    "type": "Social",
+    "summary": "A gambler looking to strike it rich. Or at least break even.",
+    "motive": "Cheat 'til they leave, get them primed, give them a sob story",
+    "diff": 11,
+    "major": 4,
+    "severe": 10,
+    "hp": 3,
+    "stress": 4,
+    "minionRule": 0,
+    "attack": {
+      "name": "Bladed Card",
+      "bonus": 1,
+      "range": "Melee",
+      "damage": "1d6+1",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Cheatin' +2",
+      "Sob Stories +3"
+    ],
+    "features": [
+      {
+        "name": "Wanna Play a Game?",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Place 3 tokens on this stat block. The PCs can bet up to 3 handfuls of gold to make a Finesse, Instinct, or Knowledge Roll. On a success, remove a token and the PC wins twice the number of handfuls of gold they bet."
+      },
+      {
+        "name": "Cheater's Gambit",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Once per scene, spend 2 Fear to roll 1d4 and raise the Gambler's Difficulty by that amount until the end of the scene."
+      },
+      {
+        "name": "Double or Nothing?",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "If a PC succeeds with Fear against the Gambler, mark a Stress to turn their roll into a failure with Hope."
+      },
+      {
+        "name": "I Fold",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Gambler loses all their tokens, mark all remaining Stress as they give up gambling forever. (I wouldn't count on it.)"
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "city-slicker",
+    "name": "City Slicker",
+    "tier": 1,
+    "type": "Social",
+    "summary": "An irritating burr you can't seem to shake, who has no idea what they're doing out in the frontier.",
+    "motive": "Mean well, mess up something crucial, try their best",
+    "diff": 12,
+    "major": 8,
+    "severe": 14,
+    "hp": 3,
+    "stress": 4,
+    "minionRule": 0,
+    "attack": {
+      "name": "New Knife",
+      "bonus": 0,
+      "range": "Melee",
+      "damage": "1d4+1",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Gettin' in Trouble +2",
+      "Talkin' Too Much +2"
+    ],
+    "features": [
+      {
+        "name": "Out of Their Depth",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Any time they aren't in a city, when they would mark any amount of Stress, they mark an additional Stress."
+      },
+      {
+        "name": "Good Storyteller",
+        "type": "Passive",
+        "cost": "None",
+        "text": "A PC who includes a City Slicker in a downtime move also clears a Stress."
+      },
+      {
+        "name": "Don't Worry, I Got This",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear and make a Reaction Roll. On a failure, increase an environment's Difficulty by 1d4 as they get hopelessly mired in hazards. The PCs can collectively spend an equal amount of Hope+1 to remove this effect, describing how they get the City Slicker out of a pickle."
+      },
+      {
+        "name": "Unwelcome Assistance",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "When a PC makes an action roll, mark a Stress and describe how the City Slicker's best intentions don't match execution as they try to help. Roll 1d4 and add it to the PC's Fear roll. If the PC rolls with Hope, clear a Stress."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "black-hat-worm-wrangler",
+    "name": "Black Hat Worm Wrangler",
+    "tier": 2,
+    "type": "Leader",
+    "summary": "A dustbowl farmer who turned their domesticated boreworms into terrifying tools of banditry.",
+    "motive": "Focus on the vulnerable, avenge the fallen worms, go out swinging",
+    "diff": 15,
+    "major": 13,
+    "severe": 21,
+    "hp": 5,
+    "stress": 4,
+    "minionRule": 0,
+    "attack": {
+      "name": "Shovel Shot",
+      "bonus": 2,
+      "range": "Melee",
+      "damage": "2d6+4",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Tillin' +3",
+      "Wormin' out of Danger +3"
+    ],
+    "features": [
+      {
+        "name": "Worm Wrangler",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Worm Wrangler appears in the scene with either 3 Juvenile Boreworms or 1 Adult Boreworm Hidden within Close range."
+      },
+      {
+        "name": "Attached Shotgun",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear and make a standard attack against a target. On a success, deal half damage to each creature in Melee range of the target."
+      },
+      {
+        "name": "Worm Thumper",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear and roll 1d6. On a 1-5, a Juvenile Boreworm appears within Far Range. On a 6, an Adult Boreworm appears within Far Range."
+      },
+      {
+        "name": "Worm Pheromones",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend 2 Fear to choose a target within Far range. Each Boreworm within Close range of the target moves into Melee range of it and makes a standard attack against the target, combining the damage."
+      },
+      {
+        "name": "Reckless Abandon",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When a Boreworm is defeated, add a token to this stat block. The Worm Wrangler gains a +2 bonus to damage and a -1 penalty to damage thresholds for each token on this stat block."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "black-hat-bruja",
+    "name": "Black Hat Bruja",
+    "tier": 2,
+    "type": "Support",
+    "summary": "A witch who joined a bandit crew after their forest home was destroyed by loggers. They use their healing prowess to bolster allies.",
+    "motive": "Keep everyone mellow, repel attackers, tend to the wounded and anxious",
+    "diff": 16,
+    "major": 11,
+    "severe": 21,
+    "hp": 4,
+    "stress": 5,
+    "minionRule": 0,
+    "attack": {
+      "name": "Glass Dust",
+      "bonus": 1,
+      "range": "Very Close",
+      "damage": "2d8",
+      "type": "Magic"
+    },
+    "experiences": [
+      "Healin' +3",
+      "Hexin' +3"
+    ],
+    "features": [
+      {
+        "name": "Herbal Medication",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Place 4 tokens on this stat block. If a target within Close range marks a Stress, spend a token instead."
+      },
+      {
+        "name": "Hechicura",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to allow a creature to make a Reaction Roll. On a success, they clear 2 HP. On a failure, they clear 2 Stress."
+      },
+      {
+        "name": "Maladix",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "When the Bruja takes damage from a creature within Close range, mark a Stress to make them Vulnerable until the end of the scene or they take Severe damage."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "adult-boreworm",
+    "name": "Adult Boreworm",
+    "tier": 2,
+    "type": "Bruiser",
+    "summary": "A wild boreworm covered in heavy armored plating, the size of two train cars, with a rock breaking beak.",
+    "motive": "Drag them beneath, shrug it off, trap them in dirt",
+    "diff": 14,
+    "major": 14,
+    "severe": 26,
+    "hp": 7,
+    "stress": 4,
+    "minionRule": 0,
+    "attack": {
+      "name": "Rockbreaker",
+      "bonus": 3,
+      "range": "Melee",
+      "damage": "2d8+6",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Grabbin' +3",
+      "Tremor sense +3"
+    ],
+    "features": [
+      {
+        "name": "Sandstrider",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Boreworm can move through sand and earth as easily as air. While underneath sand or dirt, it is Hidden and can't be targeted."
+      },
+      {
+        "name": "Gulper",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Force a target within Close range to make an Agility or Strength Reaction Roll to avoid being swallowed. On a failure, spend a Fear to Restrain the target until the Boreworm takes Severe damage or it uses Gulper on another target. A target Restrained in this way moves with the Boreworm when it moves."
+      },
+      {
+        "name": "Buried Alive",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "When the Boreworm Restrains a target with Gulper, mark a Stress to make the target Buried. A Buried target is Restrained underground and marks a HP and a Stress every time a PC makes an action roll. To clear Buried, another PC must succeed on a Strength Roll to dig the Buried creature out."
+      },
+      {
+        "name": "Momentum",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Boreworm makes a successful attack against a PC, you gain a Fear."
+      },
+      {
+        "name": "Thick Plating",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "When the Boreworm takes damage, spend a Fear to lower the severity by 1 threshold."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "juvenile-boreworm",
+    "name": "Juvenile Boreworm",
+    "tier": 2,
+    "type": "Skulk",
+    "summary": "A worm as thick as a cow and long as two cows, covered in armored plates. Farmers lucky enough to raise one from an egg can till even the rockiest soil.",
+    "motive": "Burst from cover, churn the earth, descend to safety",
+    "diff": 14,
+    "major": 8,
+    "severe": 18,
+    "hp": 4,
+    "stress": 4,
+    "minionRule": 0,
+    "attack": {
+      "name": "Snapjaw",
+      "bonus": 4,
+      "range": "Melee",
+      "damage": "2d6+3",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Ambush +2",
+      "Diggin' +2",
+      "Tremor Sense +3"
+    ],
+    "features": [
+      {
+        "name": "Sandstrider",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Boreworm can move through sand and dirt as easily as air. While underneath sand or dirt it is Hidden and cannot be targeted."
+      },
+      {
+        "name": "Tangleburst",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "While the Boreworm is Hidden, spend a Fear to choose a target within Close range. The boreworm erupts within Melee range of the target, deals 2d10 physical damage and makes the target temporarily Restrained and Vulnerable."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "chupacabra",
+    "name": "Chupacabra",
+    "tier": 2,
+    "type": "Solo",
+    "summary": "A nocturnal predator that feasts on the blood of livestock.",
+    "motive": "Drink deep, skitter to safety, strike from darkness",
+    "diff": 16,
+    "major": 12,
+    "severe": 24,
+    "hp": 8,
+    "stress": 6,
+    "minionRule": 0,
+    "attack": {
+      "name": "Snapjaw",
+      "bonus": 3,
+      "range": "Melee",
+      "damage": "2d20",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Drainin' +3",
+      "Sneakin' +4"
+    ],
+    "features": [
+      {
+        "name": "Blooddrinker",
+        "type": "Passive",
+        "cost": "None",
+        "text": "When the Chupacabra deals Severe damage, it clears a HP. When a PC takes the spotlight while Restrained by a Chupacabra, they mark a HP and the Chupacabra clears a HP."
+      },
+      {
+        "name": "Frightening Speed",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Chupacabra can move up to Far range as part of an action."
+      },
+      {
+        "name": "Night Child",
+        "type": "Passive",
+        "cost": "None",
+        "text": "When the Chupacabra is in total darkness it is Hidden and cannot be targeted."
+      },
+      {
+        "name": "Relentless (3)",
+        "type": "Passive",
+        "cost": "Fear",
+        "text": "The Chupacabra can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them."
+      },
+      {
+        "name": "Proboscis Maw",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to Restrain a PC until they or another PC makes a Strength Roll to free them. On a success, clear Restrained and mark a Stress. On a failure, they mark a HP and the Chupacabra clears a HP."
+      },
+      {
+        "name": "Sombral Skitter",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "If the Chupacabra is hit with a direct source of light it can mark a Stress to move up to Far range to the nearest patch of darkness and become Hidden. If the Chupacabra has a creature Restrained, it drags the creature along with it but does not become Hidden."
+      },
+      {
+        "name": "Frightening Precision",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Chupacabra fails an attack roll, its target must either mark a Stress or give you a Fear."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "maverick",
+    "name": "Maverick",
+    "tier": 2,
+    "type": "Enigma",
+    "summary": "An information broker masquerading as a gambler. If you want something from them, you'll need to beat them at their own game.",
+    "motive": "Make them sweat, make them work for it, play mind games",
+    "diff": 14,
+    "major": 11,
+    "severe": 21,
+    "hp": 4,
+    "stress": 5,
+    "minionRule": 0,
+    "attack": {
+      "name": "Bodyguard",
+      "bonus": 2,
+      "range": "Melee",
+      "damage": "3d4+8",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Information Gatherin' +3",
+      "Readin' +3"
+    ],
+    "features": [
+      {
+        "name": "Information Games",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Place 3 tokens on this stat block. To gain information, the PCs must spend a bag of gold or bet a valuable item and play a game of chance with the Maverick. The PCs must make a Finesse, Presence, or Knowledge Roll to cajole the information out of Maverick while playing the game. On a success, remove a token and the PC learns a Rumor relating to an active Investigation and lowers its Difficulty by 1. On a failure, the game ends. The Maverick takes their money and leaves."
+      },
+      {
+        "name": "Secret Keeper",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "The Maverick knows a secret about each PC they don't want the others to know. Spend a Fear to make each player write the secret on an index card and hand them to you."
+      },
+      {
+        "name": "Maverick's Gambit",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to roll 1d4, raising the Maverick's Difficulty by that amount until a PC succeeds with Hope."
+      },
+      {
+        "name": "Gun Under the Table",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "Once per scene, if a PC causes the Maverick to mark a Stress, spend a Fear to make each PC present in the scene mark 2 Stress."
+      },
+      {
+        "name": "Mind Games",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "If the Maverick knows a Secret about a PC, spend 2 Fear when the PCs take a long rest to make one of them find a sealed envelope in their belongings. If they open it, they find a note from the Maverick detailing their traveling companion's secret."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "sawbones",
+    "name": "Sawbones",
+    "tier": 2,
+    "type": "Social",
+    "summary": "A doctor doing their best with piss-poor resources and an even worse bedside manner.",
+    "motive": "Cure the plague, heal the infirm, seek the aid of heroes",
+    "diff": 13,
+    "major": 11,
+    "severe": 20,
+    "hp": 4,
+    "stress": 6,
+    "minionRule": 0,
+    "attack": {
+      "name": "Scalpel",
+      "bonus": 1,
+      "range": "Melee",
+      "damage": "2d8+1",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Field Medic +3",
+      "Steady Hand +3"
+    ],
+    "features": [
+      {
+        "name": "Sit Still and Shut Up",
+        "type": "Passive",
+        "cost": "None",
+        "text": "PCs can pay the Sawbones a handful of gold and mark a Stress to clear 1d6 HP."
+      },
+      {
+        "name": "Medicine Kit",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Place 3 tokens on this stat block. PCs can spend 5 handfuls of gold to buy a healing potion, a stamina potion, a dram of Laudanum or a Questionable Invigorator and remove a token. If the PCs cure a plague, the Sawbones offers them for 3 handfuls of gold apiece."
+      },
+      {
+        "name": "Outbreak!",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend 3 Fear to create an Outbreak Countdown (6) that ticks down every time the PCs rest, as a deadly plague sweeps through a settlement. If the countdown triggers before the Sawbones completes a Miracle Cure, the settlement falls to the plague and there are no survivors upon the PCs' return."
+      },
+      {
+        "name": "Miracle Cure",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "Investigation (2). If an Outbreak begins, the Sawbones requires 1d4 ingredients from the surrounding region to concoct a cure. Start an investigation (2) with 1 Rumor for each ingredient the Sawbones requires. If a PC brings the ingredients before the Outbreak countdown triggers, the countdown ends and the plague is cured."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "spectral-stampede",
+    "name": "Spectral Stampede",
+    "tier": 2,
+    "type": "Horde",
+    "summary": "The vengeful spirits of a hunted herd manifested as a ghostly stampede.",
+    "motive": "Bowl them over, crush them, haunt their waking life",
+    "diff": 14,
+    "major": 12,
+    "severe": 17,
+    "hp": 6,
+    "stress": 3,
+    "minionRule": 0,
+    "attack": {
+      "name": "Ghostly Trample",
+      "bonus": 3,
+      "range": "Very Close",
+      "damage": "2d8+6",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Runnin' +3",
+      "Tramplin' +3"
+    ],
+    "features": [
+      {
+        "name": "Horde (1d8+3)",
+        "type": "Passive",
+        "cost": "None",
+        "text": "When the Stampede has marked half or more of their HP, their standard attack deals 1d8+3."
+      },
+      {
+        "name": "Frightening Speed",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Stampede can move up to Far range as part of an action."
+      },
+      {
+        "name": "Relentless Haunting",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Creatures Haunted by the Spectral Stampede are also Vulnerable. A Haunted PC can't clear Stress."
+      },
+      {
+        "name": "Spectral Surge",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to make each target within Far range make an Agility Reaction Roll. On a failure, they take 2d10+5 magic damage and are Haunted until they roll with Hope."
+      },
+      {
+        "name": "Haunting Hooves",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "On a successful attack, mark a Stress to make the target Haunted until they roll with Hope."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "hphorde": 100,
+    "book": "Pistolheart"
+  },
+  {
+    "id": "frontier-marshal-captain",
+    "name": "Frontier Marshal Captain",
+    "tier": 3,
+    "type": "Leader",
+    "summary": "Leaders among the Frontier Marshals whose prowess and command are unmatched.",
+    "motive": "Command the marshals, keep backup near, pressure allies",
+    "diff": 19,
+    "major": 20,
+    "severe": 24,
+    "hp": 6,
+    "stress": 5,
+    "minionRule": 0,
+    "attack": {
+      "name": "Bear Rifle",
+      "bonus": 6,
+      "range": "Far",
+      "damage": "3d10+1",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Commandin' +3",
+      "Crack Shot +4"
+    ],
+    "features": [
+      {
+        "name": "Hard to Impress",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Other Marshals, Sheriffs, and Deputies in the scene gain a +2 bonus to attack and damage rolls when making standard attacks."
+      },
+      {
+        "name": "Marshal's Lasso",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to Restrain a target within Very Close range until they succeed on a Strength or Finesse roll to free themself."
+      },
+      {
+        "name": "Hard Target",
+        "type": "Action",
+        "cost": "Stress",
+        "text": "Mark a Stress to Target a creature within Far range until they take Severe damage. Whenever the Marshal Captain succeeds on an attack against a Targeted creature, choose another Marshal within Far range to immediately make a standard attack against the Targeted creature. Combine the damage of both attacks."
+      },
+      {
+        "name": "Where's My Backup?",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to summon a Frontier Marshal Scout or Sandwalker at Very Far range. Spend 2 Fear to summon a Steamguard at Very Far range."
+      },
+      {
+        "name": "Momentum",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Marshal Captain succeeds on an attack, gain a Fear."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "frontier-marshal-longshot",
+    "name": "Frontier Marshal Longshot",
+    "tier": 3,
+    "type": "Ranged",
+    "summary": "The rank and file of the Frontier Marshals are crack shots with their rifles.",
+    "motive": "Act on the captain's orders, bolster each other, move together",
+    "diff": 16,
+    "major": 11,
+    "severe": 23,
+    "hp": 4,
+    "stress": 4,
+    "minionRule": 0,
+    "attack": {
+      "name": "Scoped Rifle",
+      "bonus": 4,
+      "range": "Far",
+      "damage": "3d8+8",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Crack Shot +3"
+    ],
+    "features": [
+      {
+        "name": "Strength In Numbers",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Frontier Marshal Longshots gain a bonus to their damage thresholds equal to the number of Marshals present in the scene."
+      },
+      {
+        "name": "Bayonet",
+        "type": "Action",
+        "cost": "None",
+        "text": "Become temporarily Vulnerable to make a standard attack with advantage against a target within Melee range."
+      },
+      {
+        "name": "Coordinated Training",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "When another Marshal within Far range moves as part of an action, mark a Stress to move into Close range of their destination."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "frontier-marshal-sandwalker",
+    "name": "Frontier Marshal Sandwalker",
+    "tier": 3,
+    "type": "Support",
+    "summary": "Sand and lightning-wielding mages who lend their powers to the Frontier Marshal's cause.",
+    "motive": "Control the battlefield, stick to the sand, swap with enemies or allies",
+    "diff": 15,
+    "major": 11,
+    "severe": 23,
+    "hp": 4,
+    "stress": 5,
+    "minionRule": 0,
+    "attack": {
+      "name": "Crackle Shot",
+      "bonus": 4,
+      "range": "Close",
+      "damage": "3d4+6",
+      "type": "Magic"
+    },
+    "experiences": [
+      "Crack Shot +3",
+      "Hog Tyin' +3",
+      "Trackin' +3"
+    ],
+    "features": [
+      {
+        "name": "Shifting Sands",
+        "type": "Passive",
+        "cost": "None",
+        "text": "While on sand, dirt, or rocky soil the Sandwalker has +1 Difficulty and cannot be Restrained."
+      },
+      {
+        "name": "Sand Swap",
+        "type": "Action",
+        "cost": "None",
+        "text": "Target two creatures standing on sand, dirt, or rocky soil within Far range to swap places. Unwilling targets must succeed on an Agility Reaction Roll to avoid being swapped."
+      },
+      {
+        "name": "Charged Lasso",
+        "type": "Action",
+        "cost": "None",
+        "text": "Force a target in Close range to make a Strength Reaction Roll. On a failure, they mark a HP and become Restrained and Vulnerable until they succeed on a Finesse roll to free themself."
+      },
+      {
+        "name": "Localized Sandstorm",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "If a creature enters Very Close range of the Sandwalker, mark a Stress to make the target Vulnerable until they take Major damage or more."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "frontier-marshal-steamguard",
+    "name": "Frontier Marshal Steamguard",
+    "tier": 3,
+    "type": "Bruiser",
+    "summary": "A hulking, steam-powered construct made of ironwood and banded metal, created for tactical cover and frontal assaults.",
+    "motive": "Create cover, drag 'em and bag 'em, take the hits",
+    "diff": 16,
+    "major": 22,
+    "severe": 40,
+    "hp": 5,
+    "stress": 4,
+    "minionRule": 0,
+    "attack": {
+      "name": "Hand Cannon",
+      "bonus": 3,
+      "range": "Very Close",
+      "damage": "3d10+4",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Guardian' +3",
+      "Trackin' +3"
+    ],
+    "features": [
+      {
+        "name": "Armored Plates",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Place 3 tokens on this stat block. Remove a token when the Steamguard takes damage and reduce it by two thresholds. When there are no more tokens on this stat block, the Steamguard is Vulnerable."
+      },
+      {
+        "name": "Dead or Alive",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to make two standard attacks against a target in Melee range and combine the damage."
+      },
+      {
+        "name": "Marshal's Lasso",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to Restrain a target within Very Close range until they succeed on a Strength or Finesse Roll to free themself."
+      },
+      {
+        "name": "Body Blocker",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "If a creature in Very Close range takes damage, the Vanguard can mark a Stress to take the damage instead."
+      },
+      {
+        "name": "You're Coming With Me",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "When you Restrain a creature with Marshal's Lasso, you can mark a Stress to force them to make a Strength Reaction Roll with disadvantage. On a failure, pull them into Melee range and make a standard attack, dealing an +6 bonus damage on a success."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "hillfolk-frenzy",
+    "name": "Hillfolk Frenzy",
+    "tier": 3,
+    "type": "Standard",
+    "summary": "A cannibal driven to a frenzied rage by the lost songs of a dead god.",
+    "motive": "Build up frenzy, hit them hard, hit them lots",
+    "diff": 15,
+    "major": 17,
+    "severe": 29,
+    "hp": 5,
+    "stress": 3,
+    "minionRule": 0,
+    "attack": {
+      "name": "Ripper Claws",
+      "bonus": 3,
+      "range": "Melee",
+      "damage": "3d10",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Brutal Killer +3",
+      "Cave Dweller +4"
+    ],
+    "features": [
+      {
+        "name": "Relentless Frenzy",
+        "type": "Passive",
+        "cost": "Fear",
+        "text": "The Frenzy has Relentless (X+1) where X is equal to the number of tokens on this stat block. The Frenzy can be spotlighted up to X+1 times per GM turn. Spend Fear as usual to spotlight them."
+      },
+      {
+        "name": "Eviscerate",
+        "type": "Action",
+        "cost": "None",
+        "text": "Spend a token to make two standard attacks against a creature and combine the damage."
+      },
+      {
+        "name": "Scent of Blood",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "Whenever a creature within Close range marks a HP, spend a Fear to place a token on this stat block."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "hillfolk-gorger",
+    "name": "Hillfolk Gorger",
+    "tier": 3,
+    "type": "Bruiser",
+    "summary": "A hulking cannibal whose bloodlust is unquenchable.",
+    "motive": "Build up damage, enter a rage, take the punishment",
+    "diff": 16,
+    "major": 22,
+    "severe": 40,
+    "hp": 7,
+    "stress": 5,
+    "minionRule": 0,
+    "attack": {
+      "name": "Bone Cleaver",
+      "bonus": 4,
+      "range": "Very Close",
+      "damage": "3d8+6",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Bone Snapper +3",
+      "Cave Dweller +4"
+    ],
+    "features": [
+      {
+        "name": "Pain Fueled",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Gorger marks one less HP whenever it takes damage, unless it's Vulnerable."
+      },
+      {
+        "name": "Vicious Flense",
+        "type": "Action",
+        "cost": "None",
+        "text": "Spend all tokens on this stat block and make an attack roll with advantage against a target within Very Close range. On a success, deal 1d20 physical damage per token spent."
+      },
+      {
+        "name": "Bloodlust",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Gorger deals Major damage or more, gain a Fear and place a token on this stat block, gaining a +4 bonus to damage for each token."
+      },
+      {
+        "name": "Old God's Hunger",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Gorger succeeds on a standard attack while Vulnerable, they immediately make a second standard attack against the same target. Combine this damage."
+      },
+      {
+        "name": "Taking You With Me",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Gorger would mark their last HP, they make a standard attack against the closest enemy within range, then mark their last HP."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "hillfolk-marrow-drinker",
+    "name": "Hillfolk Marrow Drinker",
+    "tier": 3,
+    "type": "Support",
+    "summary": "Using a combination of old magic and hallucinatory cave fungus, the marrow drinker drives other hillfolk berzerk.",
+    "motive": "Bolster the Hillfolk, curse foes, reveal the hidden",
+    "diff": 14,
+    "major": 17,
+    "severe": 27,
+    "hp": 4,
+    "stress": 6,
+    "minionRule": 0,
+    "attack": {
+      "name": "Boneshards",
+      "bonus": 2,
+      "range": "Close",
+      "damage": "3d6+3",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Cave Dweller +3",
+      "Fungal Expert +3"
+    ],
+    "features": [
+      {
+        "name": "Darksight",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Marrow Drinker can see Hidden and Cloaked creatures within Close Range."
+      },
+      {
+        "name": "Ancient Curse",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear and target a point within Far range. Each target within Very Close range of the point must make a Presence Reaction Roll. On a failure they become Accursed until they take Major damage or more. An Accursed creature has -1 to Evasion and cannot use armor to reduce damage."
+      },
+      {
+        "name": "Blood on the Wind",
+        "type": "Action",
+        "cost": "Stress",
+        "text": "Mark 2 Stress to gain a Fear for each creature in the scene that has at least half of their HP marked."
+      },
+      {
+        "name": "My Flesh, Your Flesh",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Marrow Drinker takes Severe damage, each Frenzy and Flesh Ripper within Close range gain a token."
+      },
+      {
+        "name": "Slake the Thirst",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "When a Hillfolk within Far range deals Severe damage, spend a Fear to give each Hillfolk within Far range a token."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "hand-of-the-plague",
+    "name": "Hand of the Plague",
+    "tier": 3,
+    "type": "Enigma",
+    "summary": "A crooked warlock who wields outlawed plague magic and traffics in filthy vermin.",
+    "motive": "Cover them in rats, leave them a parting gift, use the vermin as a shield",
+    "diff": 18,
+    "major": 20,
+    "severe": 37,
+    "hp": 10,
+    "stress": 6,
+    "minionRule": 0,
+    "attack": {
+      "name": "Plague Hex",
+      "bonus": 6,
+      "range": "Close",
+      "damage": "3d10+8",
+      "type": "Magic"
+    },
+    "experiences": [
+      "Disgustin' +3",
+      "Downright Vile Acts +4",
+      "Hexin' +4"
+    ],
+    "features": [
+      {
+        "name": "Rat King",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Hand of the Plague appears with a number of Vermin Tokens on this statblock equal to the number of PCs+2 and an equal number of Hauntavermin Hidden within Far range. While a Hand of the Plague is within Far range, a Hauntavermin can act as a proxy for Bad Breath and Virulent Infection."
+      },
+      {
+        "name": "Relentless (2)",
+        "type": "Passive",
+        "cost": "Fear",
+        "text": "The Hand of the Plague can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them."
+      },
+      {
+        "name": "Bad Breath",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to Rot each PC within Very Close until they succeed with Hope. A Rotted PC cannot spend Hope to Help an Ally."
+      },
+      {
+        "name": "Virulent Infection",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Once per scene, spend 2 Fear to Infect a creature within Melee range. Start a Terminal Countdown (12) that ticks down every time the PCs take a long rest. While the countdown is active, an Infected creature cannot regain HP from downtime moves. When the countdown triggers, the creature dies. To find the cure, the PCs must start an Investigation (10) with 0 Rumors to find a cure. Infected cannot be cleared by any means until this investigation is complete. At each rest, have the PC describe the worsening symptoms."
+      },
+      {
+        "name": "Rats in the Walls",
+        "type": "Action",
+        "cost": "None",
+        "text": "Spend a Vermin Token to summon 2 Hauntavermin in Melee range."
+      },
+      {
+        "name": "Plague Censer",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When the Hand of the Plague succeeds on an attack, the target chooses to become Vulnerable until they take Major damage or give the GM a Fear."
+      },
+      {
+        "name": "Vermin Armor",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "If the Hand of the Plague takes damage, mark a Stress and sacrifice up to three minions within Close range, reducing the HP marked by 1 for each minion sacrificed. Gain a Fear for each minion sacrificed in this way."
+      },
+      {
+        "name": "Contagion",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "If an Infected PC shares a downtime move with another PC, spend a Fear to make the healthy PC make a Strength Reaction Roll at the end of the downtime move. On a failure, they become Infected. Start a Terminal Countdown (6) for that PC. Any number of Infected PCs can share the cure after a completed investigation. This feature can still be used even if the Hand of the Plague has been defeated."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "hauntavermin",
+    "name": "Hauntavermin",
+    "tier": 3,
+    "type": "Minion",
+    "summary": "Nasty, unusually large vermin bursting with disease.",
+    "motive": "Explode, surround, tangle up the PCs",
+    "diff": 11,
+    "major": 0,
+    "severe": 0,
+    "hp": 1,
+    "stress": 1,
+    "minionRule": 7,
+    "attack": {
+      "name": "Sickly Fang",
+      "bonus": 1,
+      "range": "Melee",
+      "damage": "7",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Diggin' +2"
+    ],
+    "features": [
+      {
+        "name": "Minion (7)",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Hauntavermin is defeated when it takes any damage. For every 7 damage a PC deals to the Hauntavermin, defeat an additional minion within range the attack would succeed against."
+      },
+      {
+        "name": "Sickening Bomb",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to make a Hauntavermin within Far range of a Hand of the Plague explode. Each creature within Melee range of the minion must make an Agility Reaction Roll. On a failure, targets mark a HP and are Sickened until they mark a Stress and spend a Hope to clear the condition. Sickened creatures roll a d20 for their Fear die and a d6 for their Hope die."
+      },
+      {
+        "name": "Group Attack",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to choose a target and Spotlight all minions within Close range of them. Those minions move into Melee range of the target and make one shared attack roll. On a success, they deal 7 phy damage each. Combine this damage. If two or more minions are in Melee range, the target becomes Restrained until fewer than two minions are within Melee range."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "sword-scorpion",
+    "name": "Sword Scorpion",
+    "tier": 3,
+    "type": "Bruiser",
+    "summary": "An unnaturally large, venomous scorpion with an exoskeleton covered in jagged blades.",
+    "motive": "Envenom them, punish them for getting close, trap them in the claws",
+    "diff": 17,
+    "major": 21,
+    "severe": 40,
+    "hp": 7,
+    "stress": 4,
+    "minionRule": 0,
+    "attack": {
+      "name": "Pincer",
+      "bonus": 4,
+      "range": "Very Close",
+      "damage": "3d12+1",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Grabbin' +3",
+      "Stabbin' +4"
+    ],
+    "features": [
+      {
+        "name": "Jagged Carapace",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Targets that deal damage to the Sword Scorpion from Melee range mark a HP or give the GM a Fear."
+      },
+      {
+        "name": "Double Trouble",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to Restrain two targets within Very Close range until they or an Ally make a Strength roll to free themself. On a success, the target marks a Stress and clears Restrained. On a failure, the target marks a HP. If an Ally fails to break them free, both PCs mark a HP."
+      },
+      {
+        "name": "Venomous Stinger",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Make an attack roll against a target within Close range. On a success, deal 3d10+4 damage and spend a Fear to make the target make a Strength Reaction Roll. On a failure, they are Vulnerable until they clear a HP."
+      },
+      {
+        "name": "Grab and Stab",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "When the Scorpion Restrains a target, mark a Stress to immediately make a Venomous Stinger attack on them with advantage."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "cosmic-amalgam",
+    "name": "Cosmic Amalgam",
+    "tier": 4,
+    "type": "Bruiser",
+    "summary": "A horrifying grafted experiment composed of parts from a hundred different worlds, mashed into a rolling ball of flesh.",
+    "motive": "Bind their flesh, bowl over foes, integrate them into the greater whole",
+    "diff": 18,
+    "major": 34,
+    "severe": 60,
+    "hp": 9,
+    "stress": 4,
+    "minionRule": 0,
+    "attack": {
+      "name": "Fractalizing Limbs",
+      "bonus": 6,
+      "range": "Close",
+      "damage": "4d8+12",
+      "type": "Physical"
+    },
+    "experiences": [
+      "Crushin' +5",
+      "Rollin' +5"
+    ],
+    "features": [
+      {
+        "name": "Relentless Integration",
+        "type": "Passive",
+        "cost": "Fear",
+        "text": "When a creature becomes Integrated, place a token on this stat block. The Amalgam has Relentless (X+1) where X is equal to the number of tokens on this stat block. The Amalgam can be spotlighted up to X+1 times per GM turn. Spend Fear as usual to spotlight them."
+      },
+      {
+        "name": "Too Many Limbs",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Creatures Restrained by the Cosmic Amalgam must give the GM a Fear and succeed on a Strength Roll to clear Restrained."
+      },
+      {
+        "name": "Unstoppable Force",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to move in a line up to Far range, passing through creatures and destructible objects. Creatures it passes through must make an Agility Reaction Roll. On a failure, targets take 4d10+5 damage. Targets who take Major damage or more are Restrained and pulled along with the Cosmic Amalgam."
+      },
+      {
+        "name": "Integration",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When a creature Restrained by the Amalgam takes the spotlight they must make a Presence Reaction Roll. On a failure, they become Integrated. Integrated creatures can't move or teleport away from the Amalgam, and automatically fail the reaction roll caused by Unstoppable Force. If a creature dies while Integrated, they fully become part of the amalgam and cannot be resurrected without... disturbing consequences. When the Cosmic Amalgam marks its last HP, each Integrated creature clears the condition and marks 2 Stress."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "cosmic-captain",
+    "name": "Cosmic Captain",
+    "tier": 4,
+    "type": "Leader",
+    "summary": "A gaseous being from across the stars, encased in an armored E.V.A. suit, surrounded by a shimmering dome of energy.",
+    "motive": "Call down support, deflect the worst blows, empower minions",
+    "diff": 20,
+    "major": 29,
+    "severe": 63,
+    "hp": 7,
+    "stress": 7,
+    "minionRule": 0,
+    "attack": {
+      "name": "Disruptor Ray",
+      "bonus": 8,
+      "range": "Far",
+      "damage": "4d10+8",
+      "type": "Magic"
+    },
+    "experiences": [
+      "Commandin' +4",
+      "Reinforcin' +5"
+    ],
+    "features": [
+      {
+        "name": "Psychic Shield",
+        "type": "Passive",
+        "cost": "None",
+        "text": "Place 3 tokens on this stat block. When the Cosmic Captain takes magic damage, spend a token and gain a Fear."
+      },
+      {
+        "name": "Psychokinetic Dampener",
+        "type": "Passive",
+        "cost": "None",
+        "text": "While the Cosmic Captain has tokens on this stat block, they take only Minor damage from physical sources."
+      },
+      {
+        "name": "Relentless (2)",
+        "type": "Passive",
+        "cost": "Fear",
+        "text": "The Cosmic Captain can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them."
+      },
+      {
+        "name": "Beam Down",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to make 1d4+1 Cosmic Invaders to appear within Close range, stepping out of a shimmer in the air."
+      },
+      {
+        "name": "Orbital Strike",
+        "type": "Action",
+        "cost": "Stress",
+        "text": "Mark a Stress and make an attack roll against a target within Very Far range. On a success, the target takes 4d20+4 magic damage. Spend 2 Fear to force each creature within Very Close range of the target make an Instinct Reaction Roll. On a failure, they take an equal amount of damage."
+      },
+      {
+        "name": "Psionic Cannibal",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When two or more minions are defeated by a single attack within Close range, place a token on this stat block."
+      },
+      {
+        "name": "Neurotoxic Gases",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "When the Cosmic Captain takes Severe damage, spend a Fear to deal 4d20 magic damage to each target within Very Close range, as their brains swell with fluid."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "cosmic-grafter",
+    "name": "Cosmic Grafter",
+    "tier": 4,
+    "type": "Support",
+    "summary": "A terrifying, snakelike surgeon, from across the stars. Obsessed with obtaining perfection, they can shape flesh and mind alike.",
+    "motive": "Perfect the flesh, reshape their mind, resist vulnerability",
+    "diff": 17,
+    "major": 22,
+    "severe": 35,
+    "hp": 4,
+    "stress": 6,
+    "minionRule": 0,
+    "attack": {
+      "name": "Warp Beam",
+      "bonus": 3,
+      "range": "Close",
+      "damage": "4d6+10",
+      "type": "Magic"
+    },
+    "experiences": [
+      "Graft form +5",
+      "Warp Tech +4"
+    ],
+    "features": [
+      {
+        "name": "Grafted Perfection",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Cosmic Grafter cannot be made Vulnerable by any means."
+      },
+      {
+        "name": "Perfect Form",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend 2 Fear to target a PC within Close range and swap a PC's highest and lowest trait. This effect cannot be removed by any means until they use a downtime move on their next long rest or they spend Hope equal to the difference between the values."
+      },
+      {
+        "name": "Discombobulator Ray",
+        "type": "Reaction",
+        "cost": "Stress",
+        "text": "When the Grafter takes magic damage from a source within Far range, mark a Stress to make the attacker Discombobulated until they succeed with Hope. A Discombobulated creature must give the GM a Fear to move as part of an action and can't target creatures or objects beyond Very Close range."
+      },
+      {
+        "name": "Harvest Corpus",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "When the Grafter takes physical damage from a source within Far range, spend a Fear to reduce the severity by 1 and force the attacker to make a Strength Reaction Roll. On a failure, the target marks 1 HP."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "cosmic-infiltrator",
+    "name": "Cosmic Infiltrator",
+    "tier": 4,
+    "type": "Enigma",
+    "summary": "A gelatinous, shapeshifting being from another world, capable of blending in perfectly with the locals.",
+    "motive": "Confuse and distress, sow discord, swap places",
+    "diff": 19,
+    "major": 20,
+    "severe": 40,
+    "hp": 7,
+    "stress": 8,
+    "minionRule": 0,
+    "attack": {
+      "name": "Psychic Lance",
+      "bonus": 8,
+      "range": "Close",
+      "damage": "4d12+20",
+      "type": "Magic"
+    },
+    "experiences": [
+      "Infiltratin' +5",
+      "Mind Games +5",
+      "Usurpin' +4"
+    ],
+    "features": [
+      {
+        "name": "Perfect Mimic",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Cosmic Infiltrator can Disguise itself at will, changing its shape into any humanoid creature it has seen of relative size. While in Disguise, the Interloper is visually indistinguishable but does not have their memories or mannerisms."
+      },
+      {
+        "name": "Body Swap",
+        "type": "Action",
+        "cost": "Stress",
+        "text": "Mark a Stress to swap places with a target within Very Close range and Disguise the Infiltrator as the target. It remains Disguised until the Infiltrator takes Severe damage. While Disguised, creatures other than the target of Body Swap must mark 2 Stress to target the Cosmic Infiltrator."
+      },
+      {
+        "name": "Body Snatcher",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend 3 Fear to kidnap someone close to the PCs and start a Something's Off Countdown (8) that ticks down the first time in every scene that they interact with the Infiltrator and each time they long rest. While the countdown is active, the Infiltrator becomes Melded, gaining the target's memories and mannerisms but something is... off. When it triggers, the NPC dies, the Cosmic Infiltrator gains their memories and mannerisms, and its Difficulty increases by 1 permanently."
+      },
+      {
+        "name": "Mirrored Trauma",
+        "type": "Reaction",
+        "cost": "Fear",
+        "text": "Spend 2 Fear when the Cosmic Infiltrator marks 2 or more HP or Stress to make the attacker mark the same amount of HP or Stress."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
+  },
+  {
+    "id": "cosmic-invader",
+    "name": "Cosmic Invader",
+    "tier": 4,
+    "type": "Minion",
+    "summary": "Footsoldiers from another world, wielding curious technology. Their skin is green and slimy. Large void-like eyes glare from beneath a glass dome.",
+    "motive": "Net them with fear, surround them, zzzzzap them",
+    "diff": 18,
+    "major": 0,
+    "severe": 0,
+    "hp": 1,
+    "stress": 1,
+    "minionRule": 13,
+    "attack": {
+      "name": "Mind Melter Ray",
+      "bonus": 3,
+      "range": "Close",
+      "damage": "12",
+      "type": "Magic"
+    },
+    "experiences": [
+      "Psychic +4"
+    ],
+    "features": [
+      {
+        "name": "Minion (13)",
+        "type": "Passive",
+        "cost": "None",
+        "text": "The Cosmic Invader is defeated when it takes any damage. For every 13 damage a PC deals to the Cosmic Invader, defeat an additional minion within range the attack would succeed against."
+      },
+      {
+        "name": "Beam Swap",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to swap places with another Cosmic Adversary within Far range. The target can make a standard attack against a creature within range."
+      },
+      {
+        "name": "Group Attack",
+        "type": "Action",
+        "cost": "Fear",
+        "text": "Spend a Fear to choose a target and Spotlight all minions within Far range of them. Those Minions move into Close range of the target and make one shared attack roll. On a success, deal 10 damage for each Minion in range. Combine the damage. If the target takes Major damage or more, they become Vulnerable until they mark 2 Stress to quell the psychic assault."
+      },
+      {
+        "name": "Psychic Terror Network",
+        "type": "Reaction",
+        "cost": "None",
+        "text": "When a minion within Far range of a Cosmic Captain uses their group attack, gain 1 Fear if the target takes Minor damage, 2 Fear if they take Major damage, or 3 Fear if they take Severe damage."
+      }
+    ],
+    "pages": [
+      "Pistolheart"
+    ],
+    "book": "Pistolheart"
   }
 ]
