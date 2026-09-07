@@ -2492,7 +2492,7 @@ const App = {
           ${trackersHTML}
 
           <!-- Primary Attack Section -->
-          ${adv.attack && (adv.attack.damage || '').trim() && (adv.attack.damage || '').trim() !== '—' && (adv.attack.damage || '').trim().toLowerCase() !== 'none' ? `
+          ${adv.attack && adv.attack.type !== 'None' && (adv.attack.damage || '').trim() && (adv.attack.damage || '').trim() !== '—' && (adv.attack.damage || '').trim().toLowerCase() !== 'none' ? `
             <div class="attack-banner d-flex justify-content-between align-items-center mb-3">
               <div class="overflow-hidden" style="min-width: 0;">
                 <span class="fw-bold text-light">${adv.attack.name || 'Basic Attack'}</span>
@@ -3085,7 +3085,7 @@ const App = {
   },
 
   rollAdversaryAttack(adv) {
-    if (!adv.attack || !(adv.attack.damage || '').trim() || (adv.attack.damage || '').trim() === '—' || (adv.attack.damage || '').trim().toLowerCase() === 'none') return;
+    if (!adv.attack || adv.attack.type === 'None' || !(adv.attack.damage || '').trim() || (adv.attack.damage || '').trim() === '—' || (adv.attack.damage || '').trim().toLowerCase() === 'none') return;
     this.openDiceTray();
     AudioFX.playRoll();
     const d20 = Math.floor(Math.random() * 20) + 1;
@@ -3130,7 +3130,7 @@ const App = {
   },
 
   rollAdversaryDamage(adv) {
-    if (!adv.attack || !(adv.attack.damage || '').trim() || (adv.attack.damage || '').trim() === '—' || (adv.attack.damage || '').trim().toLowerCase() === 'none') return;
+    if (!adv.attack || adv.attack.type === 'None' || !(adv.attack.damage || '').trim() || (adv.attack.damage || '').trim() === '—' || (adv.attack.damage || '').trim().toLowerCase() === 'none') return;
     this.openDiceTray();
     AudioFX.playRoll();
     const formula = adv.attack?.damage || '1d8';
@@ -3443,53 +3443,62 @@ const App = {
     scaled.stress = Math.max(0, targetBench.stress + stressDelta);
 
     // 4. Attack Bonus & Signature Damage Dice Scaling
-    if (originItem.attack) {
-      scaled.attack = JSON.parse(JSON.stringify(originItem.attack));
-      const origAtkBonus = originItem.attack.bonus !== undefined ? originItem.attack.bonus : (origBench.atkBonus !== undefined ? origBench.atkBonus : 0);
+    const origAtk = originItem.attack || (originItem.attacklabel || originItem.attackdamage ? {
+      name: originItem.attacklabel,
+      bonus: originItem.attackbonus,
+      range: originItem.attackrange,
+      damage: originItem.attackdamage,
+      type: originItem.attackdamagetype
+    } : null);
+
+    const isNoneType = origAtk && String(origAtk.type || '').toLowerCase() === 'none';
+    const origDmgStr = (origAtk && origAtk.damage !== undefined && origAtk.damage !== null ? String(origAtk.damage) : '').trim();
+    const hasValidAttack = origAtk && !isNoneType && origDmgStr && origDmgStr !== '—' && origDmgStr.toLowerCase() !== 'none';
+
+    if (hasValidAttack) {
+      scaled.attack = JSON.parse(JSON.stringify(origAtk));
+      const origAtkBonus = origAtk.bonus !== undefined ? origAtk.bonus : (origBench.atkBonus !== undefined ? origBench.atkBonus : 0);
       const benchAtkBonus = origBench.atkBonus !== undefined ? origBench.atkBonus : 0;
       const atkDelta = origAtkBonus - benchAtkBonus;
       const targetBenchAtkBonus = targetBench.atkBonus !== undefined ? targetBench.atkBonus : 0;
       scaled.attack.bonus = targetBenchAtkBonus + atkDelta;
 
-      const origDmgStr = (originItem.attack.damage !== undefined && originItem.attack.damage !== null ? String(originItem.attack.damage) : '').trim();
-      const hasDmg = origDmgStr && origDmgStr !== '—' && origDmgStr.toLowerCase() !== 'none';
+      const diceMatch = origDmgStr.match(/^(\d+)d(\d+)(?:\s*([+-])\s*(\d+))?/i);
 
-      if (hasDmg) {
-        const diceMatch = origDmgStr.match(/^(\d+)d(\d+)(?:\s*([+-])\s*(\d+))?/i);
-
-        if (diceMatch) {
-          const dieSize = parseInt(diceMatch[2], 10);
-          const targetDieCount = Math.max(1, targetTier);
-          
-          let targetAvgDmg = 9;
-          if (targetBench.targetDmg) {
-            const parts = String(targetBench.targetDmg).split(/[–-]/).map(p => parseFloat(p.trim()));
-            targetAvgDmg = parts.length === 2 ? (parts[0] + parts[1]) / 2 : (parts[0] || 9);
-          } else if (targetBench.dmg) {
-            const match = String(targetBench.dmg).match(/(\d+)d(\d+)(?:\s*\+\s*(\d+))?/);
-            if (match) {
-              targetAvgDmg = parseInt(match[1]) * ((parseInt(match[2]) + 1) / 2) + (match[3] ? parseInt(match[3]) : 0);
-            }
+      if (diceMatch) {
+        const dieSize = parseInt(diceMatch[2], 10);
+        const targetDieCount = Math.max(1, targetTier);
+        
+        let targetAvgDmg = 9;
+        if (targetBench.targetDmg) {
+          const parts = String(targetBench.targetDmg).split(/[–-]/).map(p => parseFloat(p.trim()));
+          targetAvgDmg = parts.length === 2 ? (parts[0] + parts[1]) / 2 : (parts[0] || 9);
+        } else if (targetBench.dmg) {
+          const match = String(targetBench.dmg).match(/(\d+)d(\d+)(?:\s*\+\s*(\d+))?/);
+          if (match) {
+            targetAvgDmg = parseInt(match[1]) * ((parseInt(match[2]) + 1) / 2) + (match[3] ? parseInt(match[3]) : 0);
           }
-
-          const avgDiceRoll = targetDieCount * ((dieSize + 1) / 2);
-          let desiredFlat = Math.round(targetAvgDmg - avgDiceRoll);
-          
-          let newDmgFormula = `${targetDieCount}d${dieSize}`;
-          if (desiredFlat > 0) {
-            newDmgFormula += `+${desiredFlat}`;
-          } else if (desiredFlat < 0) {
-            newDmgFormula += `${desiredFlat}`;
-          }
-          scaled.attack.damage = newDmgFormula;
-        } else if (!isNaN(parseInt(origDmgStr, 10))) {
-          const origFlat = parseInt(origDmgStr, 10);
-          const benchFlat = parseInt(origBench.dmg || origBench.dice?.average || '5', 10) || 5;
-          const targetFlatBench = parseInt(targetBench.dmg || targetBench.dice?.average || '8', 10) || 8;
-          const flatDelta = origFlat - benchFlat;
-          scaled.attack.damage = String(Math.max(1, targetFlatBench + flatDelta));
         }
+
+        const avgDiceRoll = targetDieCount * ((dieSize + 1) / 2);
+        let desiredFlat = Math.round(targetAvgDmg - avgDiceRoll);
+        
+        let newDmgFormula = `${targetDieCount}d${dieSize}`;
+        if (desiredFlat > 0) {
+          newDmgFormula += `+${desiredFlat}`;
+        } else if (desiredFlat < 0) {
+          newDmgFormula += `${desiredFlat}`;
+        }
+        scaled.attack.damage = newDmgFormula;
+      } else if (!isNaN(parseInt(origDmgStr, 10))) {
+        const origFlat = parseInt(origDmgStr, 10);
+        const benchFlat = parseInt(origBench.dmg || origBench.dice?.average || '5', 10) || 5;
+        const targetFlatBench = parseInt(targetBench.dmg || targetBench.dice?.average || '8', 10) || 8;
+        const flatDelta = origFlat - benchFlat;
+        scaled.attack.damage = String(Math.max(1, targetFlatBench + flatDelta));
       }
+    } else {
+      delete scaled.attack;
     }
 
     // 5. Experiences Scaling (+1, +2, +3, +4, +5)
@@ -3926,11 +3935,41 @@ const App = {
     setVal('form-adv-stress', item.stress !== undefined ? item.stress : '');
     setVal('form-adv-minion-num', item.minionRule || '');
 
-    setVal('form-adv-atk-name', item.attack?.name || '');
-    setVal('form-adv-atk-bonus', item.attack?.bonus !== undefined ? item.attack.bonus : '');
-    setVal('form-adv-atk-range', item.attack?.range || 'Melee');
-    setVal('form-adv-atk-damagetype', item.attack?.type || 'Physical');
-    setVal('form-adv-atk-damage', item.attack?.damage || '');
+    const atk = item.attack || (item.attacklabel || item.attackdamage ? {
+      name: item.attacklabel,
+      bonus: item.attackbonus,
+      range: item.attackrange,
+      damage: item.attackdamage,
+      type: item.attackdamagetype
+    } : null);
+
+    let normType = 'Physical';
+    if (atk && atk.type) {
+      const tLower = String(atk.type).toLowerCase();
+      if (tLower.includes('mag')) normType = 'Magic';
+      else if (tLower.includes('dir')) normType = 'Direct';
+      else if (tLower === 'none' || tLower === '—') normType = 'None';
+      else normType = 'Physical';
+    } else if (!atk || !atk.damage || atk.damage === '—' || String(atk.damage).toLowerCase() === 'none') {
+      normType = 'None';
+    }
+
+    const hasAtk = Boolean(atk && normType !== 'None' && atk.damage && String(atk.damage).trim() !== '' && String(atk.damage).trim() !== '—' && String(atk.damage).trim().toLowerCase() !== 'none');
+
+    if (hasAtk) {
+      setVal('form-adv-atk-name', atk.name || 'Basic Attack');
+      setVal('form-adv-atk-bonus', atk.bonus !== undefined ? atk.bonus : 0);
+      setVal('form-adv-atk-range', atk.range || 'Melee');
+      setVal('form-adv-atk-damagetype', normType);
+      setVal('form-adv-atk-damage', atk.damage || '');
+    } else {
+      // If adversary has no attack mechanic, fields are blank and damage type is None
+      setVal('form-adv-atk-name', (atk?.name && atk.name !== '—') ? atk.name : '');
+      setVal('form-adv-atk-bonus', '');
+      setVal('form-adv-atk-range', atk?.range || 'Melee');
+      setVal('form-adv-atk-damagetype', 'None');
+      setVal('form-adv-atk-damage', '');
+    }
 
     setVal('form-adv-experiences', Array.isArray(item.experiences) ? item.experiences.join(', ') : (item.experiences || ''));
 
@@ -3960,7 +3999,7 @@ const App = {
       });
     }
 
-    // Toggle UI sections
+    // Toggle UI sections - Attack card always displays for all adversaries (only hidden for Environment)
     const colossusFrameworkSec = document.getElementById('section-colossus-framework-params');
     const colossusSegmentsSec = document.getElementById('section-colossus-segments');
     const envSection = document.getElementById('section-environment-params');
@@ -3971,7 +4010,7 @@ const App = {
     if (colossusFrameworkSec) colossusFrameworkSec.classList.toggle('d-none', !isColossus);
     if (colossusSegmentsSec) colossusSegmentsSec.classList.toggle('d-none', !isColossus);
     if (envSection) envSection.classList.toggle('d-none', !isEnv);
-    if (atkSection) atkSection.classList.toggle('d-none', isEnv || isColossus);
+    if (atkSection) atkSection.classList.toggle('d-none', isEnv);
     combatGroups.forEach(el => el.classList.toggle('d-none', isEnv));
     if (motiveLabel) motiveLabel.textContent = isEnv ? 'Sensory Description & Atmosphere' : (isColossus ? 'Titanic Motive & Concept' : 'Motive & Concept');
   },
@@ -4097,7 +4136,7 @@ const App = {
     if (colossusFrameworkSec) colossusFrameworkSec.classList.toggle('d-none', !isColossus);
     if (colossusSegmentsSec) colossusSegmentsSec.classList.toggle('d-none', !isColossus);
     if (envSection) envSection.classList.toggle('d-none', !isEnv);
-    if (atkSection) atkSection.classList.toggle('d-none', isEnv || isColossus);
+    if (atkSection) atkSection.classList.toggle('d-none', isEnv);
     combatGroups.forEach(el => el.classList.toggle('d-none', isEnv));
     if (motiveLabel) motiveLabel.textContent = isEnv ? 'Sensory Description & Atmosphere' : (isColossus ? 'Titanic Motive & Concept' : 'Motive & Concept');
 
@@ -4458,7 +4497,7 @@ const App = {
     if (colossusFrameworkSec) colossusFrameworkSec.classList.toggle('d-none', !isColossus);
     if (colossusSegmentsSec) colossusSegmentsSec.classList.toggle('d-none', !isColossus);
     if (envSection) envSection.classList.toggle('d-none', !isEnv);
-    if (atkSection) atkSection.classList.toggle('d-none', isEnv || isColossus);
+    if (atkSection) atkSection.classList.toggle('d-none', isEnv);
     combatGroups.forEach(el => el.classList.toggle('d-none', isEnv));
     if (motiveLabel) motiveLabel.textContent = isEnv ? 'Sensory Description & Atmosphere' : (isColossus ? 'Titanic Motive & Concept' : 'Motive & Concept');
 
@@ -4651,13 +4690,15 @@ const App = {
       hp,
       stress,
       minionRule,
-      attack: isEnv ? { name: '—', bonus: 0, range: '—', damage: '—', type: '—' } : (isColossus ? undefined : {
-        name: atkName,
-        bonus: atkBonus,
-        range: atkRange,
-        damage: atkDamage,
-        type: atkType
-      }),
+      attack: (isEnv || isColossus || atkType === 'None' || !atkDamage || atkDamage === '—' || atkDamage.toLowerCase() === 'none')
+        ? (isEnv ? { name: '—', bonus: 0, range: '—', damage: '—', type: '—' } : undefined)
+        : {
+            name: atkName || 'Basic Attack',
+            bonus: atkBonus,
+            range: atkRange,
+            damage: atkDamage,
+            type: atkType
+          },
       experiences,
       features,
       tokenImg,
