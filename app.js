@@ -3353,23 +3353,23 @@ const App = {
   },
 
   // ===========================================================================
-  // 8B. GM QUICK MATH & DAMAGE CALCULATOR
+  // 8B. GM QUICK MATH & DAMAGE CALCULATOR (PEMDAS ORDER OF OPERATIONS)
   // ===========================================================================
   calcState: {
     current: '0',
-    previous: null,
-    operation: null,
+    tokens: [],
     overwrite: true,
-    history: ''
+    historyStr: '',
+    isCalculated: false
   },
 
   initCalculator() {
     this.calcState = {
       current: '0',
-      previous: null,
-      operation: null,
+      tokens: [],
       overwrite: true,
-      history: ''
+      historyStr: '',
+      isCalculated: false
     };
     this.updateCalcDisplay();
 
@@ -3408,6 +3408,10 @@ const App = {
   },
 
   inputCalcNumber(numStr) {
+    if (this.calcState.isCalculated) {
+      this.clearCalculator();
+    }
+
     if (this.calcState.overwrite || this.calcState.current === 'Error') {
       this.calcState.current = numStr;
       this.calcState.overwrite = false;
@@ -3422,6 +3426,10 @@ const App = {
   },
 
   inputCalcDecimal() {
+    if (this.calcState.isCalculated) {
+      this.clearCalculator();
+    }
+
     if (this.calcState.overwrite || this.calcState.current === 'Error') {
       this.calcState.current = '0.';
       this.calcState.overwrite = false;
@@ -3437,86 +3445,148 @@ const App = {
       return;
     }
 
+    if (this.calcState.isCalculated) {
+      const resVal = parseFloat(this.calcState.current) || 0;
+      this.calcState.tokens = [resVal];
+      this.calcState.isCalculated = false;
+    }
+
     const currentVal = parseFloat(this.calcState.current);
     if (isNaN(currentVal)) return;
 
-    const opSymbol = op === '*' ? '×' : op === '/' ? '÷' : op === '-' ? '−' : '+';
-
-    if (this.calcState.previous !== null && !this.calcState.overwrite) {
-      this.computeCalculator(false);
+    if (this.calcState.overwrite) {
+      // Replace previous operator if clicked consecutively
+      if (this.calcState.tokens.length > 0 && typeof this.calcState.tokens[this.calcState.tokens.length - 1] === 'string') {
+        this.calcState.tokens[this.calcState.tokens.length - 1] = op;
+      }
     } else {
-      this.calcState.previous = currentVal;
+      this.calcState.tokens.push(currentVal);
+      this.calcState.tokens.push(op);
+      this.calcState.overwrite = true;
     }
 
-    this.calcState.operation = op;
-    this.calcState.history = `${this.formatCalcNum(this.calcState.previous)} ${opSymbol}`;
-    this.calcState.overwrite = true;
+    this.calcState.historyStr = this.formatExpression(this.calcState.tokens);
     this.updateCalcDisplay();
   },
 
-  computeCalculator(isFinalEquals = true) {
-    if (this.calcState.previous === null || this.calcState.operation === null) return;
-    const prev = this.calcState.previous;
-    const current = parseFloat(this.calcState.current);
-    if (isNaN(current)) return;
+  computeCalculator() {
+    if (this.calcState.isCalculated || this.calcState.current === 'Error') return;
 
-    const opSymbol = this.calcState.operation === '*' ? '×' : this.calcState.operation === '/' ? '÷' : this.calcState.operation === '-' ? '−' : '+';
+    const currentVal = parseFloat(this.calcState.current);
+    if (isNaN(currentVal)) return;
 
-    let result = 0;
-    switch (this.calcState.operation) {
-      case '+':
-        result = prev + current;
-        break;
-      case '-':
-        result = prev - current;
-        break;
-      case '*':
-        result = prev * current;
-        break;
-      case '/':
-        result = current === 0 ? 'Error' : prev / current;
-        break;
-      default:
-        return;
+    const fullTokens = [...this.calcState.tokens];
+    if (!this.calcState.overwrite || fullTokens.length === 0) {
+      fullTokens.push(currentVal);
+    } else if (typeof fullTokens[fullTokens.length - 1] === 'string') {
+      fullTokens.push(currentVal);
     }
+
+    if (fullTokens.length === 0) return;
+
+    const expressionText = this.formatExpression(fullTokens) + ' =';
+    const result = this.evaluatePEMDAS(fullTokens);
 
     if (result === 'Error') {
       this.calcState.current = 'Error';
-      this.calcState.history = `${this.formatCalcNum(prev)} ${opSymbol} ${this.formatCalcNum(current)} =`;
-      this.calcState.previous = null;
-      this.calcState.operation = null;
+      this.calcState.historyStr = expressionText;
+      this.calcState.tokens = [];
+      this.calcState.isCalculated = true;
       this.calcState.overwrite = true;
     } else {
-      // Clean float rounding precision
-      result = Math.round((result + Number.EPSILON) * 10000000) / 10000000;
-      if (isFinalEquals) {
-        this.calcState.history = `${this.formatCalcNum(prev)} ${opSymbol} ${this.formatCalcNum(current)} =`;
-        this.calcState.current = String(result);
-        this.calcState.previous = null;
-        this.calcState.operation = null;
-        this.calcState.overwrite = true;
+      this.calcState.historyStr = expressionText;
+      this.calcState.current = String(result);
+      this.calcState.tokens = [];
+      this.calcState.isCalculated = true;
+      this.calcState.overwrite = true;
+    }
+
+    this.updateCalcDisplay();
+  },
+
+  evaluatePEMDAS(tokens) {
+    if (!tokens || tokens.length === 0) return 0;
+    if (tokens.length === 1) return typeof tokens[0] === 'number' ? tokens[0] : parseFloat(tokens[0]) || 0;
+
+    const list = [...tokens];
+
+    // Pass 1: Multiplication and Division (* and /)
+    let i = 0;
+    while (i < list.length) {
+      if (list[i] === '*' || list[i] === '/') {
+        const op = list[i];
+        const left = parseFloat(list[i - 1]);
+        const right = parseFloat(list[i + 1]);
+
+        if (isNaN(left) || isNaN(right)) return 'Error';
+
+        let subResult = 0;
+        if (op === '*') {
+          subResult = left * right;
+        } else if (op === '/') {
+          if (right === 0) return 'Error';
+          subResult = left / right;
+        }
+
+        list.splice(i - 1, 3, subResult);
+        i = i - 1;
       } else {
-        this.calcState.previous = result;
-        this.calcState.current = String(result);
-        this.calcState.overwrite = true;
+        i++;
       }
     }
-    this.updateCalcDisplay();
+
+    // Pass 2: Addition and Subtraction (+ and -)
+    i = 0;
+    while (i < list.length) {
+      if (list[i] === '+' || list[i] === '-') {
+        const op = list[i];
+        const left = parseFloat(list[i - 1]);
+        const right = parseFloat(list[i + 1]);
+
+        if (isNaN(left) || isNaN(right)) return 'Error';
+
+        let subResult = 0;
+        if (op === '+') {
+          subResult = left + right;
+        } else if (op === '-') {
+          subResult = left - right;
+        }
+
+        list.splice(i - 1, 3, subResult);
+        i = i - 1;
+      } else {
+        i++;
+      }
+    }
+
+    const finalNum = parseFloat(list[0]);
+    if (isNaN(finalNum)) return 'Error';
+    return Math.round((finalNum + Number.EPSILON) * 10000000) / 10000000;
+  },
+
+  formatExpression(tokens) {
+    return tokens.map(t => {
+      if (t === '*') return '×';
+      if (t === '/') return '÷';
+      if (t === '-') return '−';
+      if (t === '+') return '+';
+      return this.formatCalcNum(t);
+    }).join(' ');
   },
 
   clearCalculator() {
     this.calcState = {
       current: '0',
-      previous: null,
-      operation: null,
+      tokens: [],
       overwrite: true,
-      history: ''
+      historyStr: '',
+      isCalculated: false
     };
     this.updateCalcDisplay();
   },
 
   backspaceCalculator() {
-    if (this.calcState.overwrite || this.calcState.current === 'Error') {
+    if (this.calcState.isCalculated || this.calcState.overwrite || this.calcState.current === 'Error') {
       this.calcState.current = '0';
       this.calcState.overwrite = true;
     } else {
@@ -3552,7 +3622,7 @@ const App = {
       dispEl.textContent = this.calcState.current;
     }
     if (histEl) {
-      histEl.innerHTML = this.calcState.history ? this.calcState.history : '&nbsp;';
+      histEl.innerHTML = this.calcState.historyStr ? this.calcState.historyStr : '&nbsp;';
     }
   },
 
