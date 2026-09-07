@@ -2492,16 +2492,16 @@ const App = {
           ${trackersHTML}
 
           <!-- Primary Attack Section -->
-          ${adv.attack?.name ? `
+          ${adv.attack && (adv.attack.damage || '').trim() && (adv.attack.damage || '').trim() !== '—' && (adv.attack.damage || '').trim().toLowerCase() !== 'none' ? `
             <div class="attack-banner d-flex justify-content-between align-items-center mb-3">
               <div class="overflow-hidden" style="min-width: 0;">
                 <span class="fw-bold text-light">${adv.attack.name || 'Basic Attack'}</span>
                 <div class="small text-muted text-truncate">
-                  +${adv.attack.bonus} to hit &bull; ${adv.attack.range} &bull; ${adv.attack.damage} ${adv.attack.type}
+                  +${adv.attack.bonus || 0} to hit &bull; ${adv.attack.range || 'Melee'} &bull; ${adv.attack.damage} ${adv.attack.type || 'Physical'}
                 </div>
               </div>
               <div class="d-flex gap-1 flex-shrink-0">
-                <button class="btn btn-xs btn-outline-info" data-action="roll-atk" data-idx="${index}" title="Roll ${adv.name} Attack (+${adv.attack.bonus})">
+                <button class="btn btn-xs btn-outline-info" data-action="roll-atk" data-idx="${index}" title="Roll ${adv.name} Attack (+${adv.attack.bonus || 0})">
                   <span>🎲</span> Atk
                 </button>
                 <button class="btn btn-xs btn-outline-warning" data-action="roll-dmg" data-idx="${index}" title="Roll ${adv.name} Damage (${adv.attack.damage})">
@@ -3085,6 +3085,7 @@ const App = {
   },
 
   rollAdversaryAttack(adv) {
+    if (!adv.attack || !(adv.attack.damage || '').trim() || (adv.attack.damage || '').trim() === '—' || (adv.attack.damage || '').trim().toLowerCase() === 'none') return;
     this.openDiceTray();
     AudioFX.playRoll();
     const d20 = Math.floor(Math.random() * 20) + 1;
@@ -3129,6 +3130,7 @@ const App = {
   },
 
   rollAdversaryDamage(adv) {
+    if (!adv.attack || !(adv.attack.damage || '').trim() || (adv.attack.damage || '').trim() === '—' || (adv.attack.damage || '').trim().toLowerCase() === 'none') return;
     this.openDiceTray();
     AudioFX.playRoll();
     const formula = adv.attack?.damage || '1d8';
@@ -3508,8 +3510,9 @@ const App = {
         scaledSeg.diff = Math.max(8, (seg.diff || 14) + (tierStep * 2));
         scaledSeg.hp = Math.max(1, Math.round((seg.hp || 5) * (1 + (tierStep * 0.25))));
         
-        if (scaledSeg.attack) {
-          scaledSeg.attack.bonus = (scaledSeg.attack.bonus || 2) + tierStep;
+        const hasAttack = Boolean(seg.attack && (seg.attack.damage || '').trim() && (seg.attack.damage || '').trim() !== '—' && (seg.attack.damage || '').trim().toLowerCase() !== 'none');
+        if (hasAttack && scaledSeg.attack) {
+          scaledSeg.attack.bonus = (scaledSeg.attack.bonus !== undefined ? scaledSeg.attack.bonus : 2) + tierStep;
           const sDmg = (scaledSeg.attack.damage || '').trim();
           const sMatch = sDmg.match(/^(\d+)d(\d+)(?:\s*([+-])\s*(\d+))?/i);
           if (sMatch) {
@@ -3519,6 +3522,8 @@ const App = {
             const sign = sMatch[3] || '+';
             scaledSeg.attack.damage = `${dieCount}d${dieSize}${flat ? `${sign}${flat}` : ''}`;
           }
+        } else {
+          delete scaledSeg.attack;
         }
         return scaledSeg;
       });
@@ -3527,9 +3532,6 @@ const App = {
     return scaled;
   },
 
-  // ===========================================================================
-  // COLOSSUS SEGMENT ARCHITECT ENGINE
-  // ===========================================================================
   // ===========================================================================
   // COLOSSUS SEGMENT ARCHITECT ENGINE
   // ===========================================================================
@@ -3550,7 +3552,11 @@ const App = {
     container.innerHTML = this.creatorColossusSegments.map((seg, idx) => {
       const isFatal = seg.isFatal || (seg.features && seg.features.some(f => f.name.toLowerCase().includes('fatal')));
       const qty = seg.quantity || 1;
-      const atk = seg.attack || { name: 'Strike', bonus: 2, range: 'Melee', damage: '1d10+1', type: 'Physical' };
+      const atk = seg.attack || {};
+      const atkName = atk.name || '';
+      const atkBonus = atk.bonus !== undefined ? atk.bonus : '';
+      const atkRange = atk.range || 'Melee';
+      const atkDamage = (atk.damage && atk.damage !== '—' && atk.damage.toLowerCase() !== 'none') ? atk.damage : '';
       const adjStr = Array.isArray(seg.adjacentSegments) ? seg.adjacentSegments.join(', ') : (seg.adjacentSegments || '');
       const features = seg.features || [];
 
@@ -3630,28 +3636,28 @@ const App = {
             </div>
           </div>
 
-          <!-- Attack Parameters -->
+          <!-- Attack Parameters (Optional) -->
           <div class="row g-2 p-2 rounded bg-dark border border-subtle mb-2">
             <div class="col-12 col-md-4">
-              <input type="text" class="form-control form-control-sm seg-field-atk-name" value="${(atk.name || 'Natural Strike').replace(/"/g, '&quot;')}" placeholder="Attack Name">
+              <input type="text" class="form-control form-control-sm seg-field-atk-name" value="${atkName.replace(/"/g, '&quot;')}" placeholder="Attack Name (Optional)">
             </div>
             <div class="col-4 col-md-2">
               <div class="input-group input-group-sm">
                 <span class="input-group-text py-0 text-muted" style="font-size: 0.68rem;">+</span>
-                <input type="number" class="form-control form-control-sm text-center fw-bold seg-field-atk-bonus" value="${atk.bonus !== undefined ? atk.bonus : 2}" placeholder="Atk">
+                <input type="number" class="form-control form-control-sm text-center fw-bold seg-field-atk-bonus" value="${atkBonus}" placeholder="0">
               </div>
             </div>
             <div class="col-4 col-md-3">
               <select class="form-select form-select-sm seg-field-atk-range">
-                <option value="Melee" ${atk.range === 'Melee' ? 'selected' : ''}>Melee</option>
-                <option value="Very Close" ${atk.range === 'Very Close' ? 'selected' : ''}>Very Close</option>
-                <option value="Close" ${atk.range === 'Close' ? 'selected' : ''}>Close</option>
-                <option value="Far" ${atk.range === 'Far' ? 'selected' : ''}>Far</option>
-                <option value="Very Far" ${atk.range === 'Very Far' ? 'selected' : ''}>Very Far</option>
+                <option value="Melee" ${atkRange === 'Melee' ? 'selected' : ''}>Melee</option>
+                <option value="Very Close" ${atkRange === 'Very Close' ? 'selected' : ''}>Very Close</option>
+                <option value="Close" ${atkRange === 'Close' ? 'selected' : ''}>Close</option>
+                <option value="Far" ${atkRange === 'Far' ? 'selected' : ''}>Far</option>
+                <option value="Very Far" ${atkRange === 'Very Far' ? 'selected' : ''}>Very Far</option>
               </select>
             </div>
             <div class="col-4 col-md-3">
-              <input type="text" class="form-control form-control-sm seg-field-atk-damage" value="${(atk.damage || '1d10+1').replace(/"/g, '&quot;')}" placeholder="e.g. 1d10+1">
+              <input type="text" class="form-control form-control-sm seg-field-atk-damage" value="${atkDamage.replace(/"/g, '&quot;')}" placeholder="Damage (e.g. 1d10+1, or blank)">
             </div>
           </div>
 
@@ -3790,12 +3796,22 @@ const App = {
       const adjVal = card.querySelector('.seg-field-adjacent')?.value.trim() || '';
       seg.adjacentSegments = adjVal ? adjVal.split(',').map(s => s.trim()).filter(Boolean) : [];
       
-      if (!seg.attack) seg.attack = {};
-      seg.attack.name = card.querySelector('.seg-field-atk-name')?.value.trim() || 'Natural Strike';
-      seg.attack.bonus = parseInt(card.querySelector('.seg-field-atk-bonus')?.value, 10) || 2;
-      seg.attack.range = card.querySelector('.seg-field-atk-range')?.value || 'Melee';
-      seg.attack.damage = card.querySelector('.seg-field-atk-damage')?.value.trim() || '1d10+1';
-      seg.attack.type = 'Physical';
+      const atkDmg = card.querySelector('.seg-field-atk-damage')?.value.trim() || '';
+      const atkName = card.querySelector('.seg-field-atk-name')?.value.trim() || '';
+      const atkBonusRaw = card.querySelector('.seg-field-atk-bonus')?.value.trim();
+      const atkRange = card.querySelector('.seg-field-atk-range')?.value || 'Melee';
+
+      if (atkDmg && atkDmg !== '—' && atkDmg.toLowerCase() !== 'none') {
+        seg.attack = {
+          name: atkName || 'Natural Strike',
+          bonus: atkBonusRaw !== '' ? (parseInt(atkBonusRaw, 10) || 0) : 0,
+          range: atkRange,
+          damage: atkDmg,
+          type: 'Physical'
+        };
+      } else {
+        delete seg.attack;
+      }
 
       // Sync per-segment features
       const featRows = card.querySelectorAll('.seg-feature-row');
@@ -3849,13 +3865,6 @@ const App = {
         hp: 5 + (currentTier - 1),
         stress: 0,
         adjacentSegments: ['Torso'],
-        attack: {
-          name: 'Colossal Slam',
-          bonus: 2 + (currentTier - 1),
-          range: 'Melee',
-          damage: `${dieCount}d10+1`,
-          type: 'Physical'
-        },
         features: []
       });
     }
@@ -4734,6 +4743,7 @@ const App = {
           ? `<div class="mt-1 pt-1 border-top border-subtle small text-muted" style="font-size: 0.68rem;">${segFeats.map(f => `<span class="badge bg-dark border border-secondary text-light me-1">${f.name}</span>`).join('')}</div>`
           : '';
 
+        const segHasAtk = Boolean(s.attack && (s.attack.damage || '').trim() && (s.attack.damage || '').trim() !== '—' && (s.attack.damage || '').trim().toLowerCase() !== 'none');
         return `
           <div class="p-2 rounded bg-dark border border-secondary">
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-1">
@@ -4744,7 +4754,7 @@ const App = {
               <div class="d-flex align-items-center gap-2 small">
                 <span class="text-gold fw-bold">Diff ${s.diff || 14}</span>
                 <span class="text-danger fw-bold">${s.hp || 5} HP/unit</span>
-                <span class="text-muted" style="font-size: 0.68rem;">${s.attack?.name || 'Strike'} (${s.attack?.damage || '1d10+1'})</span>
+                ${segHasAtk ? `<span class="text-muted" style="font-size: 0.68rem;">${s.attack.name || 'Strike'} (${s.attack.damage})</span>` : '<span class="badge bg-secondary bg-opacity-25 text-muted" style="font-size: 0.65rem;">No Attack</span>'}
               </div>
             </div>
             ${segFeatSnippet}
@@ -5385,9 +5395,9 @@ const App = {
                                 <span class="badge bg-dark border border-danger text-danger" style="font-size: 0.6rem;">HP ${seg.hp}${seg.quantity > 1 ? ' ea' : ''}</span>
                               </div>
                             </div>
-                            ${seg.attack ? `
+                            ${seg.attack && (seg.attack.damage || '').trim() && (seg.attack.damage || '').trim() !== '—' && (seg.attack.damage || '').trim().toLowerCase() !== 'none' ? `
                               <div class="small text-muted mb-1" style="font-size: 0.72rem;">
-                                <strong>Atk:</strong> ${seg.attack.name} (+${seg.attack.bonus}, ${seg.attack.range}, ${seg.attack.damage} ${seg.attack.type})
+                                <strong>Atk:</strong> ${seg.attack.name || 'Strike'} (+${seg.attack.bonus || 0}, ${seg.attack.range || 'Melee'}, ${seg.attack.damage} ${seg.attack.type || 'Physical'})
                               </div>
                             ` : ''}
                             ${seg.adjacentSegments && seg.adjacentSegments.length ? `
