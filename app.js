@@ -2497,11 +2497,11 @@ const App = {
               <div class="overflow-hidden" style="min-width: 0;">
                 <span class="fw-bold text-light">${adv.attack.name || 'Basic Attack'}</span>
                 <div class="small text-muted text-truncate">
-                  +${adv.attack.bonus || 0} to hit &bull; ${adv.attack.range || 'Melee'} &bull; ${adv.attack.damage} ${adv.attack.type || 'Physical'}
+                  ${(adv.attack.bonus !== undefined ? adv.attack.bonus : 0) >= 0 ? `+${adv.attack.bonus !== undefined ? adv.attack.bonus : 0}` : adv.attack.bonus} to hit &bull; ${adv.attack.range || 'Melee'} &bull; ${adv.attack.damage} ${adv.attack.type || 'Physical'}
                 </div>
               </div>
               <div class="d-flex gap-1 flex-shrink-0">
-                <button class="btn btn-xs btn-outline-info" data-action="roll-atk" data-idx="${index}" title="Roll ${adv.name} Attack (+${adv.attack.bonus || 0})">
+                <button class="btn btn-xs btn-outline-info" data-action="roll-atk" data-idx="${index}" title="Roll ${adv.name} Attack (${(adv.attack.bonus !== undefined ? adv.attack.bonus : 0) >= 0 ? `+${adv.attack.bonus !== undefined ? adv.attack.bonus : 0}` : adv.attack.bonus})">
                   <span>🎲</span> Atk
                 </button>
                 <button class="btn btn-xs btn-outline-warning" data-action="roll-dmg" data-idx="${index}" title="Roll ${adv.name} Damage (${adv.attack.damage})">
@@ -3443,46 +3443,52 @@ const App = {
     scaled.stress = Math.max(0, targetBench.stress + stressDelta);
 
     // 4. Attack Bonus & Signature Damage Dice Scaling
-    if (originItem.attack && originItem.attack.damage) {
+    if (originItem.attack) {
       scaled.attack = JSON.parse(JSON.stringify(originItem.attack));
-      const origAtkBonus = originItem.attack.bonus !== undefined ? originItem.attack.bonus : origBench.atkBonus;
-      const atkDelta = origAtkBonus - origBench.atkBonus;
-      scaled.attack.bonus = targetBench.atkBonus + atkDelta;
+      const origAtkBonus = originItem.attack.bonus !== undefined ? originItem.attack.bonus : (origBench.atkBonus !== undefined ? origBench.atkBonus : 0);
+      const benchAtkBonus = origBench.atkBonus !== undefined ? origBench.atkBonus : 0;
+      const atkDelta = origAtkBonus - benchAtkBonus;
+      const targetBenchAtkBonus = targetBench.atkBonus !== undefined ? targetBench.atkBonus : 0;
+      scaled.attack.bonus = targetBenchAtkBonus + atkDelta;
 
-      const origDmgStr = (originItem.attack.damage || '').trim();
-      const diceMatch = origDmgStr.match(/^(\d+)d(\d+)(?:\s*([+-])\s*(\d+))?/i);
+      const origDmgStr = (originItem.attack.damage !== undefined && originItem.attack.damage !== null ? String(originItem.attack.damage) : '').trim();
+      const hasDmg = origDmgStr && origDmgStr !== '—' && origDmgStr.toLowerCase() !== 'none';
 
-      if (diceMatch) {
-        const dieSize = parseInt(diceMatch[2], 10);
-        const targetDieCount = Math.max(1, targetTier);
-        
-        let targetAvgDmg = 9;
-        if (targetBench.targetDmg) {
-          const parts = targetBench.targetDmg.split(/[–-]/).map(p => parseFloat(p.trim()));
-          targetAvgDmg = parts.length === 2 ? (parts[0] + parts[1]) / 2 : parts[0];
-        } else if (targetBench.dmg) {
-          const match = targetBench.dmg.match(/(\d+)d(\d+)(?:\s*\+\s*(\d+))?/);
-          if (match) {
-            targetAvgDmg = parseInt(match[1]) * ((parseInt(match[2]) + 1) / 2) + (match[3] ? parseInt(match[3]) : 0);
+      if (hasDmg) {
+        const diceMatch = origDmgStr.match(/^(\d+)d(\d+)(?:\s*([+-])\s*(\d+))?/i);
+
+        if (diceMatch) {
+          const dieSize = parseInt(diceMatch[2], 10);
+          const targetDieCount = Math.max(1, targetTier);
+          
+          let targetAvgDmg = 9;
+          if (targetBench.targetDmg) {
+            const parts = String(targetBench.targetDmg).split(/[–-]/).map(p => parseFloat(p.trim()));
+            targetAvgDmg = parts.length === 2 ? (parts[0] + parts[1]) / 2 : (parts[0] || 9);
+          } else if (targetBench.dmg) {
+            const match = String(targetBench.dmg).match(/(\d+)d(\d+)(?:\s*\+\s*(\d+))?/);
+            if (match) {
+              targetAvgDmg = parseInt(match[1]) * ((parseInt(match[2]) + 1) / 2) + (match[3] ? parseInt(match[3]) : 0);
+            }
           }
-        }
 
-        const avgDiceRoll = targetDieCount * ((dieSize + 1) / 2);
-        let desiredFlat = Math.round(targetAvgDmg - avgDiceRoll);
-        
-        let newDmgFormula = `${targetDieCount}d${dieSize}`;
-        if (desiredFlat > 0) {
-          newDmgFormula += `+${desiredFlat}`;
-        } else if (desiredFlat < 0) {
-          newDmgFormula += `${desiredFlat}`;
+          const avgDiceRoll = targetDieCount * ((dieSize + 1) / 2);
+          let desiredFlat = Math.round(targetAvgDmg - avgDiceRoll);
+          
+          let newDmgFormula = `${targetDieCount}d${dieSize}`;
+          if (desiredFlat > 0) {
+            newDmgFormula += `+${desiredFlat}`;
+          } else if (desiredFlat < 0) {
+            newDmgFormula += `${desiredFlat}`;
+          }
+          scaled.attack.damage = newDmgFormula;
+        } else if (!isNaN(parseInt(origDmgStr, 10))) {
+          const origFlat = parseInt(origDmgStr, 10);
+          const benchFlat = parseInt(origBench.dmg || origBench.dice?.average || '5', 10) || 5;
+          const targetFlatBench = parseInt(targetBench.dmg || targetBench.dice?.average || '8', 10) || 8;
+          const flatDelta = origFlat - benchFlat;
+          scaled.attack.damage = String(Math.max(1, targetFlatBench + flatDelta));
         }
-        scaled.attack.damage = newDmgFormula;
-      } else if (origDmgStr && !isNaN(parseInt(origDmgStr, 10))) {
-        const origFlat = parseInt(origDmgStr, 10);
-        const benchFlat = parseInt(origBench.dmg || origBench.dice?.average || '5', 10) || 5;
-        const targetFlatBench = parseInt(targetBench.dmg || targetBench.dice?.average || '8', 10) || 8;
-        const flatDelta = origFlat - benchFlat;
-        scaled.attack.damage = String(Math.max(1, targetFlatBench + flatDelta));
       }
     }
 
@@ -3950,7 +3956,7 @@ const App = {
     if (container && item.features && Array.isArray(item.features)) {
       container.innerHTML = '';
       item.features.forEach(f => {
-        this.addFeatureRow(f.name, f.type, f.text);
+        this.addFeatureRow(f.name, f.type, f.text, f.cost || 'None');
       });
     }
 
@@ -4594,9 +4600,13 @@ const App = {
     const minionRule = isEnv ? 0 : (parseInt(document.getElementById('form-adv-minion-num')?.value, 10) || 0);
 
     const atkName = document.getElementById('form-adv-atk-name')?.value.trim() || 'Natural Weapon';
-    const atkBonus = parseInt(document.getElementById('form-adv-atk-bonus')?.value, 10) || 1;
+    const rawAtkBonus = document.getElementById('form-adv-atk-bonus')?.value;
+    const atkBonus = (rawAtkBonus !== '' && rawAtkBonus !== null && rawAtkBonus !== undefined && !isNaN(parseInt(rawAtkBonus, 10)))
+      ? parseInt(rawAtkBonus, 10)
+      : 0;
     const atkRange = document.getElementById('form-adv-atk-range')?.value || 'Melee';
-    const atkDamage = document.getElementById('form-adv-atk-damage')?.value.trim() || '1d8+3';
+    const rawAtkDmg = document.getElementById('form-adv-atk-damage')?.value;
+    const atkDamage = (rawAtkDmg !== undefined && rawAtkDmg !== null) ? rawAtkDmg.trim() : '';
     const atkType = document.getElementById('form-adv-atk-damagetype')?.value || 'Physical';
 
     const expString = document.getElementById('form-adv-experiences')?.value.trim() || '';
@@ -4909,15 +4919,17 @@ const App = {
             </div>
           </div>
 
-          <div class="attack-banner d-flex justify-content-between align-items-center mb-3">
-            <div>
-              <span class="fw-bold text-light">${adv.attack.name}</span>
-              <div class="small text-muted">
-                +${adv.attack.bonus} to hit &bull; ${adv.attack.range} &bull; ${adv.attack.damage} ${adv.attack.type}
+          ${adv.attack && (adv.attack.damage || '').trim() && (adv.attack.damage || '').trim() !== '—' && (adv.attack.damage || '').trim().toLowerCase() !== 'none' ? `
+            <div class="attack-banner d-flex justify-content-between align-items-center mb-3">
+              <div>
+                <span class="fw-bold text-light">${adv.attack.name || 'Basic Attack'}</span>
+                <div class="small text-muted">
+                  ${adv.attack.bonus >= 0 ? `+${adv.attack.bonus}` : adv.attack.bonus} to hit &bull; ${adv.attack.range || 'Melee'} &bull; ${adv.attack.damage} ${adv.attack.type || 'Physical'}
+                </div>
               </div>
+              <span class="badge bg-primary">Ready</span>
             </div>
-            <span class="badge bg-primary">Ready</span>
-          </div>
+          ` : ''}
 
           ${expHTML ? `<div class="mb-2">${expHTML}</div>` : ''}
           ${featuresHTML ? `<div class="border-top border-subtle pt-2">${featuresHTML}</div>` : ''}
@@ -5529,7 +5541,7 @@ const App = {
                   <div class="overflow-hidden" style="min-width: 0;">
                     <span class="fw-bold text-light">${adv.attack?.name || 'Basic Attack'}</span>
                     <div class="small text-muted text-truncate">
-                      +${adv.attack?.bonus || 0} to hit &bull; ${adv.attack?.range || 'Melee'} &bull; ${adv.attack?.damage || '1d8'} ${adv.attack?.type || 'Physical'}
+                      ${(adv.attack?.bonus !== undefined ? adv.attack.bonus : 0) >= 0 ? `+${adv.attack?.bonus !== undefined ? adv.attack.bonus : 0}` : adv.attack.bonus} to hit &bull; ${adv.attack?.range || 'Melee'} &bull; ${adv.attack?.damage || '1d8'} ${adv.attack?.type || 'Physical'}
                     </div>
                   </div>
                 </div>
