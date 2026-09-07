@@ -111,11 +111,11 @@ const DH_BENCHMARKS = {
     Social: {
       bp: 1.0,
       tiers: {
-        0: { diff: 10, major: 5,  severe: 10, hp: 3, stress: 3, atkBonus: 0, dmg: '1d4',   range: 'Melee' },
-        1: { diff: 12, major: 6,  severe: 12, hp: 4, stress: 4, atkBonus: 1, dmg: '1d6',   range: 'Melee' },
-        2: { diff: 14, major: 8,  severe: 16, hp: 4, stress: 5, atkBonus: 1, dmg: '1d6+2', range: 'Melee' },
-        3: { diff: 17, major: 11, severe: 22, hp: 5, stress: 6, atkBonus: 2, dmg: '2d6+2', range: 'Melee' },
-        4: { diff: 20, major: 14, severe: 28, hp: 6, stress: 7, atkBonus: 3, dmg: '3d6+3', range: 'Melee' }
+        0: { diff: 9,  major: 3,  severe: 6,  hp: 2, stress: 2, atkBonus: -3, dmg: '1d4',   range: 'Close' },
+        1: { diff: 11, major: 4,  severe: 7,  hp: 3, stress: 2, atkBonus: -2, dmg: '1d4+1', range: 'Close' },
+        2: { diff: 14, major: 6,  severe: 15, hp: 3, stress: 2, atkBonus: -1, dmg: '2d4+3', range: 'Close' },
+        3: { diff: 16, major: 17, severe: 29, hp: 5, stress: 4, atkBonus: 0,  dmg: '3d6+3', range: 'Close' },
+        4: { diff: 18, major: 30, severe: 42, hp: 5, stress: 4, atkBonus: 4,  dmg: '4d6+4', range: 'Close' }
       }
     },
     Bruiser: {
@@ -168,7 +168,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
     tiers: {
       1: {
         diff: 14, major: 11, severe: 22, hp: 0, stress: 6, atkBonus: 2, targetDmg: "8–11",
-        dice: { low: "1d12+2", average: "1d10+1", high: "1d8+3" },
+        dice: { low: "1d12+3", average: "1d10+4", high: "1d8+5" },
         size: "95 ft. tall, 60 ft. wide",
         features: [
           { name: "Colossal Power", type: "Reaction", text: "When the colossus fails an attack, you gain a Fear." },
@@ -183,7 +183,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       2: {
         diff: 16, major: 14, severe: 28, hp: 0, stress: 6, atkBonus: 3, targetDmg: "12–16",
-        dice: { low: "2d12+2", average: "2d10+2", high: "2d8+5" },
+        dice: { low: "2d12+1", average: "2d10+3", high: "2d8+5" },
         size: "130 ft. tall, 80 ft. wide",
         features: [
           { name: "Colossal Power", type: "Reaction", text: "When the colossus fails an attack, you gain a Fear." },
@@ -198,7 +198,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       3: {
         diff: 18, major: 20, severe: 40, hp: 0, stress: 6, atkBonus: 5, targetDmg: "18–22",
-        dice: { low: "3d12+3", average: "3d10+3", high: "3d8+7" },
+        dice: { low: "3d12+1", average: "3d10+4", high: "3d8+7" },
         size: "170 ft. tall, 100 ft. wide",
         features: [
           { name: "Colossal Power", type: "Reaction", text: "When the colossus fails an attack, you gain a Fear." },
@@ -213,7 +213,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       4: {
         diff: 20, major: 30, severe: 60, hp: 0, stress: 6, atkBonus: 7, targetDmg: "28–40",
-        dice: { low: "4d12+8", average: "4d10+6", high: "4d8+10" },
+        dice: { low: "4d12+8", average: "4d10+12", high: "4d8+16" },
         size: "240 ft. tall, 140 ft. wide",
         features: [
           { name: "Colossal Power", type: "Reaction", text: "When the colossus fails an attack, you gain a Fear." },
@@ -242,7 +242,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
     tiers: {
       1: {
         diff: 13, major: 8, severe: 14, hp: 6, stress: 4, atkBonus: 1, targetDmg: "8–11",
-        dice: { low: "1d12+2", average: "1d10+4", high: "1d8+6" },
+        dice: { low: "1d12+3", average: "1d10+4", high: "1d8+5" },
         features: [
           { name: "Momentum", type: "Reaction", text: "When the adversary makes a successful attack against a PC, you gain a Fear." },
           { name: "Ramp Up", type: "Passive", text: "You must spend a Fear to spotlight the adversary. While spotlighted, they can make their standard attack against all targets within range." }
@@ -250,7 +250,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       2: {
         diff: 15, major: 13, severe: 26, hp: 6, stress: 5, atkBonus: 3, targetDmg: "12–16",
-        dice: { low: "2d12+3", average: "2d10+2", high: "2d8+6" },
+        dice: { low: "2d12+1", average: "2d10+3", high: "2d8+5" },
         features: [
           { name: "Momentum", type: "Reaction", text: "When the adversary makes a successful attack against a PC, you gain a Fear." },
           { name: "Ramp Up", type: "Passive", text: "You must spend a Fear to spotlight the adversary. While spotlighted, they can make their standard attack against all targets within range." }
@@ -258,7 +258,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       3: {
         diff: 17, major: 20, severe: 38, hp: 7, stress: 5, atkBonus: 4, targetDmg: "18–22",
-        dice: { low: "3d12+1", average: "3d10+4", high: "3d8+8" },
+        dice: { low: "3d12+1", average: "3d10+4", high: "3d8+7" },
         features: [
           { name: "Momentum", type: "Reaction", text: "When the adversary makes a successful attack against a PC, you gain a Fear." },
           { name: "Ramp Up", type: "Passive", text: "You must spend a Fear to spotlight the adversary. While spotlighted, they can make their standard attack against all targets within range." }
@@ -266,7 +266,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       4: {
         diff: 19, major: 34, severe: 66, hp: 8, stress: 5, atkBonus: 6, targetDmg: "30–45",
-        dice: { low: "4d12+15", average: "4d10+10", high: "4d8+12" },
+        dice: { low: "4d12+11", average: "4d10+15", high: "4d8+19" },
         features: [
           { name: "Momentum", type: "Reaction", text: "When the adversary makes a successful attack against a PC, you gain a Fear." },
           { name: "Terrifying", type: "Passive", text: "When the adversary makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear." }
@@ -287,7 +287,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
     tiers: {
       1: {
         diff: 11, major: 7, severe: 10, hp: 5, stress: 2, atkBonus: -1, targetDmg: "5–8",
-        dice: { low: "1d10+2", average: "1d8+3", high: "1d6+4" },
+        dice: { low: "1d10+1", average: "1d8+2", high: "1d6+3" },
         features: [
           { name: "Horde (1d4+2)", type: "Passive", text: "When the Horde has marked half or more of their HP, their standard attack deals 1d4+2 physical damage instead." },
           { name: "Too Many to Handle", type: "Passive", text: "When the Horde is within Melee range of a creature and at least one other ally is within Close range, all attacks against that creature have advantage." }
@@ -295,7 +295,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       2: {
         diff: 13, major: 12, severe: 18, hp: 5, stress: 2, atkBonus: 0, targetDmg: "9–13",
-        dice: { low: "2d10+2", average: "2d8+6", high: "2d6+3" },
+        dice: { low: "2d10", average: "2d8+2", high: "2d6+4" },
         features: [
           { name: "Horde (1d8+3)", type: "Passive", text: "When the Horde has marked half or more of their HP, their standard attack deals 1d8+3 physical damage instead." },
           { name: "Too Many to Handle", type: "Passive", text: "When the Horde is within Melee range of a creature and at least one other ally is within Close range, all attacks against that creature have advantage." }
@@ -303,7 +303,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       3: {
         diff: 15, major: 20, severe: 29, hp: 7, stress: 3, atkBonus: 1, targetDmg: "14–19",
-        dice: { low: "3d10+2", average: "3d8+4", high: "3d6+6" },
+        dice: { low: "3d10", average: "3d8+3", high: "3d6+6" },
         features: [
           { name: "Horde (2d8+2)", type: "Passive", text: "When the Horde has marked half or more of their HP, their standard attack deals 2d8+2 physical damage instead." },
           { name: "Too Many to Handle", type: "Passive", text: "When the Horde is within Melee range of a creature and at least one other ally is within Close range, all attacks against that creature have advantage." }
@@ -311,7 +311,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       4: {
         diff: 17, major: 25, severe: 40, hp: 7, stress: 4, atkBonus: 2, targetDmg: "20–30",
-        dice: { low: "4d10+4", average: "4d8+8", high: "4d6+10" },
+        dice: { low: "4d10+3", average: "4d8+7", high: "4d6+11" },
         features: [
           { name: "Horde (2d10+4)", type: "Passive", text: "When the Horde has marked half or more of their HP, their standard attack deals 2d10+4 physical damage instead." },
           { name: "Too Many to Handle", type: "Passive", text: "When the Horde is within Melee range of a creature and at least one other ally is within Close range, all attacks against that creature have advantage." }
@@ -332,7 +332,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
     tiers: {
       1: {
         diff: 13, major: 8, severe: 14, hp: 6, stress: 4, atkBonus: 3, targetDmg: "6–9",
-        dice: { low: "1d12+1", average: "1d10+3", high: "1d8+5" },
+        dice: { low: "1d12+1", average: "1d10+2", high: "1d8+3" },
         features: [
           { name: "Tactician", type: "Action", text: "When you spotlight the adversary, mark a Stress to also spotlight two allies within Close range." },
           { name: "Activate Allies", type: "Action", text: "Spend a Fear to spotlight 1d4 allies. Attacks they make while spotlighted in this way deal half damage." }
@@ -340,7 +340,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       2: {
         diff: 15, major: 13, severe: 24, hp: 6, stress: 4, atkBonus: 3, targetDmg: "12–15",
-        dice: { low: "2d12+1", average: "2d10+3", high: "2d8+6" },
+        dice: { low: "2d12+1", average: "2d10+3", high: "2d8+5" },
         features: [
           { name: "Tactician", type: "Action", text: "When you spotlight the adversary, mark a Stress to also spotlight two allies within Close range." },
           { name: "Activate Allies", type: "Action", text: "Spend a Fear to spotlight 1d4 allies. Attacks they make while spotlighted in this way deal half damage." }
@@ -348,7 +348,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       3: {
         diff: 18, major: 20, severe: 38, hp: 7, stress: 5, atkBonus: 6, targetDmg: "15–18",
-        dice: { low: "3d10+1", average: "3d8+8", high: "3d8+8" },
+        dice: { low: "3d10", average: "3d8+3", high: "3d6+6" },
         features: [
           { name: "Tactician", type: "Action", text: "When you spotlight the adversary, mark a Stress to also spotlight two allies within Close range." },
           { name: "Call Reinforcements", type: "Action", text: "Once per scene, mark a Stress to summon an allied adversary within Close range." }
@@ -356,7 +356,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       4: {
         diff: 20, major: 34, severe: 66, hp: 8, stress: 7, atkBonus: 9, targetDmg: "25–35",
-        dice: { low: "4d12+6", average: "4d10+8", high: "4d8+10" },
+        dice: { low: "4d12+4", average: "4d10+8", high: "4d8+12" },
         features: [
           { name: "Merciless", type: "Passive", text: "When the adversary is spotlighted, spotlight one additional ally without requiring a Fear to be spent." },
           { name: "Activate Allies", type: "Action", text: "Spend a Fear to spotlight 1d4 allies. Attacks they make while spotlighted in this way deal half damage." }
@@ -422,7 +422,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
     tiers: {
       1: {
         diff: 11, major: 4, severe: 8, hp: 3, stress: 2, atkBonus: 1, targetDmg: "6–9",
-        dice: { low: "1d12+1", average: "1d10+3", high: "1d8+5" },
+        dice: { low: "1d12+1", average: "1d10+2", high: "1d8+3" },
         features: [
           { name: "Opportunist", type: "Passive", text: "When two or more adversaries are within Very Close range of a creature, all damage the adversary deals to that creature is doubled." },
           { name: "Opportunity Shot", type: "Reaction", text: "When another adversary deals damage to a target within Far range of the adversary, mark a Stress to add +1d6 to the damage roll." }
@@ -430,7 +430,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       2: {
         diff: 14, major: 6, severe: 15, hp: 4, stress: 2, atkBonus: 3, targetDmg: "12–16",
-        dice: { low: "2d12+1", average: "2d10+3", high: "2d8+6" },
+        dice: { low: "2d12+1", average: "2d10+3", high: "2d8+5" },
         features: [
           { name: "Opportunist", type: "Passive", text: "When two or more adversaries are within Very Close range of a creature, all damage the adversary deals to that creature is doubled." },
           { name: "Opportunity Shot", type: "Reaction", text: "When another adversary deals damage to a target within Far range of the adversary, mark a Stress to add +1d8 to the damage roll." }
@@ -438,7 +438,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       3: {
         diff: 16, major: 13, severe: 27, hp: 5, stress: 3, atkBonus: 3, targetDmg: "15–18",
-        dice: { low: "3d10+1", average: "3d8+4", high: "3d8+8" },
+        dice: { low: "3d10", average: "3d8+3", high: "3d6+6" },
         features: [
           { name: "Opportunist", type: "Passive", text: "When two or more adversaries are within Very Close range of a creature, all damage the adversary deals to that creature is doubled." },
           { name: "Hit Multiple Targets", type: "Reaction", text: "Spend a Fear to make an attack against up to 3 targets within Far range. Targets the adversary succeeds against take half damage." }
@@ -446,7 +446,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       4: {
         diff: 18, major: 21, severe: 35, hp: 5, stress: 4, atkBonus: 5, targetDmg: "25–35",
-        dice: { low: "4d12+6", average: "4d10+8", high: "4d8+10" },
+        dice: { low: "4d12+4", average: "4d10+8", high: "4d8+12" },
         features: [
           { name: "Opportunist", type: "Passive", text: "When two or more adversaries are within Very Close range of a creature, all damage the adversary deals to that creature is doubled." },
           { name: "Hit Multiple Targets", type: "Reaction", text: "Spend a Fear to make an attack against up to 4 targets within Far range. Targets the adversary succeeds against take half damage." }
@@ -467,7 +467,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
     tiers: {
       1: {
         diff: 11, major: 6, severe: 10, hp: 3, stress: 2, atkBonus: 1, targetDmg: "5–8",
-        dice: { low: "1d8+3", average: "1d6+2", high: "1d4+4" },
+        dice: { low: "1d10+1", average: "1d8+2", high: "1d6+3" },
         features: [
           { name: "Cloaked", type: "Action", text: "Become Hidden until after the adversary's next attack. Attacks made while Hidden from this feature have advantage." },
           { name: "Ambush", type: "Action", text: "While Hidden, make an attack against a target within Close range. On a success, deal +1d6 extra physical damage." }
@@ -475,7 +475,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       2: {
         diff: 14, major: 8, severe: 18, hp: 4, stress: 3, atkBonus: 3, targetDmg: "9–13",
-        dice: { low: "2d8+3", average: "2d6+3", high: "2d4+6" },
+        dice: { low: "2d10", average: "2d8+2", high: "2d6+4" },
         features: [
           { name: "Cloaked", type: "Action", text: "Become Hidden until after the adversary's next attack. Attacks made while Hidden from this feature have advantage." },
           { name: "Ambush", type: "Action", text: "While Hidden, make an attack against a target within Close range. On a success, deal +1d8 extra physical damage." }
@@ -483,7 +483,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       3: {
         diff: 15, major: 17, severe: 29, hp: 5, stress: 4, atkBonus: 3, targetDmg: "14–18",
-        dice: { low: "3d8+4", average: "3d6+5", high: "3d4+10" },
+        dice: { low: "3d8+3", average: "3d6+5", high: "3d4+9" },
         features: [
           { name: "Cloaked", type: "Action", text: "Become Hidden until after the adversary's next attack. Attacks made while Hidden from this feature have advantage." },
           { name: "Ambush", type: "Action", text: "While Hidden, make an attack against a target within Close range. On a success, deal +2d6 extra physical damage." }
@@ -491,7 +491,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       4: {
         diff: 17, major: 25, severe: 42, hp: 5, stress: 5, atkBonus: 6, targetDmg: "20–35",
-        dice: { low: "4d12+10", average: "4d10+4", high: "4d6+10" },
+        dice: { low: "4d12+1", average: "4d10+5", high: "4d8+9" },
         features: [
           { name: "Cloaked", type: "Action", text: "Become Hidden until after the adversary's next attack. Attacks made while Hidden from this feature have advantage." },
           { name: "Ambush", type: "Action", text: "While Hidden, make an attack against a target within Close range. On a success, deal +2d8 extra physical damage." }
@@ -512,7 +512,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
     tiers: {
       1: {
         diff: 13, major: 8, severe: 14, hp: 9, stress: 3, atkBonus: 3, targetDmg: "8–11",
-        dice: { low: "1d20", average: "1d12+2", high: "1d10+4" },
+        dice: { low: "1d12+3", average: "1d10+4", high: "1d8+5" },
         features: [
           { name: "Relentless (2)", type: "Passive", text: "The adversary can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them." },
           { name: "Countdown to Calamity", type: "Reaction", text: "Countdown (Loop 1d6). When activated, count down 1 per GM turn. When it triggers, make a standard attack against all targets within Close range." }
@@ -520,7 +520,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       2: {
         diff: 15, major: 13, severe: 24, hp: 9, stress: 4, atkBonus: 3, targetDmg: "15–20",
-        dice: { low: "2d20+3", average: "2d10+2", high: "2d8+6" },
+        dice: { low: "2d12+4", average: "2d10+6", high: "2d8+8" },
         features: [
           { name: "Relentless (2)", type: "Passive", text: "The adversary can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them." },
           { name: "Countdown to Calamity", type: "Reaction", text: "Countdown (Loop 1d6). When activated, count down 1 per GM turn. When it triggers, make a standard attack against all targets within Close range." }
@@ -528,7 +528,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       3: {
         diff: 18, major: 20, severe: 38, hp: 11, stress: 6, atkBonus: 5, targetDmg: "20–30",
-        dice: { low: "3d20", average: "3d12+6", high: "3d10+8" },
+        dice: { low: "3d12+5", average: "3d10+8", high: "3d8+11" },
         features: [
           { name: "Relentless (2)", type: "Passive", text: "The adversary can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them." },
           { name: "Countdown to Calamity", type: "Reaction", text: "Countdown (Loop 1d6). When activated, count down 1 per GM turn. When it triggers, make a standard attack against all targets within Close range." }
@@ -536,7 +536,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       4: {
         diff: 20, major: 34, severe: 66, hp: 11, stress: 8, atkBonus: 8, targetDmg: "30–45",
-        dice: { low: "4d12+15", average: "4d10+10", high: "4d8+12" },
+        dice: { low: "4d12+11", average: "4d10+15", high: "4d8+19" },
         features: [
           { name: "Relentless (2)", type: "Passive", text: "The adversary can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them." },
           { name: "Countdown to Calamity", type: "Reaction", text: "Countdown (Loop 1d6). When activated, count down 1 per GM turn. When it triggers, make a standard attack against all targets within Close range." }
@@ -557,7 +557,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
     tiers: {
       1: {
         diff: 12, major: 6, severe: 10, hp: 5, stress: 3, atkBonus: 1, targetDmg: "4–6",
-        dice: { low: "1d8+1", average: "1d6+2", high: "1d4+4" },
+        dice: { low: "1d8+1", average: "1d6+2", high: "1d4+3" },
         features: [
           { name: "Pack Tactics", type: "Passive", text: "If the adversary makes a successful standard attack and another ally is within Melee range of the target, deal +1d4 physical damage instead and gain a Fear." },
           { name: "Too Many to Handle", type: "Passive", text: "When the adversary is within Melee range of a creature and at least one other ally is within Close range, all attacks against that creature have advantage." }
@@ -565,7 +565,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       2: {
         diff: 14, major: 10, severe: 18, hp: 5, stress: 3, atkBonus: 2, targetDmg: "8–12",
-        dice: { low: "2d8+2", average: "2d6+3", high: "2d4+4" },
+        dice: { low: "2d8+1", average: "2d6+3", high: "2d4+5" },
         features: [
           { name: "Pack Tactics", type: "Passive", text: "If the adversary makes a successful standard attack and another ally is within Melee range of the target, deal +1d6 physical damage instead and gain a Fear." },
           { name: "Too Many to Handle", type: "Passive", text: "When the adversary is within Melee range of a creature and at least one other ally is within Close range, all attacks against that creature have advantage." }
@@ -573,7 +573,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       3: {
         diff: 16, major: 17, severe: 31, hp: 6, stress: 4, atkBonus: 3, targetDmg: "12–17",
-        dice: { low: "3d8+2", average: "3d6+3", high: "2d12+2" },
+        dice: { low: "3d8+1", average: "3d6+4", high: "3d4+7" },
         features: [
           { name: "Pack Tactics", type: "Passive", text: "If the adversary makes a successful standard attack and another ally is within Melee range of the target, deal +1d8 physical damage instead and gain a Fear." },
           { name: "Too Many to Handle", type: "Passive", text: "When the adversary is within Melee range of a creature and at least one other ally is within Close range, all attacks against that creature have advantage." }
@@ -581,7 +581,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       4: {
         diff: 18, major: 30, severe: 47, hp: 6, stress: 4, atkBonus: 4, targetDmg: "17–28",
-        dice: { low: "4d10+2", average: "4d8+4", high: "4d6+10" },
+        dice: { low: "4d8+4", average: "4d6+8", high: "4d4+12" },
         features: [
           { name: "Pack Tactics", type: "Passive", text: "If the adversary makes a successful standard attack and another ally is within Melee range of the target, deal +2d6 physical damage instead and gain a Fear." },
           { name: "Too Many to Handle", type: "Passive", text: "When the adversary is within Melee range of a creature and at least one other ally is within Close range, all attacks against that creature have advantage." }
@@ -602,7 +602,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
     tiers: {
       1: {
         diff: 13, major: 6, severe: 10, hp: 4, stress: 4, atkBonus: 1, targetDmg: "3–5",
-        dice: { low: "1d8", average: "1d6+2", high: "1d4+4" },
+        dice: { low: "1d6+1", average: "1d4+2", high: "1d4+2" },
         features: [
           { name: "AOE Condition", type: "Action", text: "Spend a Fear to make an attack against all targets within Very Close range. Targets the adversary succeeds against become Restrained and Vulnerable. A target can break free with a successful Trait Roll." },
           { name: "Quick Cleanse", type: "Action", text: "Mark a Stress to clear a temporary condition on an ally within Close range." }
@@ -610,7 +610,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       2: {
         diff: 14, major: 10, severe: 18, hp: 4, stress: 5, atkBonus: 2, targetDmg: "5–12",
-        dice: { low: "2d8+1", average: "2d6+2", high: "2d4+3" },
+        dice: { low: "2d6+1", average: "2d4+3", high: "2d4+3" },
         features: [
           { name: "AOE Condition", type: "Action", text: "Spend a Fear to make an attack against all targets within Very Close range. Targets the adversary succeeds against become Restrained and Vulnerable. A target can break free with a successful Trait Roll." },
           { name: "Quick Cleanse", type: "Action", text: "Mark a Stress to clear a temporary condition on an ally within Close range." }
@@ -618,7 +618,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       3: {
         diff: 16, major: 18, severe: 31, hp: 5, stress: 5, atkBonus: 3, targetDmg: "13–16",
-        dice: { low: "3d8", average: "3d6+3", high: "2d12+1" },
+        dice: { low: "3d8+1", average: "3d6+4", high: "3d4+7" },
         features: [
           { name: "AOE Condition", type: "Action", text: "Spend a Fear to make an attack against all targets within Very Close range. Targets the adversary succeeds against become Restrained and Vulnerable. A target can break free with a successful Trait Roll." },
           { name: "Quick Cleanse", type: "Action", text: "Mark a Stress to clear a temporary condition on an ally within Close range." }
@@ -626,7 +626,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       4: {
         diff: 18, major: 25, severe: 40, hp: 5, stress: 5, atkBonus: 4, targetDmg: "18–25",
-        dice: { low: "3d10+3", average: "4d8+4", high: "4d6+8" },
+        dice: { low: "4d8+3", average: "4d6+7", high: "4d4+11" },
         features: [
           { name: "AOE Condition", type: "Action", text: "Spend a Fear to make an attack against all targets within Very Close range. Targets the adversary succeeds against become Restrained and Vulnerable. A target can break free with a successful Trait Roll." },
           { name: "Quick Cleanse", type: "Action", text: "Mark a Stress to clear a temporary condition on an ally within Close range." }
@@ -647,7 +647,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
     tiers: {
       1: {
         diff: 11, major: 4, severe: 7, hp: 3, stress: 2, atkBonus: -2, targetDmg: "2–4",
-        dice: { low: "1d6+1", average: "1d4+1", high: "1d4+1" },
+        dice: { low: "1d6", average: "1d4+1", high: "1d4+1" },
         features: [
           { name: "Silver Tongue", type: "Action", text: "Mark a Stress to force a PC within Close range to make a Presence Reaction Roll (12). On a failure, they mark a Stress." },
           { name: "Call the Guards!", type: "Action", text: "Spend a Fear to summon 2 Minions who appear within Close range." }
@@ -655,7 +655,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       2: {
         diff: 14, major: 6, severe: 15, hp: 3, stress: 2, atkBonus: -1, targetDmg: "5–12",
-        dice: { low: "2d6+2", average: "1d4+3", high: "1d4+3" },
+        dice: { low: "2d6+1", average: "2d4+3", high: "2d4+3" },
         features: [
           { name: "Silver Tongue", type: "Action", text: "Mark a Stress to force a PC within Close range to make a Presence Reaction Roll (14). On a failure, they mark a Stress." },
           { name: "Call the Guards!", type: "Action", text: "Spend a Fear to summon 2 Minions who appear within Close range." }
@@ -663,7 +663,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       3: {
         diff: 16, major: 17, severe: 29, hp: 5, stress: 4, atkBonus: 0, targetDmg: "12–17",
-        dice: { low: "3d8+3", average: "3d6+3", high: "3d4+6" },
+        dice: { low: "3d8+1", average: "3d6+4", high: "3d4+7" },
         features: [
           { name: "Silver Tongue", type: "Action", text: "Mark a Stress to force a PC within Close range to make a Presence Reaction Roll (16). On a failure, they mark a Stress." },
           { name: "Call the Guards!", type: "Action", text: "Spend a Fear to summon 2 Minions who appear within Close range." }
@@ -671,7 +671,7 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       4: {
         diff: 18, major: 30, severe: 42, hp: 5, stress: 4, atkBonus: 4, targetDmg: "17–28",
-        dice: { low: "4d8+5", average: "4d6+4", high: "4d4+8" },
+        dice: { low: "4d8+4", average: "4d6+8", high: "4d4+12" },
         features: [
           { name: "Silver Tongue", type: "Action", text: "Mark a Stress to force a PC within Close range to make a Presence Reaction Roll (18). On a failure, they mark a Stress." },
           { name: "Call the Guards!", type: "Action", text: "Spend a Fear to summon 2 Minions who appear within Close range." }
@@ -3466,22 +3466,43 @@ const App = {
       const diceMatch = origDmgStr.match(/^(\d+)d(\d+)(?:\s*([+-])\s*(\d+))?/i);
 
       if (diceMatch) {
+        const origDieCount = parseInt(diceMatch[1], 10);
         const dieSize = parseInt(diceMatch[2], 10);
-        const targetDieCount = Math.max(1, targetTier);
-        
-        let targetAvgDmg = 9;
-        if (targetBench.targetDmg) {
-          const parts = String(targetBench.targetDmg).split(/[–-]/).map(p => parseFloat(p.trim()));
-          targetAvgDmg = parts.length === 2 ? (parts[0] + parts[1]) / 2 : (parts[0] || 9);
-        } else if (targetBench.dmg) {
-          const match = String(targetBench.dmg).match(/(\d+)d(\d+)(?:\s*\+\s*(\d+))?/);
-          if (match) {
-            targetAvgDmg = parseInt(match[1]) * ((parseInt(match[2]) + 1) / 2) + (match[3] ? parseInt(match[3]) : 0);
+        const origSign = diceMatch[3] || '+';
+        const origFlat = diceMatch[4] ? parseInt(diceMatch[4], 10) * (origSign === '-' ? -1 : 1) : 0;
+        const origAvgDmg = (origDieCount * ((dieSize + 1) / 2)) + origFlat;
+
+        // Calculate original benchmark average
+        let origBenchAvg = 9;
+        if (origBench.targetDmg) {
+          const parts = String(origBench.targetDmg).split(/[–-]/).map(p => parseFloat(p.trim()));
+          origBenchAvg = parts.length === 2 ? (parts[0] + parts[1]) / 2 : (parts[0] || 9);
+        } else if (origBench.dmg) {
+          const m = String(origBench.dmg).match(/(\d+)d(\d+)(?:\s*([+-])\s*(\d+))?/);
+          if (m) {
+            origBenchAvg = parseInt(m[1], 10) * ((parseInt(m[2], 10) + 1) / 2) + (m[4] ? parseInt(m[4], 10) * (m[3] === '-' ? -1 : 1) : 0);
           }
         }
 
+        // Calculate target benchmark average
+        let targetBenchAvg = 9;
+        if (targetBench.targetDmg) {
+          const parts = String(targetBench.targetDmg).split(/[–-]/).map(p => parseFloat(p.trim()));
+          targetBenchAvg = parts.length === 2 ? (parts[0] + parts[1]) / 2 : (parts[0] || 9);
+        } else if (targetBench.dmg) {
+          const m = String(targetBench.dmg).match(/(\d+)d(\d+)(?:\s*([+-])\s*(\d+))?/);
+          if (m) {
+            targetBenchAvg = parseInt(m[1], 10) * ((parseInt(m[2], 10) + 1) / 2) + (m[4] ? parseInt(m[4], 10) * (m[3] === '-' ? -1 : 1) : 0);
+          }
+        }
+
+        // Proportional power scaling: preserve custom / compendium offset ratio
+        const dmgRatio = origBenchAvg > 0 ? (origAvgDmg / origBenchAvg) : 1;
+        const scaledTargetAvg = targetBenchAvg * dmgRatio;
+
+        const targetDieCount = Math.max(1, targetTier);
         const avgDiceRoll = targetDieCount * ((dieSize + 1) / 2);
-        let desiredFlat = Math.round(targetAvgDmg - avgDiceRoll);
+        let desiredFlat = Math.round(scaledTargetAvg - avgDiceRoll);
         
         let newDmgFormula = `${targetDieCount}d${dieSize}`;
         if (desiredFlat > 0) {
@@ -3492,10 +3513,10 @@ const App = {
         scaled.attack.damage = newDmgFormula;
       } else if (!isNaN(parseInt(origDmgStr, 10))) {
         const origFlat = parseInt(origDmgStr, 10);
-        const benchFlat = parseInt(origBench.dmg || origBench.dice?.average || '5', 10) || 5;
-        const targetFlatBench = parseInt(targetBench.dmg || targetBench.dice?.average || '8', 10) || 8;
-        const flatDelta = origFlat - benchFlat;
-        scaled.attack.damage = String(Math.max(1, targetFlatBench + flatDelta));
+        const origBenchFlat = parseInt(origBench.dmg || origBench.dice?.average || '4', 10) || 4;
+        const targetFlatBench = parseInt(targetBench.dmg || targetBench.dice?.average || '6', 10) || 6;
+        const flatRatio = origBenchFlat > 0 ? (origFlat / origBenchFlat) : 1;
+        scaled.attack.damage = String(Math.max(1, Math.round(targetFlatBench * flatRatio)));
       }
     } else {
       delete scaled.attack;
