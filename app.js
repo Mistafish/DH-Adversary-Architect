@@ -43,8 +43,8 @@ const DH_BENCHMARKS = {
       tiers: {
         0: { diff: 9,  major: 'None', severe: 'None', hp: 1, stress: 1, atkBonus: -1, dmg: '2',  range: 'Melee', minionRule: 4 },
         1: { diff: 10, major: 'None', severe: 'None', hp: 1, stress: 1, atkBonus: -1, dmg: '2',  range: 'Melee', minionRule: 4 },
-        2: { diff: 13, major: 'None', severe: 'None', hp: 1, stress: 1, atkBonus: 0,  dmg: '4',  range: 'Melee', minionRule: 6 },
-        3: { diff: 15, major: 'None', severe: 'None', hp: 1, stress: 1, atkBonus: 1,  dmg: '6',  range: 'Melee', minionRule: 8 },
+        2: { diff: 13, major: 'None', severe: 'None', hp: 1, stress: 1, atkBonus: 0,  dmg: '5',  range: 'Melee', minionRule: 6 },
+        3: { diff: 15, major: 'None', severe: 'None', hp: 1, stress: 1, atkBonus: 1,  dmg: '7',  range: 'Melee', minionRule: 8 },
         4: { diff: 17, major: 'None', severe: 'None', hp: 1, stress: 1, atkBonus: 2,  dmg: '11', range: 'Melee', minionRule: 10 }
       }
     },
@@ -385,18 +385,18 @@ const RIGHTKNIGHT_BENCHMARKS = {
       },
       2: {
         diff: 13, major: "None", severe: "None", hp: 1, stress: 1, atkBonus: 0, minionRule: 6, targetDmg: "3–6",
-        dice: { low: "5", average: "4", high: "3" },
+        dice: { low: "6", average: "5", high: "4" },
         features: [
           { name: "Minion (6)", type: "Passive", text: "The adversary is defeated when they take any damage. For every 6 damage dealt by a single attack, defeat 1 additional Minion within range." },
-          { name: "Group Attack", type: "Action", text: "Spend a Fear to choose a target and spotlight all Minions within Close range of them. Those Minions move into Melee range and combine their 4 damage into one attack." }
+          { name: "Group Attack", type: "Action", text: "Spend a Fear to choose a target and spotlight all Minions within Close range of them. Those Minions move into Melee range and combine their 5 damage into one attack." }
         ]
       },
       3: {
         diff: 15, major: "None", severe: "None", hp: 1, stress: 1, atkBonus: 1, minionRule: 8, targetDmg: "5–8",
-        dice: { low: "7", average: "6", high: "5" },
+        dice: { low: "8", average: "7", high: "6" },
         features: [
           { name: "Minion (8)", type: "Passive", text: "The adversary is defeated when they take any damage. For every 8 damage dealt by a single attack, defeat 1 additional Minion within range." },
-          { name: "Group Attack", type: "Action", text: "Spend a Fear to choose a target and spotlight all Minions within Close range of them. Those Minions move into Melee range and combine their 6 damage into one attack." }
+          { name: "Group Attack", type: "Action", text: "Spend a Fear to choose a target and spotlight all Minions within Close range of them. Those Minions move into Melee range and combine their 7 damage into one attack." }
         ]
       },
       4: {
