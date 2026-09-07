@@ -1226,3 +1226,67 @@ body.theme-light .minion-pip-divider {
   background: rgba(0, 0, 0, 0.25);
 }
 
+/* ==========================================================================
+   GM Quick Math & Damage Calculator Styles
+   ========================================================================== */
+.gm-calculator-container {
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-card-alt);
+}
+
+.calc-screen {
+  background-color: #0b0f19;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+  user-select: text;
+}
+
+body.theme-light .calc-screen {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+.calc-history {
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+}
+
+.calc-current {
+  color: #fbbf24;
+  letter-spacing: 1px;
+}
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+
+.calc-btn {
+  height: 28px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 4px;
+  transition: all 0.1s ease;
+}
+
+.calc-btn:hover {
+  transform: translateY(-1px);
+}
+
+.calc-btn:active {
+  transform: translateY(0);
+}
+
+.calc-btn-wide {
+  grid-column: span 2;
+}
+
+.calc-btn-equals {
+  grid-column: span 1;
+}
+

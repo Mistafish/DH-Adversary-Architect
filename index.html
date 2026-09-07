@@ -662,13 +662,56 @@
       </div>
 
       <!-- 4. Combat Roll Log -->
-      <div class="combat-roll-log-container">
+      <div class="combat-roll-log-container mb-2">
         <div class="d-flex justify-content-between align-items-center mb-1">
           <label class="small fw-bold text-muted text-uppercase m-0" style="font-size: 0.75rem;">Recent Rolls</label>
           <button class="btn btn-link btn-xs text-muted p-0 text-decoration-none" id="btn-clear-roll-log">Clear</button>
         </div>
-        <div id="combat-roll-log" class="p-2 rounded bg-black small font-monospace" style="height: 150px; overflow-y: auto;">
+        <div id="combat-roll-log" class="p-2 rounded bg-black small font-monospace" style="height: 120px; overflow-y: auto;">
           <div class="text-muted italic" style="font-size: 0.75rem;">Click an attack or damage button on any stat block to roll.</div>
+        </div>
+      </div>
+
+      <!-- 5. Quick Damage / Math Calculator -->
+      <div class="gm-calculator-container p-2 rounded bg-dark border border-secondary shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <label class="small fw-bold text-gold text-uppercase m-0 d-flex align-items-center gap-1" style="font-size: 0.75rem;">
+            <span>🧮</span> Quick Math / Calculator
+          </label>
+          <button class="btn btn-link btn-xs text-muted p-0 text-decoration-none" id="btn-calc-clear-history" title="Reset Calculator">Reset</button>
+        </div>
+
+        <!-- Calculator Display Screen -->
+        <div class="calc-screen p-1.5 px-2 rounded bg-black border border-secondary mb-2 text-end">
+          <div class="calc-history text-muted font-monospace text-truncate" id="calc-expression" style="font-size: 0.72rem; min-height: 1rem;">&nbsp;</div>
+          <div class="calc-current text-warning font-monospace fw-bold fs-5 lh-1 text-truncate" id="calc-display">0</div>
+        </div>
+
+        <!-- Calculator Keypad Grid -->
+        <div class="calc-grid">
+          <button class="btn btn-xs btn-outline-danger calc-btn" data-action="clear" title="Clear (C / Esc)">C</button>
+          <button class="btn btn-xs btn-outline-secondary calc-btn" data-action="backspace" title="Backspace (⌫)">⌫</button>
+          <button class="btn btn-xs btn-outline-secondary calc-btn" data-action="negate" title="Toggle Positive / Negative">±</button>
+          <button class="btn btn-xs btn-outline-warning calc-btn calc-op" data-action="op" data-op="/" title="Divide (÷)">÷</button>
+
+          <button class="btn btn-xs btn-outline-light calc-btn" data-num="7">7</button>
+          <button class="btn btn-xs btn-outline-light calc-btn" data-num="8">8</button>
+          <button class="btn btn-xs btn-outline-light calc-btn" data-num="9">9</button>
+          <button class="btn btn-xs btn-outline-warning calc-btn calc-op" data-action="op" data-op="*" title="Multiply (×)">×</button>
+
+          <button class="btn btn-xs btn-outline-light calc-btn" data-num="4">4</button>
+          <button class="btn btn-xs btn-outline-light calc-btn" data-num="5">5</button>
+          <button class="btn btn-xs btn-outline-light calc-btn" data-num="6">6</button>
+          <button class="btn btn-xs btn-outline-warning calc-btn calc-op" data-action="op" data-op="-" title="Subtract (−)">−</button>
+
+          <button class="btn btn-xs btn-outline-light calc-btn" data-num="1">1</button>
+          <button class="btn btn-xs btn-outline-light calc-btn" data-num="2">2</button>
+          <button class="btn btn-xs btn-outline-light calc-btn" data-num="3">3</button>
+          <button class="btn btn-xs btn-outline-warning calc-btn calc-op" data-action="op" data-op="+" title="Add (+)">+</button>
+
+          <button class="btn btn-xs btn-outline-light calc-btn calc-btn-wide" data-num="0">0</button>
+          <button class="btn btn-xs btn-outline-light calc-btn" data-action="decimal">.</button>
+          <button class="btn btn-xs btn-warning fw-bold calc-btn calc-btn-equals" data-action="equals" title="Calculate (= / Enter)">=</button>
         </div>
       </div>
     </div>

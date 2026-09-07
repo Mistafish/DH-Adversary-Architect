@@ -1322,6 +1322,9 @@ const App = {
       if (log) log.innerHTML = '<div class="text-muted italic">Log cleared.</div>';
     });
 
+    // Initialize GM Console Calculator
+    this.initCalculator();
+
     // Empty state buttons
     document.getElementById('btn-empty-bestiary')?.addEventListener('click', () => this.switchTab('tab-bestiary'));
     document.getElementById('btn-empty-create')?.addEventListener('click', () => this.switchTab('tab-creator'));
@@ -3346,6 +3349,210 @@ const App = {
       this.openDiceTray();
     } else {
       this.closeDiceTray();
+    }
+  },
+
+  // ===========================================================================
+  // 8B. GM QUICK MATH & DAMAGE CALCULATOR
+  // ===========================================================================
+  calcState: {
+    current: '0',
+    previous: null,
+    operation: null,
+    overwrite: true,
+    history: ''
+  },
+
+  initCalculator() {
+    this.calcState = {
+      current: '0',
+      previous: null,
+      operation: null,
+      overwrite: true,
+      history: ''
+    };
+    this.updateCalcDisplay();
+
+    const container = document.querySelector('.gm-calculator-container');
+    if (!container) return;
+
+    // Keypad event delegation
+    container.addEventListener('click', (e) => {
+      const btn = e.target.closest('.calc-btn, #btn-calc-clear-history');
+      if (!btn) return;
+
+      if (btn.id === 'btn-calc-clear-history') {
+        this.clearCalculator();
+        AudioFX.playClick();
+        return;
+      }
+
+      if (btn.hasAttribute('data-num')) {
+        this.inputCalcNumber(btn.getAttribute('data-num'));
+      } else if (btn.getAttribute('data-action') === 'decimal') {
+        this.inputCalcDecimal();
+      } else if (btn.getAttribute('data-action') === 'op') {
+        this.setCalcOperation(btn.getAttribute('data-op'));
+      } else if (btn.getAttribute('data-action') === 'equals') {
+        this.computeCalculator();
+      } else if (btn.getAttribute('data-action') === 'clear') {
+        this.clearCalculator();
+      } else if (btn.getAttribute('data-action') === 'backspace') {
+        this.backspaceCalculator();
+      } else if (btn.getAttribute('data-action') === 'negate') {
+        this.negateCalculator();
+      }
+
+      AudioFX.playClick();
+    });
+  },
+
+  inputCalcNumber(numStr) {
+    if (this.calcState.overwrite || this.calcState.current === 'Error') {
+      this.calcState.current = numStr;
+      this.calcState.overwrite = false;
+    } else {
+      if (this.calcState.current === '0') {
+        this.calcState.current = numStr;
+      } else if (this.calcState.current.length < 14) {
+        this.calcState.current += numStr;
+      }
+    }
+    this.updateCalcDisplay();
+  },
+
+  inputCalcDecimal() {
+    if (this.calcState.overwrite || this.calcState.current === 'Error') {
+      this.calcState.current = '0.';
+      this.calcState.overwrite = false;
+    } else if (!this.calcState.current.includes('.')) {
+      this.calcState.current += '.';
+    }
+    this.updateCalcDisplay();
+  },
+
+  setCalcOperation(op) {
+    if (this.calcState.current === 'Error') {
+      this.clearCalculator();
+      return;
+    }
+
+    const currentVal = parseFloat(this.calcState.current);
+    if (isNaN(currentVal)) return;
+
+    const opSymbol = op === '*' ? '×' : op === '/' ? '÷' : op === '-' ? '−' : '+';
+
+    if (this.calcState.previous !== null && !this.calcState.overwrite) {
+      this.computeCalculator(false);
+    } else {
+      this.calcState.previous = currentVal;
+    }
+
+    this.calcState.operation = op;
+    this.calcState.history = `${this.formatCalcNum(this.calcState.previous)} ${opSymbol}`;
+    this.calcState.overwrite = true;
+    this.updateCalcDisplay();
+  },
+
+  computeCalculator(isFinalEquals = true) {
+    if (this.calcState.previous === null || this.calcState.operation === null) return;
+    const prev = this.calcState.previous;
+    const current = parseFloat(this.calcState.current);
+    if (isNaN(current)) return;
+
+    const opSymbol = this.calcState.operation === '*' ? '×' : this.calcState.operation === '/' ? '÷' : this.calcState.operation === '-' ? '−' : '+';
+
+    let result = 0;
+    switch (this.calcState.operation) {
+      case '+':
+        result = prev + current;
+        break;
+      case '-':
+        result = prev - current;
+        break;
+      case '*':
+        result = prev * current;
+        break;
+      case '/':
+        result = current === 0 ? 'Error' : prev / current;
+        break;
+      default:
+        return;
+    }
+
+    if (result === 'Error') {
+      this.calcState.current = 'Error';
+      this.calcState.history = `${this.formatCalcNum(prev)} ${opSymbol} ${this.formatCalcNum(current)} =`;
+      this.calcState.previous = null;
+      this.calcState.operation = null;
+      this.calcState.overwrite = true;
+    } else {
+      // Clean float rounding precision
+      result = Math.round((result + Number.EPSILON) * 10000000) / 10000000;
+      if (isFinalEquals) {
+        this.calcState.history = `${this.formatCalcNum(prev)} ${opSymbol} ${this.formatCalcNum(current)} =`;
+        this.calcState.current = String(result);
+        this.calcState.previous = null;
+        this.calcState.operation = null;
+        this.calcState.overwrite = true;
+      } else {
+        this.calcState.previous = result;
+        this.calcState.current = String(result);
+        this.calcState.overwrite = true;
+      }
+    }
+    this.updateCalcDisplay();
+  },
+
+  clearCalculator() {
+    this.calcState = {
+      current: '0',
+      previous: null,
+      operation: null,
+      overwrite: true,
+      history: ''
+    };
+    this.updateCalcDisplay();
+  },
+
+  backspaceCalculator() {
+    if (this.calcState.overwrite || this.calcState.current === 'Error') {
+      this.calcState.current = '0';
+      this.calcState.overwrite = true;
+    } else {
+      this.calcState.current = this.calcState.current.slice(0, -1);
+      if (this.calcState.current === '' || this.calcState.current === '-') {
+        this.calcState.current = '0';
+        this.calcState.overwrite = true;
+      }
+    }
+    this.updateCalcDisplay();
+  },
+
+  negateCalculator() {
+    if (this.calcState.current === '0' || this.calcState.current === 'Error') return;
+    if (this.calcState.current.startsWith('-')) {
+      this.calcState.current = this.calcState.current.substring(1);
+    } else {
+      this.calcState.current = '-' + this.calcState.current;
+    }
+    this.updateCalcDisplay();
+  },
+
+  formatCalcNum(num) {
+    if (typeof num !== 'number' && isNaN(Number(num))) return String(num);
+    const n = Number(num);
+    return Number.isInteger(n) ? String(n) : String(parseFloat(n.toFixed(6)));
+  },
+
+  updateCalcDisplay() {
+    const dispEl = document.getElementById('calc-display');
+    const histEl = document.getElementById('calc-expression');
+    if (dispEl) {
+      dispEl.textContent = this.calcState.current;
+    }
+    if (histEl) {
+      histEl.innerHTML = this.calcState.history ? this.calcState.history : '&nbsp;';
     }
   },
 
