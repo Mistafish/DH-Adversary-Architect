@@ -492,12 +492,21 @@ body.theme-light .adv-unit-card.is-unit-defeated {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: help;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.adv-token-container[data-adv-tooltip]:hover {
+  transform: scale(1.06);
+  border-color: var(--gold-accent);
+  box-shadow: 0 0 12px rgba(201, 154, 78, 0.55);
 }
 
 .adv-token-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  pointer-events: none;
 }
 
 .adv-name {
@@ -1288,5 +1297,59 @@ body.theme-light .calc-screen {
 
 .calc-btn-equals {
   grid-column: span 1;
+}
+
+/* ==========================================================================
+   Adversary Custom Rich Tooltip (Name, Description & Motives)
+   ========================================================================== */
+#dh-adversary-tooltip {
+  position: fixed;
+  z-index: 1090;
+  display: none;
+  max-width: 440px;
+  min-width: 280px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-radius: 6px;
+  padding: 0.85rem 1.1rem;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.75), 0 0 15px rgba(201, 154, 78, 0.25);
+  pointer-events: none;
+  transition: opacity 0.12s ease-out;
+  opacity: 0;
+  color: var(--text-main);
+  font-family: var(--font-body);
+  line-height: 1.45;
+}
+
+#dh-adversary-tooltip.show {
+  display: block;
+  opacity: 1;
+}
+
+#dh-adversary-tooltip .dh-tooltip-header {
+  font-family: var(--font-title);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--gold-accent);
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.55rem;
+  letter-spacing: 0.02em;
+}
+
+#dh-adversary-tooltip .dh-tooltip-section-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--gold-accent);
+  margin-top: 0.6rem;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+#dh-adversary-tooltip .dh-tooltip-text {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  line-height: 1.4;
 }
 

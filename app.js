@@ -1082,6 +1082,89 @@ const App = {
     return false;
   },
 
+  // Build a formatted mouseover tooltip containing Name, Description, and Motives & Tactics
+  getAdversaryTooltip(adv) {
+    if (!adv) return '';
+    const name = adv.name || 'Adversary';
+    const isEnv = (adv.type === 'Environment' || adv.isEnvironment);
+    const desc = (adv.summary || adv.description || '').trim();
+    const motive = (adv.motive || (isEnv ? adv.impulses : '') || '').trim();
+
+    let html = `<div class="dh-tooltip-header">${name}</div>`;
+    if (desc) {
+      html += `<div class="dh-tooltip-section-title">Description</div><div class="dh-tooltip-text">${desc}</div>`;
+    }
+    if (motive) {
+      html += `<div class="dh-tooltip-section-title">${isEnv ? 'Impulses & Hazards' : 'Motives & Tactics'}</div><div class="dh-tooltip-text">${motive}</div>`;
+    }
+    return html.replace(/"/g, '&quot;');
+  },
+
+  // Initialize global rich floating tooltip listener for [data-adv-tooltip]
+  initRichTooltips() {
+    let tooltipEl = document.getElementById('dh-adversary-tooltip');
+    if (!tooltipEl) {
+      tooltipEl = document.createElement('div');
+      tooltipEl.id = 'dh-adversary-tooltip';
+      document.body.appendChild(tooltipEl);
+    }
+
+    const showTooltip = (trigger, e) => {
+      const content = trigger.getAttribute('data-adv-tooltip');
+      if (!content) return;
+      // Decode HTML entities
+      const txt = document.createElement('textarea');
+      txt.innerHTML = content;
+      tooltipEl.innerHTML = txt.value;
+      tooltipEl.classList.add('show');
+      positionTooltip(e);
+    };
+
+    const positionTooltip = (e) => {
+      if (!tooltipEl.classList.contains('show')) return;
+      const offset = 14;
+      let x = e.clientX + offset;
+      let y = e.clientY + offset;
+
+      const rect = tooltipEl.getBoundingClientRect();
+      if (x + rect.width > window.innerWidth - 12) {
+        x = e.clientX - rect.width - offset;
+      }
+      if (y + rect.height > window.innerHeight - 12) {
+        y = e.clientY - rect.height - offset;
+      }
+      if (x < 10) x = 10;
+      if (y < 10) y = 10;
+
+      tooltipEl.style.left = `${x}px`;
+      tooltipEl.style.top = `${y}px`;
+    };
+
+    const hideTooltip = () => {
+      tooltipEl.classList.remove('show');
+    };
+
+    document.addEventListener('mouseover', (e) => {
+      const trigger = e.target.closest('[data-adv-tooltip]');
+      if (trigger) {
+        showTooltip(trigger, e);
+      }
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (tooltipEl.classList.contains('show')) {
+        positionTooltip(e);
+      }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      const trigger = e.target.closest('[data-adv-tooltip]');
+      if (trigger && (!e.relatedTarget || !trigger.contains(e.relatedTarget))) {
+        hideTooltip();
+      }
+    });
+  },
+
   // Get full combined compendium (SRD Adversaries, SRD Environments, and Custom Creations)
   getAllCompendiumEntities() {
     const list = [];
@@ -1325,6 +1408,9 @@ const App = {
     // Initialize GM Console Calculator
     this.initCalculator();
 
+    // Initialize Rich Floating Adversary Tooltips
+    this.initRichTooltips();
+
     // Empty state buttons
     document.getElementById('btn-empty-bestiary')?.addEventListener('click', () => this.switchTab('tab-bestiary'));
     document.getElementById('btn-empty-create')?.addEventListener('click', () => this.switchTab('tab-creator'));
@@ -1366,7 +1452,7 @@ const App = {
         this.handleCreatorSubmit(false);
       });
 
-      ['form-adv-name', 'form-adv-tier', 'form-adv-type', 'form-adv-motive', 'form-adv-diff',
+      ['form-adv-name', 'form-adv-tier', 'form-adv-type', 'form-adv-description', 'form-adv-motive', 'form-adv-diff',
        'form-adv-thresh-major', 'form-adv-thresh-severe', 'form-adv-hp', 'form-adv-stress',
        'form-adv-atk-name', 'form-adv-atk-bonus', 'form-adv-atk-range', 'form-adv-atk-damage',
        'form-adv-atk-damagetype', 'form-adv-experiences',
@@ -2032,12 +2118,12 @@ const App = {
           <!-- Environment Card Header -->
           <div class="p-3 ${isCollapsed ? '' : 'border-bottom border-subtle'} d-flex align-items-start gap-2 adv-card-header" data-idx="${index}" title="${isCollapsed ? 'Click to Expand Environment' : 'Click to Collapse Environment'}">
             <span class="roster-drag-handle text-muted align-self-center" title="Drag to rearrange adversary" draggable="false">⠿</span>
-            <div class="adv-token-container">
+            <div class="adv-token-container" data-adv-tooltip="${this.getAdversaryTooltip(adv)}">
               <img src="${tokenSrc}" alt="${adv.name}" class="adv-token-img">
             </div>
             <div class="flex-grow-1 position-relative" style="min-width: 0;">
               <div class="d-flex justify-content-between align-items-center gap-2">
-                <h5 class="adv-name m-0 text-truncate text-gold" title="${adv.name}">${adv.name}</h5>
+                <h5 class="adv-name m-0 text-truncate text-gold">${adv.name}</h5>
 
                 <div class="d-flex align-items-center gap-1 flex-shrink-0">
                   <button class="btn btn-xs btn-outline-secondary" data-action="duplicate-adv" data-idx="${index}" title="Duplicate Environment">
@@ -2140,12 +2226,12 @@ const App = {
           <!-- Framework Header -->
           <div class="p-3 ${isCollapsed ? '' : 'border-bottom border-subtle'} d-flex align-items-start gap-2 adv-card-header" data-idx="${index}" title="${isCollapsed ? 'Click to Expand Framework' : 'Click to Collapse Framework'}">
             <span class="roster-drag-handle text-gold align-self-center" title="Drag to rearrange framework" draggable="false">⠿</span>
-            <div class="adv-token-container">
+            <div class="adv-token-container" data-adv-tooltip="${this.getAdversaryTooltip(adv)}">
               <img src="${tokenSrc}" alt="${adv.name}" class="adv-token-img">
             </div>
             <div class="flex-grow-1 position-relative" style="min-width: 0;">
               <div class="d-flex justify-content-between align-items-center gap-2">
-                <h5 class="adv-name m-0 text-truncate text-gold" title="${adv.name}">${adv.name}</h5>
+                <h5 class="adv-name m-0 text-truncate text-gold">${adv.name}</h5>
 
                 <div class="d-flex align-items-center gap-1 flex-shrink-0">
                   <button class="btn btn-xs btn-outline-danger" data-action="remove-adv" data-idx="${index}" title="Remove Framework">
@@ -2360,12 +2446,12 @@ const App = {
         <!-- Card Header -->
         <div class="p-3 ${isCollapsed ? '' : 'border-bottom border-subtle'} d-flex align-items-start gap-2 adv-card-header" data-idx="${index}" title="${isCollapsed ? 'Click to Expand Stat Block' : 'Click to Collapse Stat Block'}">
           <span class="roster-drag-handle text-muted align-self-center" title="Drag to rearrange adversary" draggable="false">⠿</span>
-          <div class="adv-token-container">
+          <div class="adv-token-container" data-adv-tooltip="${this.getAdversaryTooltip(adv)}">
             <img src="${tokenSrc}" alt="${adv.name}" class="adv-token-img">
           </div>
           <div class="flex-grow-1 position-relative" style="min-width: 0;">
             <div class="d-flex justify-content-between align-items-center gap-2">
-              <h5 class="adv-name m-0 text-truncate" title="${adv.name}">${adv.name}</h5>
+              <h5 class="adv-name m-0 text-truncate">${adv.name}</h5>
 
               <!-- Quick Header Action Buttons & Unclipped Options Menu -->
               <div class="d-flex align-items-center gap-1 flex-shrink-0">
@@ -4225,6 +4311,7 @@ const App = {
     setVal('form-adv-name', item.name || '');
     setVal('form-adv-tier', item.tier !== undefined ? item.tier : 1);
     setVal('form-adv-type', isEnv ? 'Environment' : (item.type || 'Standard'));
+    setVal('form-adv-description', item.description || item.summary || '');
     setVal('form-adv-motive', item.motive || '');
     setVal('form-adv-diff', item.diff || '');
     setVal('form-adv-thresh-major', item.major === 'None' || item.major === '—' ? 0 : (item.major || 0));
@@ -4714,6 +4801,7 @@ const App = {
     const nameInput = document.getElementById('form-adv-name');
     const tierInput = document.getElementById('form-adv-tier');
     const typeInput = document.getElementById('form-adv-type');
+    const descInput = document.getElementById('form-adv-description');
     const motiveInput = document.getElementById('form-adv-motive');
     const diffInput = document.getElementById('form-adv-diff');
     const majInput = document.getElementById('form-adv-thresh-major');
@@ -4736,6 +4824,7 @@ const App = {
     }
     if (tierInput) tierInput.value = tier;
     if (typeInput) typeInput.value = type;
+    if (descInput) descInput.value = roleData.description || roleData.summary || '';
     if (motiveInput) motiveInput.value = roleData.motive;
     if (diffInput) diffInput.value = tierData.diff;
     if (majInput) majInput.value = (tierData.major === 'None' || tierData.major === '—') ? 0 : tierData.major;
@@ -4817,6 +4906,7 @@ const App = {
     setVal('form-adv-name', '');
     setVal('form-adv-tier', '1');
     setVal('form-adv-type', 'Standard');
+    setVal('form-adv-description', '');
     setVal('form-adv-motive', '');
     setVal('form-adv-diff', '');
     setVal('form-adv-thresh-major', '');
@@ -4929,6 +5019,7 @@ const App = {
 
     const size = isColossus ? (document.getElementById('form-colossus-size')?.value.trim() || '95 ft. tall, 60 ft. wide') : undefined;
 
+    const description = document.getElementById('form-adv-description')?.value.trim() || '';
     const motive = document.getElementById('form-adv-motive')?.value.trim() || '';
     const diff = parseInt(document.getElementById('form-adv-diff')?.value, 10) || 12;
     const major = isEnv ? '—' : (parseInt(document.getElementById('form-adv-thresh-major')?.value, 10) || 0);
@@ -4977,6 +5068,8 @@ const App = {
       type,
       subtype,
       size,
+      description,
+      summary: description,
       isEnvironment: isEnv,
       isColossus: isColossus,
       segments: isColossus ? JSON.parse(JSON.stringify(this.creatorColossusSegments || [])) : undefined,
@@ -5041,7 +5134,7 @@ const App = {
       previewContainer.innerHTML = `
         <div class="card og-statblock border-gold shadow">
           <div class="p-3 border-bottom border-subtle d-flex align-items-center gap-3">
-            <div class="adv-token-container">
+            <div class="adv-token-container" data-adv-tooltip="${this.getAdversaryTooltip(adv)}">
               <img src="${tokenSrc}" alt="${adv.name}" class="adv-token-img">
             </div>
             <div>
@@ -5121,7 +5214,7 @@ const App = {
         <div class="card og-statblock border-colossus-framework shadow">
           <!-- Colossus Framework Header -->
           <div class="p-3 border-bottom border-subtle d-flex align-items-center gap-3">
-            <div class="adv-token-container">
+            <div class="adv-token-container" data-adv-tooltip="${this.getAdversaryTooltip(adv)}">
               <img src="${tokenSrc}" alt="${adv.name}" class="adv-token-img">
             </div>
             <div class="overflow-hidden" style="min-width: 0;">
@@ -5207,7 +5300,7 @@ const App = {
     previewContainer.innerHTML = `
       <div class="card og-statblock border-gold shadow">
         <div class="p-3 border-bottom border-subtle d-flex align-items-center gap-3">
-          <div class="adv-token-container">
+          <div class="adv-token-container" data-adv-tooltip="${this.getAdversaryTooltip(adv)}">
             <img src="${tokenSrc}" alt="${adv.name}" class="adv-token-img">
           </div>
           <div>
@@ -5513,20 +5606,12 @@ const App = {
               <div class="card og-statblock border-gold shadow-lg is-bestiary-expanded p-0" id="bestiary-card-${safeId}">
                 <!-- Header -->
                 <div class="p-3 border-bottom border-subtle d-flex align-items-start gap-3 adv-card-header" data-toggle-bestiary-id="${safeId}" style="cursor: pointer;" title="Click to Collapse Card">
-                  <div class="adv-token-container">
+                  <div class="adv-token-container" data-adv-tooltip="${this.getAdversaryTooltip(adv)}">
                     <img src="${tokenSrc}" alt="${adv.name}" class="adv-token-img">
                   </div>
                   <div class="flex-grow-1 position-relative" style="min-width: 0;">
-                    <div class="d-flex justify-content-between align-items-start gap-2">
-                      <div class="overflow-hidden" style="min-width: 0;">
-                        <h5 class="adv-name m-0 text-truncate text-gold" title="${adv.name}">${adv.name}</h5>
-                        <div class="d-flex gap-1 align-items-center mt-1 flex-wrap">
-                          <span class="badge-tier">Tier ${adv.tier}</span>
-                          <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-50">Environment (${adv.subtype || 'Exploration'})</span>
-                          <span class="badge bg-dark border border-gold text-gold" style="font-size: 0.65rem;">0 BP (Scene)</span>
-                          <span class="badge ${adv.isCustom ? 'bg-info text-dark' : (isHF ? 'bg-warning text-dark' : (adv.book === 'Pistolheart' ? 'badge-source-pistolheart' : 'bg-secondary'))}" style="font-size: 0.65rem;">${adv.isCustom ? 'Custom' : (adv.book || 'Core')}</span>
-                        </div>
-                      </div>
+                    <div class="d-flex justify-content-between align-items-center gap-2">
+                      <h5 class="adv-name m-0 text-truncate text-gold">${adv.name}</h5>
 
                       <div class="d-flex align-items-center gap-1 flex-shrink-0">
                         <button class="btn btn-xs btn-outline-secondary py-0 px-1 collapse-indicator" data-toggle-bestiary-id="${safeId}" title="Collapse Card">
@@ -5543,6 +5628,14 @@ const App = {
                         `}
                       </div>
                     </div>
+
+                    <div class="d-flex gap-1 align-items-center mt-1 flex-wrap">
+                      <span class="badge-tier">Tier ${adv.tier}</span>
+                      <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-50">Environment (${adv.subtype || 'Exploration'})</span>
+                      <span class="badge bg-dark border border-gold text-gold" style="font-size: 0.65rem;">0 BP (Scene)</span>
+                      <span class="badge ${adv.isCustom ? 'bg-info text-dark' : (isHF ? 'bg-warning text-dark' : (adv.book === 'Pistolheart' ? 'badge-source-pistolheart' : 'bg-secondary'))}" style="font-size: 0.65rem;">${adv.isCustom ? 'Custom' : (adv.book || 'Core')}</span>
+                    </div>
+
                     ${adv.summary || adv.motive ? `<div class="adv-motive mt-1 text-truncate" style="font-size: 0.75rem;">${adv.summary || adv.motive}</div>` : ''}
                   </div>
                 </div>
@@ -5580,7 +5673,7 @@ const App = {
               <div>
                 <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
                   <div class="d-flex align-items-center gap-2 overflow-hidden">
-                    <div class="adv-token-container" style="width: 44px; height: 44px; flex-shrink: 0;">
+                    <div class="adv-token-container" style="width: 44px; height: 44px; flex-shrink: 0;" data-adv-tooltip="${this.getAdversaryTooltip(adv)}">
                       <img src="${tokenSrc}" alt="${adv.name}" class="adv-token-img">
                     </div>
                     <div class="overflow-hidden">
@@ -5640,21 +5733,12 @@ const App = {
               <div class="card og-statblock border-gold shadow-lg is-bestiary-expanded p-0" id="bestiary-card-${safeId}">
                 <!-- Header -->
                 <div class="p-3 border-bottom border-subtle d-flex align-items-start gap-3 adv-card-header" data-toggle-bestiary-id="${safeId}" style="cursor: pointer;" title="Click to Collapse Card">
-                  <div class="adv-token-container">
+                  <div class="adv-token-container" data-adv-tooltip="${this.getAdversaryTooltip(adv)}">
                     <img src="${tokenSrc}" alt="${adv.name}" class="adv-token-img">
                   </div>
                   <div class="flex-grow-1 position-relative" style="min-width: 0;">
-                    <div class="d-flex justify-content-between align-items-start gap-2">
-                      <div class="overflow-hidden" style="min-width: 0;">
-                        <h5 class="adv-name m-0 text-truncate text-gold" title="${adv.name}">${adv.name}</h5>
-                        <div class="d-flex gap-1 align-items-center mt-1 flex-wrap">
-                          <span class="badge-tier">Tier ${adv.tier}</span>
-                          <span class="badge bg-danger text-light fw-bold">Colossus</span>
-                          ${adv.size ? `<span class="badge bg-dark border border-warning text-warning" style="font-size: 0.65rem;">Size: ${adv.size}</span>` : ''}
-                          <span class="badge bg-dark border border-gold text-gold" style="font-size: 0.65rem;" title="Battle Points">6 BP</span>
-                          <span class="badge ${adv.isCustom ? 'bg-info text-dark' : 'bg-secondary'}" style="font-size: 0.65rem;">${adv.isCustom ? 'Custom' : (adv.book || 'Campaign Frame')}</span>
-                        </div>
-                      </div>
+                    <div class="d-flex justify-content-between align-items-center gap-2">
+                      <h5 class="adv-name m-0 text-truncate text-gold">${adv.name}</h5>
 
                       <div class="d-flex align-items-center gap-1 flex-shrink-0">
                         <button class="btn btn-xs btn-outline-secondary py-0 px-1 collapse-indicator" data-toggle-bestiary-id="${safeId}" title="Collapse Card">
@@ -5671,6 +5755,15 @@ const App = {
                         `}
                       </div>
                     </div>
+
+                    <div class="d-flex gap-1 align-items-center mt-1 flex-wrap">
+                      <span class="badge-tier">Tier ${adv.tier}</span>
+                      <span class="badge bg-danger text-light fw-bold">Colossus</span>
+                      ${adv.size ? `<span class="badge bg-dark border border-warning text-warning" style="font-size: 0.65rem;">Size: ${adv.size}</span>` : ''}
+                      <span class="badge bg-dark border border-gold text-gold" style="font-size: 0.65rem;" title="Battle Points">6 BP</span>
+                      <span class="badge ${adv.isCustom ? 'bg-info text-dark' : 'bg-secondary'}" style="font-size: 0.65rem;">${adv.isCustom ? 'Custom' : (adv.book || 'Campaign Frame')}</span>
+                    </div>
+
                     ${adv.motive ? `<div class="adv-motive mt-1 text-truncate" style="font-size: 0.75rem;">${adv.motive}</div>` : ''}
                   </div>
                 </div>
@@ -5795,21 +5888,12 @@ const App = {
             <div class="card og-statblock border-gold shadow-lg is-bestiary-expanded p-0" id="bestiary-card-${safeId}">
               <!-- Header -->
               <div class="p-3 border-bottom border-subtle d-flex align-items-start gap-3 adv-card-header" data-toggle-bestiary-id="${safeId}" style="cursor: pointer;" title="Click to Collapse Card">
-                <div class="adv-token-container">
+                <div class="adv-token-container" data-adv-tooltip="${this.getAdversaryTooltip(adv)}">
                   <img src="${tokenSrc}" alt="${adv.name}" class="adv-token-img">
                 </div>
                 <div class="flex-grow-1 position-relative" style="min-width: 0;">
-                  <div class="d-flex justify-content-between align-items-start gap-2">
-                    <div class="overflow-hidden" style="min-width: 0;">
-                      <h5 class="adv-name m-0 text-truncate" title="${adv.name}">${adv.name}</h5>
-                      <div class="d-flex gap-1 align-items-center mt-1 flex-wrap">
-                        <span class="badge-tier">Tier ${adv.tier}</span>
-                        <span class="badge-role">${adv.type}</span>
-                        <span class="badge bg-dark border border-gold text-gold" style="font-size: 0.65rem;" title="Battle Points">${bpCost} BP</span>
-                        <span class="badge ${adv.isCustom ? 'bg-info text-dark' : (isHF ? 'bg-warning text-dark' : (adv.book === 'Pistolheart' ? 'badge-source-pistolheart' : 'bg-secondary'))}" style="font-size: 0.65rem;">${adv.isCustom ? 'Custom' : (adv.book || 'Core')}</span>
-                        ${adv.pages && adv.pages.length ? `<span class="badge bg-dark border border-secondary text-muted" style="font-size: 0.65rem;">${adv.pages[0]}</span>` : ''}
-                      </div>
-                    </div>
+                  <div class="d-flex justify-content-between align-items-center gap-2">
+                    <h5 class="adv-name m-0 text-truncate">${adv.name}</h5>
 
                     <div class="d-flex align-items-center gap-1 flex-shrink-0">
                       <button class="btn btn-xs btn-outline-secondary py-0 px-1 collapse-indicator" data-toggle-bestiary-id="${safeId}" title="Collapse Card">
@@ -5826,6 +5910,15 @@ const App = {
                       `}
                     </div>
                   </div>
+
+                  <div class="d-flex gap-1 align-items-center mt-1 flex-wrap">
+                    <span class="badge-tier">Tier ${adv.tier}</span>
+                    <span class="badge-role">${adv.type}</span>
+                    <span class="badge bg-dark border border-gold text-gold" style="font-size: 0.65rem;" title="Battle Points">${bpCost} BP</span>
+                    <span class="badge ${adv.isCustom ? 'bg-info text-dark' : (isHF ? 'bg-warning text-dark' : (adv.book === 'Pistolheart' ? 'badge-source-pistolheart' : 'bg-secondary'))}" style="font-size: 0.65rem;">${adv.isCustom ? 'Custom' : (adv.book || 'Core')}</span>
+                    ${adv.pages && adv.pages.length ? `<span class="badge bg-dark border border-secondary text-muted" style="font-size: 0.65rem;">${adv.pages[0]}</span>` : ''}
+                  </div>
+
                   ${adv.motive ? `<div class="adv-motive mt-1 text-truncate" style="font-size: 0.75rem;">${adv.motive}</div>` : ''}
                 </div>
               </div>
@@ -5918,7 +6011,7 @@ const App = {
               <div>
                 <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
                   <div class="d-flex align-items-center gap-2 overflow-hidden">
-                    <div class="adv-token-container" style="width: 44px; height: 44px; flex-shrink: 0;">
+                    <div class="adv-token-container" style="width: 44px; height: 44px; flex-shrink: 0;" data-adv-tooltip="${this.getAdversaryTooltip(adv)}">
                       <img src="${tokenSrc}" alt="${adv.name}" class="adv-token-img">
                     </div>
                     <div class="overflow-hidden">
@@ -5926,7 +6019,7 @@ const App = {
                       <div class="d-flex gap-1 mt-1 flex-wrap">
                         <span class="badge-tier">Tier ${adv.tier}</span>
                         <span class="badge bg-danger text-light fw-bold" style="font-size: 0.65rem;">Colossus</span>
-                        ${adv.size ? `<span class="badge bg-dark border border-warning text-warning" style="font-size: 0.65rem;">${adv.size}</span>` : ''}
+                        ${adv.size ? `<span class="badge bg-dark border border-warning text-warning" style="font-size: 0.65rem;">Size: ${adv.size}</span>` : ''}
                         <span class="badge bg-dark border border-gold text-gold" style="font-size: 0.65rem;" title="Battle Points">6 BP</span>
                         <span class="badge ${adv.isCustom ? 'bg-info text-dark' : 'bg-secondary'}" style="font-size: 0.65rem;">${adv.isCustom ? 'Custom' : (adv.book || 'Campaign Frame')}</span>
                       </div>
@@ -5938,7 +6031,7 @@ const App = {
                 </div>
 
                 <p class="small text-muted mb-2 text-truncate" style="font-size: 0.8rem; line-height: 1.3;">${adv.summary || adv.motive || 'Titanic composite adversary.'}</p>
-
+                
                 ${adv.segments && adv.segments.length > 0 ? `
                   <div class="badge bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25 w-100 text-start text-truncate mb-2 p-1" style="font-size: 0.7rem;">
                     🔗 Segments: ${adv.segments.map(s => `${s.name.replace(/^(Ikeri|Colossus)\s+/i, '')}${s.quantity > 1 ? ` ×${s.quantity}` : ''}`).join(', ')}
@@ -5976,7 +6069,7 @@ const App = {
             <div>
               <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
                 <div class="d-flex align-items-center gap-2 overflow-hidden">
-                  <div class="adv-token-container" style="width: 44px; height: 44px; flex-shrink: 0;">
+                  <div class="adv-token-container" style="width: 44px; height: 44px; flex-shrink: 0;" data-adv-tooltip="${this.getAdversaryTooltip(adv)}">
                     <img src="${tokenSrc}" alt="${adv.name}" class="adv-token-img">
                   </div>
                   <div class="overflow-hidden">
@@ -6271,7 +6364,7 @@ const App = {
             <div class="card og-statblock-alt p-3 h-100 d-flex flex-column justify-content-between border-subtle shadow-sm">
               <div>
                 <div class="d-flex align-items-center gap-2 mb-2">
-                  <div class="adv-token-container" style="width: 46px; height: 46px;">
+                  <div class="adv-token-container" style="width: 46px; height: 46px;" data-adv-tooltip="${this.getAdversaryTooltip(item)}">
                     <img src="${tokenSrc}" alt="${item.name}" class="adv-token-img">
                   </div>
                   <div class="overflow-hidden">
@@ -6283,7 +6376,7 @@ const App = {
                     </div>
                   </div>
                 </div>
-                <p class="small text-muted mb-2" style="font-size: 0.8rem; line-height: 1.3;">${item.motive || item.summary || 'Custom environment scene profile.'}</p>
+                <p class="small text-muted mb-2 text-truncate" style="font-size: 0.8rem; line-height: 1.3;">${item.motive || item.summary || 'Custom environment scene profile.'}</p>
                 
                 <div class="small d-flex justify-content-between text-secondary mb-2 border-top border-bottom border-subtle py-1" style="font-size: 0.75rem;">
                   <span>Diff: <strong class="text-gold">${item.diff || 12}</strong></span>
@@ -6328,7 +6421,7 @@ const App = {
           <div class="card og-statblock-alt p-3 h-100 d-flex flex-column justify-content-between border-subtle shadow-sm">
             <div>
               <div class="d-flex align-items-center gap-2 mb-2">
-                <div class="adv-token-container" style="width: 46px; height: 46px;">
+                <div class="adv-token-container" style="width: 46px; height: 46px;" data-adv-tooltip="${this.getAdversaryTooltip(item)}">
                   <img src="${tokenSrc}" alt="${item.name}" class="adv-token-img">
                 </div>
                 <div class="overflow-hidden">
@@ -6341,7 +6434,7 @@ const App = {
                   </div>
                 </div>
               </div>
-              <p class="small text-muted mb-2" style="font-size: 0.8rem; line-height: 1.3;">${item.motive || 'Custom adversary profile.'}</p>
+              <p class="small text-muted mb-2 text-truncate" style="font-size: 0.8rem; line-height: 1.3;">${item.motive || 'Custom adversary profile.'}</p>
               
               <div class="small d-flex justify-content-between text-secondary mb-2 border-top border-bottom border-subtle py-1" style="font-size: 0.75rem;">
                 <span>Diff: <strong class="text-gold">${item.diff}</strong></span>
