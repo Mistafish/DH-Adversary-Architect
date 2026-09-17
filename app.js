@@ -1082,7 +1082,7 @@ const App = {
     return false;
   },
 
-  // Build a formatted mouseover tooltip containing Name, Description, and Motives & Tactics
+  // Build a formatted mouseover/touch popup containing Name, Description, and Motives & Tactics
   getAdversaryTooltip(adv) {
     if (!adv) return '';
     const name = adv.name || 'Adversary';
@@ -1090,13 +1090,14 @@ const App = {
     const desc = (adv.summary || adv.description || '').trim();
     const motive = (adv.motive || (isEnv ? adv.impulses : '') || '').trim();
 
-    let html = `<div class="dh-tooltip-header">${name}</div>`;
+    let html = `<div class="dh-tooltip-header d-flex justify-content-between align-items-center"><span>${name}</span><span class="dh-tooltip-close text-gold" style="font-size: 1.25rem; font-weight: normal; cursor: pointer; line-height: 1; margin-left: 8px;" title="Close">&times;</span></div>`;
     if (desc) {
       html += `<div class="dh-tooltip-section-title">Description</div><div class="dh-tooltip-text">${desc}</div>`;
     }
     if (motive) {
       html += `<div class="dh-tooltip-section-title">${isEnv ? 'Impulses & Hazards' : 'Motives & Tactics'}</div><div class="dh-tooltip-text">${motive}</div>`;
     }
+    html += `<div class="dh-tooltip-footer text-muted text-end mt-2 pt-1 border-top border-subtle" style="font-size: 0.68rem; opacity: 0.75; letter-spacing: 0.03em;">Tap card to dismiss</div>`;
     return html.replace(/"/g, '&quot;');
   },
 
@@ -1112,56 +1113,42 @@ const App = {
     let activeTrigger = null;
     let lastTouchTime = 0;
 
-    const positionTooltip = (e, trigger) => {
-      if (!tooltipEl.classList.contains('show')) return;
-      const offset = 14;
-      let clientX, clientY;
-
-      if (e && e.clientX !== undefined && (e.clientX !== 0 || e.clientY !== 0)) {
-        clientX = e.clientX;
-        clientY = e.clientY;
-      } else if (e && e.touches && e.touches[0]) {
-        clientX = e.touches[0].clientX;
-        clientY = e.touches[0].clientY;
-      } else if (e && e.changedTouches && e.changedTouches[0]) {
-        clientX = e.changedTouches[0].clientX;
-        clientY = e.changedTouches[0].clientY;
-      } else if (trigger) {
-        const trigRect = trigger.getBoundingClientRect();
-        clientX = trigRect.left + trigRect.width / 2;
-        clientY = trigRect.bottom;
-      } else {
-        clientX = window.innerWidth / 2;
-        clientY = window.innerHeight / 2;
-      }
-
-      let x = clientX + offset;
-      let y = clientY + offset;
-
+    const positionTooltip = (trigger) => {
+      if (!tooltipEl.classList.contains('show') || !trigger) return;
+      const trigRect = trigger.getBoundingClientRect();
       const rect = tooltipEl.getBoundingClientRect();
-      if (x + rect.width > window.innerWidth - 12) {
-        x = clientX - rect.width - offset;
-      }
-      if (y + rect.height > window.innerHeight - 12) {
-        y = clientY - rect.height - offset;
-      }
-      if (x < 10) x = 10;
-      if (y < 10) y = 10;
 
-      tooltipEl.style.left = `${x}px`;
-      tooltipEl.style.top = `${y}px`;
+      let x = trigRect.left;
+      let y = trigRect.bottom + 8;
+
+      // Adjust horizontal overflow
+      if (x + rect.width > window.innerWidth - 12) {
+        x = window.innerWidth - rect.width - 12;
+      }
+      if (x < 12) x = 12;
+
+      // If overflowing viewport bottom, place above the trigger
+      if (y + rect.height > window.innerHeight - 12) {
+        y = trigRect.top - rect.height - 8;
+      }
+      if (y < 12) y = 12;
+
+      tooltipEl.style.left = `${Math.round(x)}px`;
+      tooltipEl.style.top = `${Math.round(y)}px`;
     };
 
-    const showTooltip = (trigger, e) => {
+    const showTooltip = (trigger) => {
+      if (!trigger) return;
       const content = trigger.getAttribute('data-adv-tooltip');
       if (!content) return;
+
       // Decode HTML entities
       const txt = document.createElement('textarea');
       txt.innerHTML = content;
       tooltipEl.innerHTML = txt.value;
-      tooltipEl.classList.add('show');
       activeTrigger = trigger;
-      positionTooltip(e, trigger);
+      tooltipEl.classList.add('show');
+      positionTooltip(trigger);
     };
 
     const hideTooltip = () => {
@@ -1169,27 +1156,43 @@ const App = {
       activeTrigger = null;
     };
 
-    // Touch device support:
-    // First touch on token opens popup; second touch anywhere (on token, outside, or moving the screen) dismisses popup
+    // 1. Direct click or touch on the popup window removes it immediately
+    tooltipEl.addEventListener('click', (e) => {
+      e.stopPropagation();
+      hideTooltip();
+    });
+    tooltipEl.addEventListener('touchend', (e) => {
+      e.stopPropagation();
+      hideTooltip();
+    });
+
+    // 2. Touch event handling for mobile devices
     document.addEventListener('touchstart', (e) => {
       lastTouchTime = Date.now();
       const trigger = e.target.closest('[data-adv-tooltip]');
-      const isShowing = tooltipEl.classList.contains('show');
+      const clickedTooltip = e.target.closest('#dh-adversary-tooltip');
 
+      if (clickedTooltip) {
+        hideTooltip();
+        return;
+      }
+
+      const isShowing = tooltipEl.classList.contains('show');
       if (isShowing) {
         if (!trigger || trigger === activeTrigger) {
-          // Second touch on the same token or anywhere outside dismisses the popup
+          // Second touch on the same token or anywhere outside dismisses popup
           hideTooltip();
         } else {
-          // Touching a different token switches the popup
-          showTooltip(trigger, e);
+          // Tapping a different token switches popup
+          showTooltip(trigger);
         }
       } else if (trigger) {
-        showTooltip(trigger, e);
+        // First tap on a token opens popup
+        showTooltip(trigger);
       }
     }, { passive: true });
 
-    // Dismiss tooltip on scroll or touch drag so the user can explore or move the page freely
+    // 3. Dismiss on scroll or swipe so the user can explore or move the page freely
     window.addEventListener('scroll', () => {
       if (tooltipEl.classList.contains('show')) {
         hideTooltip();
@@ -1202,19 +1205,12 @@ const App = {
       }
     }, { passive: true });
 
-    // Desktop mouse events (ignored if simulated immediately after a touch event)
+    // 4. Desktop mouse hover events (anchored to trigger, ignoring synthetic touch events)
     document.addEventListener('mouseover', (e) => {
       if (Date.now() - lastTouchTime < 800) return;
       const trigger = e.target.closest('[data-adv-tooltip]');
       if (trigger) {
-        showTooltip(trigger, e);
-      }
-    });
-
-    document.addEventListener('mousemove', (e) => {
-      if (Date.now() - lastTouchTime < 800) return;
-      if (tooltipEl.classList.contains('show')) {
-        positionTooltip(e, activeTrigger);
+        showTooltip(trigger);
       }
     });
 
@@ -1222,21 +1218,31 @@ const App = {
       if (Date.now() - lastTouchTime < 800) return;
       const trigger = e.target.closest('[data-adv-tooltip]');
       if (trigger && (!e.relatedTarget || !trigger.contains(e.relatedTarget))) {
+        if (e.relatedTarget && tooltipEl.contains(e.relatedTarget)) return;
         hideTooltip();
       }
     });
 
-    // General outside click dismiss & escape key dismiss
+    tooltipEl.addEventListener('mouseleave', (e) => {
+      if (Date.now() - lastTouchTime < 800) return;
+      if (!e.relatedTarget || !activeTrigger || !activeTrigger.contains(e.relatedTarget)) {
+        hideTooltip();
+      }
+    });
+
+    // 5. Global click fallback
     document.addEventListener('click', (e) => {
       if (Date.now() - lastTouchTime < 800) return;
       if (tooltipEl.classList.contains('show')) {
         const trigger = e.target.closest('[data-adv-tooltip]');
-        if (!trigger || trigger !== activeTrigger) {
+        const clickedTooltip = e.target.closest('#dh-adversary-tooltip');
+        if (clickedTooltip || !trigger || trigger !== activeTrigger) {
           hideTooltip();
         }
       }
     });
 
+    // 6. Escape key dismiss
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && tooltipEl.classList.contains('show')) {
         hideTooltip();
