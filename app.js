@@ -1090,19 +1090,14 @@ const App = {
     const desc = (adv.summary || adv.description || '').trim();
     const motive = (adv.motive || (isEnv ? adv.impulses : '') || '').trim();
 
-    let html = `
-      <div class="dh-tooltip-header d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom border-subtle">
-        <span class="text-gold fw-bold pe-2" style="font-size: 1.25rem; line-height: 1.2;">${name}</span>
-        <button type="button" class="dh-tooltip-close-btn" title="Close Tooltip">&times;</button>
-      </div>
-    `;
+    let html = `<div class="dh-tooltip-header">${name}</div>`;
     if (desc) {
       html += `<div class="dh-tooltip-section-title">Description</div><div class="dh-tooltip-text">${desc}</div>`;
     }
     if (motive) {
       html += `<div class="dh-tooltip-section-title">${isEnv ? 'Impulses & Hazards' : 'Motives & Tactics'}</div><div class="dh-tooltip-text">${motive}</div>`;
     }
-    html += `<div class="dh-tooltip-footer text-muted text-center mt-3 pt-2 border-top border-subtle" style="font-size: 0.72rem; opacity: 0.8; letter-spacing: 0.02em;">(Tap anywhere on screen or press &times; to close)</div>`;
+    html += `<div class="dh-tooltip-footer text-muted text-center mt-3 pt-2 border-top border-subtle" style="font-size: 0.72rem; opacity: 0.75; letter-spacing: 0.02em;">(Tap anywhere to dismiss)</div>`;
     return html.replace(/"/g, '&quot;');
   },
 
