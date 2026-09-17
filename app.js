@@ -1090,14 +1090,19 @@ const App = {
     const desc = (adv.summary || adv.description || '').trim();
     const motive = (adv.motive || (isEnv ? adv.impulses : '') || '').trim();
 
-    let html = `<div class="dh-tooltip-header d-flex justify-content-between align-items-center"><span>${name}</span><span class="dh-tooltip-close text-gold" style="font-size: 1.25rem; font-weight: normal; cursor: pointer; line-height: 1; margin-left: 8px;" title="Close">&times;</span></div>`;
+    let html = `
+      <div class="dh-tooltip-header d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom border-subtle">
+        <span class="text-gold fw-bold pe-2" style="font-size: 1.25rem; line-height: 1.2;">${name}</span>
+        <button type="button" class="dh-tooltip-close-btn" title="Close Tooltip">&times;</button>
+      </div>
+    `;
     if (desc) {
       html += `<div class="dh-tooltip-section-title">Description</div><div class="dh-tooltip-text">${desc}</div>`;
     }
     if (motive) {
       html += `<div class="dh-tooltip-section-title">${isEnv ? 'Impulses & Hazards' : 'Motives & Tactics'}</div><div class="dh-tooltip-text">${motive}</div>`;
     }
-    html += `<div class="dh-tooltip-footer text-muted text-end mt-2 pt-1 border-top border-subtle" style="font-size: 0.68rem; opacity: 0.75; letter-spacing: 0.03em;">Tap card to dismiss</div>`;
+    html += `<div class="dh-tooltip-footer text-muted text-center mt-3 pt-2 border-top border-subtle" style="font-size: 0.72rem; opacity: 0.8; letter-spacing: 0.02em;">(Tap anywhere on screen or press &times; to close)</div>`;
     return html.replace(/"/g, '&quot;');
   },
 
@@ -1111,6 +1116,7 @@ const App = {
     }
 
     let activeTrigger = null;
+    let justOpenedTime = 0;
     let lastTouchTime = 0;
 
     const positionTooltip = (trigger) => {
@@ -1147,6 +1153,7 @@ const App = {
       txt.innerHTML = content;
       tooltipEl.innerHTML = txt.value;
       activeTrigger = trigger;
+      justOpenedTime = Date.now();
       tooltipEl.classList.add('show');
       positionTooltip(trigger);
     };
@@ -1156,50 +1163,52 @@ const App = {
       activeTrigger = null;
     };
 
-    // 1. Direct click or touch on the popup window removes it immediately
+    // 1. Direct click or touch on the popup window or close button removes it immediately
     tooltipEl.addEventListener('click', (e) => {
       e.stopPropagation();
       hideTooltip();
     });
     tooltipEl.addEventListener('touchend', (e) => {
+      if (Date.now() - justOpenedTime < 200) return;
       e.stopPropagation();
       hideTooltip();
     });
 
-    // 2. Touch event handling for mobile devices
+    // 2. Touch event handling for mobile devices:
+    // First touch opens popup; any second touch anywhere on the screen dismisses it
     document.addEventListener('touchstart', (e) => {
       lastTouchTime = Date.now();
       const trigger = e.target.closest('[data-adv-tooltip]');
       const clickedTooltip = e.target.closest('#dh-adversary-tooltip');
 
-      if (clickedTooltip) {
-        hideTooltip();
-        return;
-      }
-
-      const isShowing = tooltipEl.classList.contains('show');
-      if (isShowing) {
-        if (!trigger || trigger === activeTrigger) {
-          // Second touch on the same token or anywhere outside dismisses popup
+      if (tooltipEl.classList.contains('show')) {
+        // If already open, touching anywhere (inside tooltip, outside, or on token) dismisses it
+        if (clickedTooltip || !trigger || trigger === activeTrigger) {
           hideTooltip();
         } else {
-          // Tapping a different token switches popup
+          // Tapped a different token -> switch to that token
           showTooltip(trigger);
         }
       } else if (trigger) {
         // First tap on a token opens popup
         showTooltip(trigger);
       }
-    }, { passive: true });
+    }, { passive: true, capture: true });
 
-    // 3. Dismiss on scroll or swipe so the user can explore or move the page freely
+    // 3. Dismiss immediately on any page scroll, touch swipe, or resize
     window.addEventListener('scroll', () => {
       if (tooltipEl.classList.contains('show')) {
         hideTooltip();
       }
-    }, { passive: true });
+    }, { passive: true, capture: true });
 
     document.addEventListener('touchmove', () => {
+      if (tooltipEl.classList.contains('show')) {
+        hideTooltip();
+      }
+    }, { passive: true, capture: true });
+
+    window.addEventListener('resize', () => {
       if (tooltipEl.classList.contains('show')) {
         hideTooltip();
       }
