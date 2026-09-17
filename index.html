@@ -684,13 +684,26 @@
           <label class="small fw-bold text-gold text-uppercase m-0 d-flex align-items-center gap-1" style="font-size: 0.75rem;">
             <span>🧮</span> Quick Math / Calculator
           </label>
-          <button class="btn btn-link btn-xs text-muted p-0 text-decoration-none" id="btn-calc-clear-history" title="Reset Calculator">Reset</button>
+          <div class="d-flex gap-2 align-items-center">
+            <button class="btn btn-link btn-xs text-warning p-0 text-decoration-none" id="btn-toggle-calc-history" title="Toggle Calculation History">History (<span id="calc-history-count">0</span>)</button>
+            <button class="btn btn-link btn-xs text-muted p-0 text-decoration-none" id="btn-calc-clear-history" title="Reset Calculator & History">Reset</button>
+          </div>
         </div>
 
         <!-- Calculator Display Screen -->
         <div class="calc-screen p-1.5 px-2 rounded bg-black border border-secondary mb-2 text-end">
           <div class="calc-history text-muted font-monospace text-truncate" id="calc-expression" style="font-size: 0.72rem; min-height: 1rem;">&nbsp;</div>
           <div class="calc-current text-warning font-monospace fw-bold fs-5 lh-1 text-truncate" id="calc-display">0</div>
+        </div>
+
+        <!-- Calculator History Tape (Collapsible / Scrollable list of past equations) -->
+        <div id="calc-history-tape" class="calc-history-tape p-2 rounded bg-black border border-secondary mb-2 small font-monospace d-none" style="max-height: 110px; overflow-y: auto;">
+          <div class="d-flex justify-content-between align-items-center mb-1 pb-1 border-bottom border-secondary border-opacity-25" style="font-size: 0.68rem;">
+            <span class="text-gold text-uppercase fw-bold">Calculation Log</span>
+            <button class="btn btn-link btn-xs text-danger p-0 text-decoration-none" id="btn-calc-clear-tape" style="font-size: 0.68rem;">Clear Log</button>
+          </div>
+          <div class="text-muted italic" id="calc-history-empty" style="font-size: 0.7rem;">No calculations yet.</div>
+          <div id="calc-history-items" class="d-flex flex-column gap-1"></div>
         </div>
 
         <!-- Calculator Keypad Grid -->

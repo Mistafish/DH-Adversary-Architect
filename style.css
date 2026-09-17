@@ -1570,6 +1570,51 @@ body.theme-light .calc-screen {
   border-color: #fda4af !important;
 }
 
+.calc-history-tape {
+  background: rgba(0, 0, 0, 0.65) !important;
+  border-color: var(--border-subtle) !important;
+}
+
+.calc-history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid transparent;
+  transition: all 0.12s ease;
+  font-size: 0.72rem;
+}
+
+.calc-history-item:hover {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.calc-history-item .calc-hist-expr {
+  color: var(--text-muted);
+}
+
+.calc-history-item .calc-hist-res {
+  color: var(--gold-bright);
+  font-weight: bold;
+}
+
+body.theme-light .calc-history-tape {
+  background: var(--bg-card) !important;
+  border-color: var(--border-subtle) !important;
+}
+
+body.theme-light .calc-history-item {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+body.theme-light .calc-history-item:hover {
+  background: rgba(245, 158, 11, 0.2);
+}
+
 /* ==========================================================================
    ADVERSARY CUSTOM RICH TOOLTIP (Asteroid Duet Header Style)
    ========================================================================== */

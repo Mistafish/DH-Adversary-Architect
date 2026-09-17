@@ -3563,7 +3563,8 @@ const App = {
     tokens: [],
     overwrite: true,
     historyStr: '',
-    isCalculated: false
+    isCalculated: false,
+    history: []
   },
 
   initCalculator() {
@@ -3572,20 +3573,61 @@ const App = {
       tokens: [],
       overwrite: true,
       historyStr: '',
-      isCalculated: false
+      isCalculated: false,
+      history: this.calcState?.history || []
     };
     this.updateCalcDisplay();
+    this.renderCalcHistory();
 
     const container = document.querySelector('.gm-calculator-container');
     if (!container) return;
 
+    // Toggle History Tape
+    const toggleHistoryBtn = document.getElementById('btn-toggle-calc-history');
+    if (toggleHistoryBtn) {
+      toggleHistoryBtn.addEventListener('click', () => {
+        const tape = document.getElementById('calc-history-tape');
+        if (tape) {
+          tape.classList.toggle('d-none');
+          AudioFX.playClick();
+        }
+      });
+    }
+
+    // Clear Tape Log
+    const clearTapeBtn = document.getElementById('btn-calc-clear-tape');
+    if (clearTapeBtn) {
+      clearTapeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.calcState.history = [];
+        this.renderCalcHistory();
+        AudioFX.playClick();
+      });
+    }
+
     // Keypad event delegation
     container.addEventListener('click', (e) => {
+      // If clicking an item in the history tape to recall its result
+      const histItem = e.target.closest('.calc-history-item');
+      if (histItem) {
+        const val = histItem.getAttribute('data-result');
+        if (val !== null && val !== undefined) {
+          this.calcState.current = String(val);
+          this.calcState.tokens = [];
+          this.calcState.overwrite = true;
+          this.calcState.isCalculated = true;
+          this.calcState.historyStr = `Recalled: ${val}`;
+          this.updateCalcDisplay();
+          AudioFX.playClick();
+        }
+        return;
+      }
+
       const btn = e.target.closest('.calc-btn, #btn-calc-clear-history');
       if (!btn) return;
 
       if (btn.id === 'btn-calc-clear-history') {
-        this.clearCalculator();
+        this.clearCalculator(true);
         AudioFX.playClick();
         return;
       }
@@ -3599,7 +3641,7 @@ const App = {
       } else if (btn.getAttribute('data-action') === 'equals') {
         this.computeCalculator();
       } else if (btn.getAttribute('data-action') === 'clear') {
-        this.clearCalculator();
+        this.clearCalculator(false);
       } else if (btn.getAttribute('data-action') === 'backspace') {
         this.backspaceCalculator();
       } else if (btn.getAttribute('data-action') === 'negate') {
@@ -3612,7 +3654,11 @@ const App = {
 
   inputCalcNumber(numStr) {
     if (this.calcState.isCalculated) {
-      this.clearCalculator();
+      this.calcState.tokens = [];
+      this.calcState.current = '0';
+      this.calcState.historyStr = '';
+      this.calcState.isCalculated = false;
+      this.calcState.overwrite = true;
     }
 
     if (this.calcState.overwrite || this.calcState.current === 'Error') {
@@ -3630,7 +3676,11 @@ const App = {
 
   inputCalcDecimal() {
     if (this.calcState.isCalculated) {
-      this.clearCalculator();
+      this.calcState.tokens = [];
+      this.calcState.current = '0';
+      this.calcState.historyStr = '';
+      this.calcState.isCalculated = false;
+      this.calcState.overwrite = true;
     }
 
     if (this.calcState.overwrite || this.calcState.current === 'Error') {
@@ -3644,14 +3694,19 @@ const App = {
 
   setCalcOperation(op) {
     if (this.calcState.current === 'Error') {
-      this.clearCalculator();
+      this.clearCalculator(false);
       return;
     }
 
+    // Chaining from previous calculated result:
     if (this.calcState.isCalculated) {
       const resVal = parseFloat(this.calcState.current) || 0;
-      this.calcState.tokens = [resVal];
+      this.calcState.tokens = [resVal, op];
       this.calcState.isCalculated = false;
+      this.calcState.overwrite = true;
+      this.calcState.historyStr = this.formatExpression(this.calcState.tokens);
+      this.updateCalcDisplay();
+      return;
     }
 
     const currentVal = parseFloat(this.calcState.current);
@@ -3687,7 +3742,8 @@ const App = {
 
     if (fullTokens.length === 0) return;
 
-    const expressionText = this.formatExpression(fullTokens) + ' =';
+    const formattedExpr = this.formatExpression(fullTokens);
+    const expressionText = formattedExpr + ' =';
     const result = this.evaluatePEMDAS(fullTokens);
 
     if (result === 'Error') {
@@ -3697,14 +3753,53 @@ const App = {
       this.calcState.isCalculated = true;
       this.calcState.overwrite = true;
     } else {
+      const resStr = String(result);
       this.calcState.historyStr = expressionText;
-      this.calcState.current = String(result);
+      this.calcState.current = resStr;
       this.calcState.tokens = [];
       this.calcState.isCalculated = true;
       this.calcState.overwrite = true;
+
+      // Add to history log
+      if (!this.calcState.history) this.calcState.history = [];
+      this.calcState.history.unshift({
+        expression: formattedExpr,
+        result: resStr,
+        full: `${formattedExpr} = ${resStr}`
+      });
+      if (this.calcState.history.length > 30) {
+        this.calcState.history.pop();
+      }
+      this.renderCalcHistory();
     }
 
     this.updateCalcDisplay();
+  },
+
+  renderCalcHistory() {
+    const itemsEl = document.getElementById('calc-history-items');
+    const emptyEl = document.getElementById('calc-history-empty');
+    const countEl = document.getElementById('calc-history-count');
+    if (!itemsEl) return;
+
+    const history = this.calcState.history || [];
+    if (countEl) {
+      countEl.textContent = String(history.length);
+    }
+
+    if (history.length === 0) {
+      if (emptyEl) emptyEl.style.display = 'block';
+      itemsEl.innerHTML = '';
+      return;
+    }
+
+    if (emptyEl) emptyEl.style.display = 'none';
+    itemsEl.innerHTML = history.map(item => `
+      <div class="calc-history-item" data-result="${item.result}" title="Click to recall result (${item.result})">
+        <span class="calc-hist-expr">${item.expression} =</span>
+        <span class="calc-hist-res">${item.result}</span>
+      </div>
+    `).join('');
   },
 
   evaluatePEMDAS(tokens) {
@@ -3777,15 +3872,19 @@ const App = {
     }).join(' ');
   },
 
-  clearCalculator() {
+  clearCalculator(includeHistory = false) {
     this.calcState = {
       current: '0',
       tokens: [],
       overwrite: true,
       historyStr: '',
-      isCalculated: false
+      isCalculated: false,
+      history: includeHistory ? [] : (this.calcState.history || [])
     };
     this.updateCalcDisplay();
+    if (includeHistory) {
+      this.renderCalcHistory();
+    }
   },
 
   backspaceCalculator() {
