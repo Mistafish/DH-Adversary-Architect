@@ -1109,29 +1109,41 @@ const App = {
       document.body.appendChild(tooltipEl);
     }
 
-    const showTooltip = (trigger, e) => {
-      const content = trigger.getAttribute('data-adv-tooltip');
-      if (!content) return;
-      // Decode HTML entities
-      const txt = document.createElement('textarea');
-      txt.innerHTML = content;
-      tooltipEl.innerHTML = txt.value;
-      tooltipEl.classList.add('show');
-      positionTooltip(e);
-    };
+    let activeTrigger = null;
+    let lastTouchTime = 0;
 
-    const positionTooltip = (e) => {
+    const positionTooltip = (e, trigger) => {
       if (!tooltipEl.classList.contains('show')) return;
       const offset = 14;
-      let x = e.clientX + offset;
-      let y = e.clientY + offset;
+      let clientX, clientY;
+
+      if (e && e.clientX !== undefined && (e.clientX !== 0 || e.clientY !== 0)) {
+        clientX = e.clientX;
+        clientY = e.clientY;
+      } else if (e && e.touches && e.touches[0]) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else if (e && e.changedTouches && e.changedTouches[0]) {
+        clientX = e.changedTouches[0].clientX;
+        clientY = e.changedTouches[0].clientY;
+      } else if (trigger) {
+        const trigRect = trigger.getBoundingClientRect();
+        clientX = trigRect.left + trigRect.width / 2;
+        clientY = trigRect.bottom;
+      } else {
+        clientX = window.innerWidth / 2;
+        clientY = window.innerHeight / 2;
+      }
+
+      let x = clientX + offset;
+      let y = clientY + offset;
 
       const rect = tooltipEl.getBoundingClientRect();
       if (x + rect.width > window.innerWidth - 12) {
-        x = e.clientX - rect.width - offset;
+        x = clientX - rect.width - offset;
       }
       if (y + rect.height > window.innerHeight - 12) {
-        y = e.clientY - rect.height - offset;
+        y = clientY - rect.height - offset;
       }
       if (x < 10) x = 10;
       if (y < 10) y = 10;
@@ -1140,11 +1152,59 @@ const App = {
       tooltipEl.style.top = `${y}px`;
     };
 
-    const hideTooltip = () => {
-      tooltipEl.classList.remove('show');
+    const showTooltip = (trigger, e) => {
+      const content = trigger.getAttribute('data-adv-tooltip');
+      if (!content) return;
+      // Decode HTML entities
+      const txt = document.createElement('textarea');
+      txt.innerHTML = content;
+      tooltipEl.innerHTML = txt.value;
+      tooltipEl.classList.add('show');
+      activeTrigger = trigger;
+      positionTooltip(e, trigger);
     };
 
+    const hideTooltip = () => {
+      tooltipEl.classList.remove('show');
+      activeTrigger = null;
+    };
+
+    // Touch device support:
+    // First touch on token opens popup; second touch anywhere (on token, outside, or moving the screen) dismisses popup
+    document.addEventListener('touchstart', (e) => {
+      lastTouchTime = Date.now();
+      const trigger = e.target.closest('[data-adv-tooltip]');
+      const isShowing = tooltipEl.classList.contains('show');
+
+      if (isShowing) {
+        if (!trigger || trigger === activeTrigger) {
+          // Second touch on the same token or anywhere outside dismisses the popup
+          hideTooltip();
+        } else {
+          // Touching a different token switches the popup
+          showTooltip(trigger, e);
+        }
+      } else if (trigger) {
+        showTooltip(trigger, e);
+      }
+    }, { passive: true });
+
+    // Dismiss tooltip on scroll or touch drag so the user can explore or move the page freely
+    window.addEventListener('scroll', () => {
+      if (tooltipEl.classList.contains('show')) {
+        hideTooltip();
+      }
+    }, { passive: true });
+
+    document.addEventListener('touchmove', () => {
+      if (tooltipEl.classList.contains('show')) {
+        hideTooltip();
+      }
+    }, { passive: true });
+
+    // Desktop mouse events (ignored if simulated immediately after a touch event)
     document.addEventListener('mouseover', (e) => {
+      if (Date.now() - lastTouchTime < 800) return;
       const trigger = e.target.closest('[data-adv-tooltip]');
       if (trigger) {
         showTooltip(trigger, e);
@@ -1152,14 +1212,33 @@ const App = {
     });
 
     document.addEventListener('mousemove', (e) => {
+      if (Date.now() - lastTouchTime < 800) return;
       if (tooltipEl.classList.contains('show')) {
-        positionTooltip(e);
+        positionTooltip(e, activeTrigger);
       }
     });
 
     document.addEventListener('mouseout', (e) => {
+      if (Date.now() - lastTouchTime < 800) return;
       const trigger = e.target.closest('[data-adv-tooltip]');
       if (trigger && (!e.relatedTarget || !trigger.contains(e.relatedTarget))) {
+        hideTooltip();
+      }
+    });
+
+    // General outside click dismiss & escape key dismiss
+    document.addEventListener('click', (e) => {
+      if (Date.now() - lastTouchTime < 800) return;
+      if (tooltipEl.classList.contains('show')) {
+        const trigger = e.target.closest('[data-adv-tooltip]');
+        if (!trigger || trigger !== activeTrigger) {
+          hideTooltip();
+        }
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && tooltipEl.classList.contains('show')) {
         hideTooltip();
       }
     });
@@ -2656,10 +2735,10 @@ const App = {
     const container = document.getElementById('active-adversary-roster');
     if (!container) return;
 
-    // Card header click to toggle collapse (ignoring interactive elements like buttons/dropdowns/inputs)
+    // Card header click to toggle collapse (ignoring interactive elements like buttons/dropdowns/inputs/tooltips)
     container.querySelectorAll('.adv-card-header').forEach(header => {
       header.addEventListener('click', (e) => {
-        if (e.target.closest('button, a, input, select, .dropdown, .dropdown-menu')) return;
+        if (e.target.closest('button, a, input, select, .dropdown, .dropdown-menu, [data-adv-tooltip]')) return;
         const idx = parseInt(header.getAttribute('data-idx'), 10);
         if (!isNaN(idx)) {
           this.handleRosterAction('toggle-card-collapse', idx);
@@ -6165,8 +6244,8 @@ const App = {
     // Toggle card expansion (accordion single-card rule)
     grid.querySelectorAll('[data-toggle-bestiary-id]').forEach(el => {
       el.addEventListener('click', (e) => {
-        // If clicking on an action button inside the card, ignore toggle
-        if (e.target.closest('button:not([data-toggle-bestiary-id]), a, input')) return;
+        // If clicking on an action button or profile token inside the card, ignore toggle
+        if (e.target.closest('button:not([data-toggle-bestiary-id]), a, input, [data-adv-tooltip]')) return;
         e.stopPropagation();
         const id = el.getAttribute('data-toggle-bestiary-id');
         if (this.expandedBestiaryId === id) {
