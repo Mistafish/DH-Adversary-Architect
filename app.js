@@ -1869,14 +1869,42 @@ const App = {
     if (summaryEl) summaryEl.textContent = `${pcCount} PCs • Tier ${pcTier} (${tierLevelLabels[pcTier] || 'Level ' + pcTier})`;
     if (breakdownEl) breakdownEl.innerHTML = `Target: (3 &times; ${pcCount}) + 2 = <strong>${targetBP} BP</strong> (Balanced)`;
 
-    const percentage = Math.min(100, Math.round((currentBP / targetBP) * 100));
     if (barEl) {
-      barEl.style.width = `${percentage}%`;
       barEl.className = 'progress-bar';
-      if (currentBP <= targetBP - 2) barEl.classList.add('bg-info');
-      else if (currentBP <= targetBP + 1) barEl.classList.add('bg-success');
-      else if (currentBP <= targetBP + 3) barEl.classList.add('bg-warning');
-      else barEl.classList.add('bg-danger');
+      if (currentBP <= 0) {
+        barEl.style.width = '0%';
+        barEl.style.background = 'linear-gradient(90deg, #06b6d4 0%, #38bdf8 100%)';
+        barEl.style.boxShadow = 'none';
+      } else {
+        const ratio = targetBP > 0 ? (currentBP / targetBP) : 1;
+
+        if (ratio <= 0.6) {
+          // Low spend / Easy: Smooth Cyan & Psionic Blue
+          const percentage = Math.max(3, Math.min(100, Math.round(ratio * 100)));
+          barEl.style.width = `${percentage}%`;
+          barEl.style.background = 'linear-gradient(90deg, #06b6d4 0%, #38bdf8 100%)';
+          barEl.style.boxShadow = '0 0 10px rgba(56, 189, 248, 0.45)';
+        } else if (ratio <= 1.0) {
+          // Approaching Target: Smooth continuous transition from Cyan into Solar Amber at target
+          const percentage = Math.max(3, Math.min(100, Math.round(ratio * 100)));
+          barEl.style.width = `${percentage}%`;
+          const amberWeight = (ratio - 0.6) / 0.4; // 0 to 1
+          const blueMid = Math.round(70 - 30 * amberWeight);
+          barEl.style.background = `linear-gradient(90deg, #06b6d4 0%, #38bdf8 ${blueMid}%, #f59e0b 100%)`;
+          barEl.style.boxShadow = `0 0 ${Math.round(10 + 4 * amberWeight)}px rgba(245, 158, 11, ${0.4 + 0.2 * amberWeight})`;
+        } else {
+          // Above Target: Smoothly blend reddish tones deeper and wider as BP spend increases above target
+          barEl.style.width = '100%';
+          const over = Math.min(1.0, (ratio - 1.0) / 0.5); // 0 (at target) to 1 (50%+ over target)
+          const amberPos = Math.round(88 - 40 * over);
+          const coralPos = Math.round(94 - 22 * over);
+          const blueMid = Math.max(10, Math.round(amberPos - 35));
+          const redStop = over > 0.5 ? '#e11d74' : '#f43f5e';
+
+          barEl.style.background = `linear-gradient(90deg, #06b6d4 0%, #38bdf8 ${blueMid}%, #f59e0b ${amberPos}%, #f97316 ${coralPos}%, ${redStop} 100%)`;
+          barEl.style.boxShadow = `0 0 ${Math.round(12 + 10 * over)}px rgba(244, 63, 94, ${0.5 + 0.35 * over}), 0 0 ${Math.round(18 * over)}px rgba(225, 29, 116, ${0.45 * over})`;
+        }
+      }
     }
 
     if (diffEl) {
